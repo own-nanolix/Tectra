@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Tectra brand site
 
-## Getting Started
+A 30-page brand system for Tectra (construction SaaS), built from the Behance case study by Stan D.,
+Rondesignlab and team: logo, colour, type, icons, charts, motion, seven landing pages, the dashboard, the mobile
+app, a working site-view demo, campaign artwork and the physical brand. Everything is drawn in code (inline SVG
+and CSS); there are no image files.
 
-First, run the development server:
+- Next.js 16 (App Router), React 19, JavaScript, Tailwind v4, framer-motion.
+- Every page is static. `npm run build` writes plain HTML, CSS and JS to `out/`.
+- Live link: not published yet.
+
+## Run it
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev                  # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Build, check, preview
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+```bash
+npm run build                # static export to out/ (also runs scripts/flatten-prefetch.mjs)
+node tools/check.mjs         # checks the 30 pages in out/ against pages.json (add --strict to fail on problems)
+node tools/serve-out.mjs     # serves out/ on http://localhost:4173
+node tools/audit.mjs         # needs serve-out running: overflow, contrast, names, links, ids at 1440 and 390 px
+node tools/export-svg.mjs    # needs serve-out running: writes every graphic to export/svg/ (add --dry to only check)
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+To audit or export from the dev server instead: `node tools/audit.mjs --base=http://localhost:3000 logo color`.
+Stop the dev server before `npm run build`.
 
-## Learn More
+## Where things are
 
-To learn more about Next.js, take a look at the following resources:
+| Path | What it is |
+|---|---|
+| `pages.json` | The 30 pages in presenter order, with the minimum number of exportable SVGs each |
+| `src/app/globals.css` | Tokens, type, buttons, cards, device frames, mockup kit, motion utilities |
+| `src/app/(site)/<id>/page.jsx` | One route per page |
+| `src/components/pages/<id>/` | Everything only that page uses |
+| `src/components/site` | Dock, index overlay, toast, icon sprite, reveal, counters, copy value |
+| `src/components/ui` | Buttons, chips, cards, tabs, toggle, field, landing nav and footer, live device frames |
+| `src/components/art` | The traced mark and lockups, key art, device frames for mockups, the mockup kit |
+| `src/lib` | Page list, motion tokens, chart helpers, brand copy and figures (`brand.js`) |
+| `export/svg/` | Every graphic and mockup as a standalone SVG (420 files) |
+| `SOURCE.md`, `LAYOUTS.md`, `BRIEF.md` | What the case study shows, the layout of every page, the builders' brief |
+| `REPORT.md`, `STATE.md` | The final report and the build log with decisions |
+| `rule/` | The original instructions (not edited) |
+| `reference/` | The case-study images: local only, never committed, never used in the site |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Use the dock at the bottom of every page to step through (or Shift+Left / Shift+Right) and to open the index.
+Add `?export=1` to any address to switch all animation off.

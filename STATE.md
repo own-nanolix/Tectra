@@ -23,8 +23,8 @@ Spec: `rule/Brand-site.md` (master spec) and `rule/07-tectra.md` (this project's
 - [x] 4. `LAYOUTS.md`, `pages.json`, shared system, 30 stub routes, `BRIEF.md`; dev server started
 - [x] 5. Build team, two waves; check reports 30 of 30 `ok`
 - [x] 6. Review team; shared fixes applied
-- [ ] 7. Verify in the browser; SVG export
-- [ ] 8. `REPORT.md` and `README.md`
+- [x] 7. Verify in the browser; SVG export
+- [x] 8. `REPORT.md` and `README.md`
 - [ ] 9. Offer to publish to Vercel
 
 ## Decisions
@@ -65,3 +65,4 @@ http://localhost:3102 (start with `npx next dev -p 3102`; stop it before `npm ru
 - Step 5 done: wave 2 finished; build passes; check reports 30 of 30 ok; lint clean. No builder was relaunched in either wave.
 - Step 6 started: 8 reviewers launched (R1 to R8, Opus). Audit of the built site before review: 29 of 30 clean; dataviz overflows 192 px at 390 px. If a session ends here, trust only `npm run build`, `node tools/check.mjs` and `node tools/audit.mjs`.
 - Step 6 done: 8 reviewers (Opus) reviewed and fixed all 30 pages. Shared fixes applied by the lead: `.lp-footer` uses padding-block (it cancelled the side padding); `CalloutG` takes fontSize; `Reveal` also shows elements passed by a fast scroll; LAYOUTS.md laptop scene is a front elevation. Build passes; check --strict 30 of 30.
+- Steps 7 and 8 done: built site audited clean on 30 of 30 pages; all pages visited with no console errors; dock, shortcuts and index work; 420 SVGs exported with 0 warnings; REPORT.md and README.md written. Step 9 (Vercel) waits for the owner to say yes.
