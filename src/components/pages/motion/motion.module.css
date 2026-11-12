@@ -1,0 +1,119 @@
+/* Motion page. Keyframes are named motion-xxx. Tokens come from globals.css. */
+
+/* ---------- Timeline ruler ---------- */
+.timeline { position: relative; padding-left: 56px; }
+.spine { position: absolute; left: 0; top: 0; bottom: 0; width: 12px; pointer-events: none; }
+.spineTicks { position: absolute; left: 0; top: 0; bottom: 0; width: 10px; background: repeating-linear-gradient(to bottom, var(--track) 0 1px, transparent 1px 16px); }
+.spineLine { position: absolute; left: 0; top: 0; bottom: 0; width: 1px; background: var(--track); }
+.spineFill { position: absolute; left: -1px; top: 0; bottom: 0; width: 3px; background: var(--blue); transform-origin: 50% 0; }
+
+.node { position: relative; display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; padding-bottom: clamp(72px, 9vw, 128px); }
+.node::before { content: ""; position: absolute; left: -56px; top: 16px; width: 34px; height: 2px; background: var(--blue-ink); }
+.node::after { content: ""; position: absolute; left: -26px; top: 11px; width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--blue-ink); background: var(--paper); box-sizing: border-box; }
+.head { display: grid; gap: 10px; align-content: start; min-width: 0; }
+.head h2 { margin: 0; }
+.head p { margin: 0; }
+.track { display: grid; gap: 28px; min-width: 0; }
+@media (min-width: 1100px) {
+  .node { grid-template-columns: minmax(0, 3fr) minmax(0, 9fr); gap: var(--gap, 32px); }
+  .head { position: sticky; top: 96px; align-self: start; }
+}
+@media (max-width: 720px) {
+  .timeline { padding-left: 28px; }
+  .node::before { left: -28px; width: 18px; }
+  .node::after { display: none; }
+}
+
+/* ---------- Generic blocks ---------- */
+.g2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.g3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+@media (max-width: 900px) { .g3 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 720px) { .g2, .g3 { grid-template-columns: minmax(0, 1fr); } }
+.plate { background: var(--tile); border-radius: var(--r-2); padding: 20px; display: grid; gap: 14px; align-content: start; min-width: 0; }
+.plate svg { width: 100%; height: auto; }
+.plate h3, .plate p { margin: 0; }
+.bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }
+.kicker { margin: 0; font-size: 13px; line-height: 1.4; color: var(--muted); font-variant-numeric: tabular-nums; }
+.line { height: 10px; border-radius: 2px; background: var(--card); }
+
+/* ---------- Easing ruler ---------- */
+.ruler { position: relative; height: 34px; margin: 4px 0; }
+.ruler::before { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 1px; background: var(--track); }
+.ruler::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 8px; background: repeating-linear-gradient(to right, var(--track) 0 1px, transparent 1px 10%); }
+.marker { position: absolute; top: 50%; left: 0; width: 16px; height: 16px; margin-top: -8px; border-radius: 50%; background: var(--blue); }
+.marker[data-tone="yellow"] { background: var(--yellow); }
+
+/* ---------- Durations and stagger ---------- */
+.durRow { display: grid; grid-template-columns: 140px minmax(0, 1fr); gap: 16px; align-items: center; }
+.durRow span { font-size: 14px; color: var(--ink); font-variant-numeric: tabular-nums; }
+.durTrack { height: 10px; border-radius: 2px; background: var(--chip); overflow: hidden; }
+.durBar { display: block; height: 100%; background: var(--blue); transform-origin: 0 50%; }
+@media (max-width: 480px) { .durRow { grid-template-columns: 96px minmax(0, 1fr); gap: 10px; } }
+.stag { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 6px; height: 96px; align-items: end; }
+.stagBar { display: block; height: 100%; background: linear-gradient(to bottom, var(--blue), rgba(64, 147, 236, 0)); transform-origin: 50% 100%; border-radius: 1px; }
+.stagLab { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 6px; font-size: 11px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.stagLab span { text-align: center; overflow: hidden; }
+
+/* ---------- Logo animation keyframes ---------- */
+.bodyIn { animation: motion-body 320ms var(--ease-out) 1300ms both; }
+@keyframes motion-body { from { opacity: 0; } to { opacity: 1; } }
+
+/* ---------- Transitions ---------- */
+.stage { position: relative; overflow: hidden; min-height: 220px; background: var(--chip); border-radius: var(--r-2); padding: 16px; display: grid; gap: 12px; align-content: start; }
+.page { background: var(--paper); border-radius: var(--r-1); padding: 18px; display: grid; gap: 10px; }
+.scrim { position: absolute; inset: 0; background: var(--ink); }
+.sheet { position: absolute; left: 0; right: 0; bottom: 0; background: var(--paper); border-radius: 6px 6px 0 0; padding: 18px; display: grid; gap: 10px; }
+.tabPanel { background: var(--paper); border-radius: var(--r-1); padding: 16px; display: grid; gap: 10px; }
+.figure { font-weight: 300; font-size: clamp(32px, 4vw, 52px); line-height: 1; font-variant-numeric: tabular-nums; }
+.cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; list-style: none; margin: 0; padding: 0; }
+.cards li { background: var(--paper); border-radius: var(--r-1); padding: 14px; display: grid; gap: 8px; }
+
+/* ---------- Micro-interactions ---------- */
+.row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.rangeWrap { display: grid; gap: 10px; }
+.rangeTrack { position: relative; height: 44px; touch-action: none; cursor: pointer; }
+.rangeLine { position: absolute; left: 0; right: 0; top: 17px; height: 1px; background: var(--track); }
+.rangeFill { position: absolute; left: 0; top: 16px; height: 3px; background: var(--blue); transform-origin: 0 50%; }
+.rangeTicks { position: absolute; left: 0; right: 0; bottom: 6px; height: 8px; background: repeating-linear-gradient(to right, var(--track) 0 1px, transparent 1px 2%); }
+.rangeHandle { position: absolute; top: 6px; width: 12px; height: 24px; margin-left: -6px; border: 0; padding: 0; border-radius: 2px; background: var(--blue-ink); cursor: grab; }
+.rangeHandle[data-drag="false"] { transition: left var(--dur-2) var(--ease-in-out); }
+.rangeHandle[data-drag="true"] { cursor: grabbing; }
+.rangeFill[data-drag="false"] { transition: width var(--dur-2) var(--ease-in-out); }
+.axis { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+
+/* ---------- Loaders ---------- */
+.wave { transform-box: fill-box; transform-origin: 50% 100%; animation: motion-wave 1.2s var(--ease-in-out) infinite both; animation-delay: calc(var(--i, 0) * var(--stagger)); }
+@keyframes motion-wave { 0%, 100% { transform: scaleY(0.3); } 50% { transform: none; } }
+.orbit { transform-box: view-box; transform-origin: 0 0; animation: motion-spin 2.4s var(--ease-in-out) infinite; }
+.orbitRev { transform-box: view-box; transform-origin: 0 0; animation: motion-spin-rev 2.4s var(--ease-in-out) infinite; }
+@keyframes motion-spin { to { transform: rotate(360deg); } }
+@keyframes motion-spin-rev { to { transform: rotate(-360deg); } }
+.sweep { animation: motion-sweep 2.4s var(--ease-draw) infinite both; }
+@keyframes motion-sweep { 0% { stroke-dashoffset: 1; } 70%, 100% { stroke-dashoffset: 0; } }
+.sweepDot { animation: motion-dot 2.4s var(--ease-draw) infinite both; }
+@keyframes motion-dot { 0%, 55% { opacity: 0; } 70%, 100% { opacity: 1; } }
+
+/* ---------- Pin landing ---------- */
+.drop { animation: motion-drop var(--dur-3) var(--ease-snap) 200ms both; }
+@keyframes motion-drop { from { transform: translateY(-46px); opacity: 0; } to { transform: none; opacity: 1; } }
+.ringOnce { transform-box: fill-box; transform-origin: center; animation: motion-ring var(--dur-4) var(--ease-out) 720ms both; }
+@keyframes motion-ring { from { transform: scale(1); opacity: 0.7; } to { transform: scale(3.2); opacity: 0; } }
+.shade { transform-box: fill-box; transform-origin: center; animation: motion-shade var(--dur-3) var(--ease-out) 200ms both; }
+@keyframes motion-shade { from { transform: scale(0.3); opacity: 0; } to { transform: none; opacity: 1; } }
+
+/* ---------- Do and don't ---------- */
+.pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+@media (max-width: 720px) { .pair { grid-template-columns: minmax(0, 1fr); } }
+.side { display: grid; gap: 10px; align-content: start; min-width: 0; }
+.side p { margin: 0; }
+.badge { justify-self: start; padding: 6px 12px; border-radius: var(--r-1); font-size: 13px; font-weight: 500; }
+.badgeDo { background: var(--sky); color: var(--navy); }
+.badgeDont { background: var(--ink); color: var(--white); }
+.demo { position: relative; height: 132px; overflow: hidden; background: var(--tile); border-radius: var(--r-2); display: grid; place-items: center; }
+.demo svg { width: 100%; height: 100%; }
+.ball { position: absolute; left: 50%; bottom: 22px; width: 30px; height: 30px; margin-left: -15px; border-radius: 50%; background: var(--yellow); }
+.slab { width: 46%; height: 64px; background: var(--paper); border-radius: var(--r-1); display: grid; align-content: center; gap: 8px; padding: 0 14px; }
+.miniBars { display: grid; grid-template-columns: repeat(8, 14px); gap: 6px; height: 80px; align-items: end; }
+.miniBar { display: block; height: 100%; background: linear-gradient(to bottom, var(--blue), rgba(64, 147, 236, 0)); transform-origin: 50% 100%; }
+.slide { position: absolute; left: 8%; top: 50%; width: 38px; height: 38px; margin-top: -19px; border-radius: 3px; background: var(--blue); }
+.slideLine { position: absolute; left: 8%; right: 8%; top: 50%; height: 1px; background: var(--track); }

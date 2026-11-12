@@ -1,0 +1,57 @@
+/* Logo page: centre-axis specimen column (8 of 12) with margin notes on the right only. */
+
+.head { padding-top: clamp(40px, 6vw, 96px); padding-bottom: clamp(24px, 3vw, 48px); }
+.headGrid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--gap); }
+.headMain { grid-column: 2 / 10; min-width: 0; }
+.headNote { grid-column: 10 / 13; min-width: 0; align-self: end; }
+.lead { margin-top: 20px; max-width: 34em; }
+
+.block { padding-block: clamp(28px, 4vw, 64px); }
+.grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--gap); align-items: start; }
+.main { grid-column: 2 / 10; min-width: 0; }
+.mainWide { grid-column: 1 / -1; min-width: 0; }
+.note {
+  grid-column: 10 / 13; min-width: 0;
+  font-size: 13px; font-weight: 400; line-height: 1.5; color: var(--muted);
+  padding-top: 6px; border-top: 1px solid var(--line);
+}
+.noteWide { grid-column: 1 / -1; max-width: 46em; font-size: 14px; line-height: 1.5; color: var(--muted); }
+.noteWide p + p, .note p + p { margin-top: 8px; }
+.heading { margin-bottom: 18px; }
+
+/* Plates: a drawing in a tile with a plain caption */
+.plate { margin: 0; min-width: 0; }
+.plate svg { display: block; width: 100%; height: auto; border-radius: var(--r-2); }
+.plate figcaption { padding: 10px 2px 0; font-size: 13px; font-weight: 400; line-height: 1.35; color: var(--muted); }
+.plateSized svg { width: auto; max-width: 100%; height: auto; margin-inline: 0; }
+
+.strip4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--gap); }
+.strip5 { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--gap); }
+.strip6 { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: var(--gap); }
+.strip3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gap); }
+.pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gap); }
+.stripGap { margin-top: var(--gap); }
+
+.sizes { display: flex; flex-wrap: wrap; gap: var(--gap); align-items: flex-end; }
+.sizes .plate svg { width: 96px; height: 96px; }
+
+.ratios { margin-top: 18px; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--gap); }
+.ratio { background: var(--tile); border-radius: var(--r-2); padding: 14px 16px; }
+.ratio b { display: block; font-weight: 300; font-size: 28px; line-height: 1.1; letter-spacing: -0.01em; }
+.ratio span { display: block; margin-top: 4px; font-size: 13px; line-height: 1.35; color: var(--muted); }
+
+.stage { background: var(--tile); border-radius: var(--r-2); }
+.stage svg { display: block; width: 100%; height: auto; }
+.replay { display: flex; align-items: center; gap: 14px; margin-top: 14px; }
+
+@media (max-width: 1100px) {
+  .headMain, .headNote, .main, .mainWide, .note { grid-column: 1 / -1; }
+  .note { margin-top: 4px; }
+  .strip6 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .strip5 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 720px) {
+  .strip4, .strip3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .strip6, .strip5 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pair { grid-template-columns: minmax(0, 1fr); }
+}

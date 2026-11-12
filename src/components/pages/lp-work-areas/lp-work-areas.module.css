@@ -1,0 +1,139 @@
+/* lp-work-areas: page-only styles. Keyframes are named lp-work-areas-xxx. */
+.root.root { padding: 0 0 120px; }
+.band { padding-block: calc(var(--band) / 2); }
+.headRow { display: grid; gap: 22px; justify-items: start; margin-bottom: clamp(24px, 3.4vw, 48px); }
+.chipRow { display: flex; flex-wrap: wrap; gap: 6px; }
+.navBand { background-image: none; }
+
+/* ---------- Hero: the site on the right two thirds, the text card overlapping on the left ---------- */
+.hero { position: relative; overflow: hidden; padding-bottom: clamp(24px, 4vw, 64px); }
+.heroGrid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0; position: relative; }
+.textCard { position: relative; z-index: 3; background: var(--paper); color: var(--ink); border-radius: var(--r-1); padding: clamp(22px, 2.6vw, 44px); display: grid; gap: 18px; justify-items: start; margin: 0 var(--pad) -40px; animation: lp-work-areas-in var(--dur-4) var(--ease-out) 100ms both; }
+.textCard h1 { font-size: clamp(30px, 3.1vw, 50px); }
+.siteWrap { position: relative; z-index: 1; padding-top: 40px; }
+.site { position: relative; width: 100%; }
+.site svg { width: 100%; height: 100%; }
+@media (min-width: 980px) {
+  .heroGrid { grid-template-columns: repeat(12, minmax(0, 1fr)); align-items: center; }
+  .textCard { grid-column: 1 / 6; grid-row: 1; margin: 0 0 0 var(--pad); align-self: center; }
+  .siteWrap { grid-column: 4 / 13; grid-row: 1; padding-top: 0; }
+}
+@keyframes lp-work-areas-in { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+
+.pins { position: absolute; inset: 0; }
+.pin { position: absolute; width: 44px; height: 44px; margin: -22px 0 0 -22px; padding: 0; border: 0; background: transparent; display: grid; place-items: center; animation: lp-work-areas-drop var(--dur-4) var(--ease-snap) both; animation-delay: calc(var(--i, 0) * 140ms + 500ms); }
+.pinDot { position: relative; width: 20px; height: 20px; border-radius: 50%; background: var(--white); display: block; transition: transform var(--dur-2) var(--ease-snap), background-color var(--dur-2) var(--ease-out); }
+.pinDot::before { content: ""; position: absolute; inset: 6px; border-radius: 50%; background: var(--ink); transition: background-color var(--dur-2) var(--ease-out); }
+.pinDot::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: var(--white); opacity: 0; animation: lp-work-areas-ring 2.6s var(--ease-out) infinite; animation-delay: calc(var(--i, 0) * 140ms + 1400ms); z-index: -1; }
+.pin:hover .pinDot { transform: scale(1.2); }
+.pin:active .pinDot { transform: scale(0.92); }
+.pinOn .pinDot { background: var(--yellow); transform: scale(1.35); }
+.pinOn .pinDot::before { background: var(--white); }
+.pinOn .pinDot::after { background: var(--yellow); }
+.pinOn:hover .pinDot { transform: scale(1.45); }
+.pinTip { position: absolute; bottom: calc(100% - 4px); left: 50%; transform: translate(-50%, 6px); background: var(--white); color: var(--ink); font-size: 13px; font-weight: 500; line-height: 1; padding: 7px 10px; border-radius: 3px; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity var(--dur-2) var(--ease-out), transform var(--dur-2) var(--ease-out); }
+.pin:hover .pinTip, .pin:focus-visible .pinTip, .pinOn .pinTip { opacity: 1; transform: translate(-50%, 0); }
+.pin:focus-visible { outline: 2px solid var(--white); outline-offset: 0; border-radius: 50%; }
+@keyframes lp-work-areas-drop { from { opacity: 0; transform: translateY(-34px); } to { opacity: 1; transform: none; } }
+@keyframes lp-work-areas-ring { 0% { transform: scale(1); opacity: 0.55; } 70%, 100% { transform: scale(2.8); opacity: 0; } }
+
+.workCard { position: absolute; right: 3%; bottom: 5%; width: min(250px, 46%); padding: 18px 20px; display: grid; gap: 4px; animation: lp-work-areas-in var(--dur-3) var(--ease-out) both; z-index: 2; }
+.workName { font-size: 16px; font-weight: 500; color: var(--navy); }
+.workSub { font-size: 13px; font-weight: 400; color: var(--navy); }
+.workFigure { font-size: clamp(26px, 2.6vw, 38px); font-weight: 300; color: var(--white); line-height: 1.1; margin-top: 10px; font-variant-numeric: tabular-nums; }
+.workTrend { font-size: 13px; color: var(--navy); }
+.workTrend :global(.trend) { color: var(--navy); }
+@media (max-width: 600px) { .workCard { position: relative; right: auto; bottom: auto; width: auto; margin: 16px var(--pad) 0; } .site { overflow: visible; } }
+
+/* ---------- Area cards ---------- */
+.areas { align-items: stretch; }
+.area { min-height: 260px; padding: 24px; display: grid; align-content: start; gap: 10px; justify-items: start; background: var(--card); animation: lp-work-areas-in var(--dur-3) var(--ease-out) both; animation-delay: calc(var(--i, 0) * 90ms); transition: transform var(--dur-3) var(--ease-out); }
+.area:hover { transform: translateY(-4px); }
+.areaMain { box-shadow: inset 0 -4px 0 var(--yellow); }
+.areaFigure { margin-top: 14px; position: relative; z-index: 1; }
+.cardGauge { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.segs { width: 100%; max-width: 320px; height: 10px; margin-top: 6px; }
+
+/* ---------- Crew ---------- */
+.empower { max-width: 1240px; margin-inline: auto; }
+.inline { display: inline-flex; gap: 6px; vertical-align: middle; margin-inline: 4px; }
+.inlineTile { width: 0.9em; height: 0.9em; min-width: 40px; min-height: 40px; max-width: 74px; max-height: 74px; background: var(--chip); border-radius: var(--r-1); display: inline-grid; place-items: center; color: var(--ink); }
+.inlinePlus { background: var(--ink); color: var(--white); }
+.crew { display: flex; justify-content: center; flex-wrap: wrap; gap: 14px; margin-top: clamp(28px, 4vw, 56px); }
+.tile { position: relative; width: 84px; height: 84px; border: 0; border-radius: var(--r-1); background: var(--chip); color: var(--ink); display: grid; place-items: center; transition: transform var(--dur-2) var(--ease-out), background-color var(--dur-2) var(--ease-out), color var(--dur-2) var(--ease-out); }
+button.tile:hover { transform: translateY(-4px); background: var(--card); }
+button.tile:active { transform: translateY(0) scale(0.96); }
+.tileOn { background: var(--ink) !important; color: var(--white); }
+.tilePlus { background: var(--ink); color: var(--white); }
+.status { position: absolute; left: 50%; bottom: -6px; width: 12px; height: 12px; margin-left: -6px; border-radius: 50%; box-shadow: 0 0 0 2px var(--paper); }
+.st_yellow { background: var(--yellow); }
+.st_red { background: var(--red); }
+
+/* ---------- Cross section ---------- */
+.cross { padding: clamp(20px, 3vw, 40px); display: grid; gap: 22px; }
+.crossHead { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 18px; }
+.crossRead { margin-left: auto; font-size: 16px; font-weight: 400; color: var(--muted); }
+.crossRead b { color: var(--ink); font-weight: 500; }
+.crossArt svg { width: 100%; height: auto; }
+.rangeLabel { display: grid; gap: 8px; }
+.range { width: 100%; height: 32px; background: transparent; accent-color: var(--blue-ink); cursor: pointer; }
+.range:focus-visible { outline: 2px solid var(--blue-ink); outline-offset: 4px; }
+
+/* ---------- Cut and Fill instrument ---------- */
+.cf { padding: clamp(20px, 3vw, 40px); display: grid; gap: 28px; }
+.cfStage { position: relative; }
+.cfStage svg { width: 100%; height: auto; }
+.cfSel { transition: transform var(--dur-3) var(--ease-in-out); }
+.cfButtons { position: absolute; inset: 0; }
+.cfBtn { position: absolute; top: 0; bottom: 0; width: 15%; transform: translateX(-50%); border: 0; background: transparent; border-radius: 3px; }
+.cfBtn:hover { background: rgba(64, 147, 236, 0.1); }
+.cfBtn[aria-pressed="true"] { background: transparent; }
+.cfRead { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gap); margin: 0; }
+.cfRead dd { margin: 4px 0 0; animation: lp-work-areas-in var(--dur-3) var(--ease-out) both; }
+@media (max-width: 600px) { .cfRead { grid-template-columns: minmax(0, 1fr); } }
+
+/* ---------- Ledger ---------- */
+.ledger { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(24px, 4vw, 64px); align-items: center; }
+.tableWrap { overflow-x: auto; }
+.table { width: 100%; border-collapse: collapse; min-width: 480px; }
+.table th, .table td { text-align: left; padding: 18px 12px; border-bottom: 1px solid var(--line); font-weight: 400; vertical-align: middle; }
+.table thead th { color: var(--muted); padding-block: 10px; }
+.table tbody th { font-size: 20px; font-weight: 500; }
+.num { font-size: clamp(20px, 2vw, 30px); font-weight: 300 !important; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.rowBtn { border: 0; background: transparent; padding: 6px 10px; margin: -6px -10px; border-radius: 3px; font: inherit; text-align: left; transition: background-color var(--dur-1) var(--ease-out); }
+.rowBtn:hover { background: var(--chip); }
+.rowBtn:active { background: var(--card); }
+.rowOn { background: var(--tile); }
+.rowOn .rowBtn { box-shadow: inset 3px 0 0 var(--yellow); padding-left: 14px; }
+.detail { width: 200px; }
+.miniSegs { width: 160px; height: 8px; }
+.matCell { display: inline-flex; align-items: center; gap: 12px; }
+.ledgerArt svg { width: 100%; height: auto; }
+.barRow { transition: opacity var(--dur-3) var(--ease-out); }
+@media (max-width: 900px) { .ledger { grid-template-columns: minmax(0, 1fr); } }
+
+/* ---------- Features ---------- */
+.feat { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); gap: clamp(24px, 4vw, 64px); align-items: start; }
+.featTile { border-radius: var(--r-2); padding: clamp(16px, 2.4vw, 36px); display: grid; gap: 24px; justify-items: start; }
+.featArt { width: 100%; height: auto; }
+.featList { display: grid; gap: 0; }
+.featRow { border-top: 1px solid var(--line); }
+.featBtn { width: 100%; display: grid; grid-template-columns: 56px minmax(0, 1fr) auto; align-items: center; gap: 12px; padding: 22px 8px; border: 0; background: transparent; text-align: left; font: inherit; border-radius: 3px; transition: background-color var(--dur-2) var(--ease-out), padding var(--dur-2) var(--ease-out); }
+.featBtn:hover { background: var(--tile); padding-left: 16px; }
+.featBtn:active { background: var(--chip); }
+.featBtn svg { transition: transform var(--dur-2) var(--ease-in-out); }
+.featBtn[aria-expanded="true"] svg { transform: rotate(180deg); }
+.featNum { font-size: 14px; font-weight: 500; color: var(--blue-ink); font-variant-numeric: tabular-nums; }
+.featTitle { font-weight: 300; font-size: clamp(22px, 2vw, 32px); }
+.featOn .featNum { color: var(--ink); }
+.featPanel { padding: 0 8px 26px 76px; animation: lp-work-areas-in var(--dur-3) var(--ease-out) both; }
+.feat .featList > :last-child { padding-top: 28px; border-top: 1px solid var(--line); }
+@media (max-width: 900px) { .feat { grid-template-columns: minmax(0, 1fr); } .featPanel { padding-left: 8px; } }
+
+/* ---------- CTA ---------- */
+.cta { position: relative; overflow: hidden; border-radius: var(--r-1); display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); align-items: center; min-height: 460px; }
+.ctaText { position: relative; z-index: 2; padding: clamp(28px, 5vw, 80px); display: grid; gap: 24px; justify-items: start; }
+.ctaText p { color: var(--sky); }
+.ctaSite { opacity: 0.9; padding: 24px; }
+.ctaSite svg { width: 100%; height: auto; }
+@media (max-width: 900px) { .cta { grid-template-columns: minmax(0, 1fr); } .ctaSite { order: 2; } }

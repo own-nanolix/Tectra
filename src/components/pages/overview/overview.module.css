@@ -1,0 +1,67 @@
+/* Overview page styles. Keyframes are named overview-xxx. */
+.ov-coverWrap { position: relative; background: var(--blue-field); overflow: hidden; }
+.ov-cover { width: 100%; height: auto; max-height: 100vh; min-height: 420px; object-fit: cover; }
+
+.ov-intro { padding-top: clamp(48px, 7vw, 110px); }
+.ov-contents { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+.ov-contents li { display: block; }
+.ov-contentsBtn {
+  display: grid; grid-template-columns: 28px 1fr; align-items: baseline; width: 100%; text-align: left;
+  border: 0; background: transparent; padding: 7px 0; color: var(--ink); font-size: 14px; font-weight: 400;
+  transition: color var(--dur-1) var(--ease-out), transform var(--dur-2) var(--ease-out);
+}
+.ov-contentsBtn span:first-child { font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.ov-contentsBtn:hover { color: var(--blue-ink); transform: translateX(4px); }
+.ov-contentsBtn:active { transform: translateX(2px); }
+
+.ov-overviewRow { display: grid; grid-template-columns: 14px minmax(0, 1fr); gap: 28px; align-items: stretch; margin-top: 28px; }
+.ov-vbar { display: grid; grid-template-rows: 1fr 1fr; gap: 4px; width: 4px; min-height: 120px; }
+.ov-vbar i { display: block; background: var(--track); border-radius: 1px; }
+.ov-vbar i[data-on="1"] { background: var(--blue); transform-origin: 50% 0; animation: overview-bar var(--dur-4) var(--ease-out) 200ms both; }
+.ov-vbarLow i[data-on="1"] { transform-origin: 50% 100%; }
+@keyframes overview-bar { from { transform: scaleY(0); } to { transform: none; } }
+.ov-aboutArt { width: 100%; height: auto; }
+
+.ov-principles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(28px, 4vw, 64px) clamp(24px, 6vw, 120px); align-items: start; }
+.ov-principle { position: relative; background: var(--tile); border-radius: var(--r-1); padding: clamp(24px, 3vw, 44px); }
+.ov-principle:nth-child(even) { margin-top: clamp(40px, 7vw, 110px); }
+.ov-principle h3 { margin-top: 18px; }
+.ov-principle p { margin-top: 10px; max-width: 46ch; color: var(--ink); }
+.ov-figBlock { margin: clamp(-90px, -5vw, -36px) 0 18px -12px; }
+.ov-figure { color: var(--blue); }
+.ov-principle:nth-child(even) .ov-figure { color: var(--ink); }
+.ov-principle { margin-top: clamp(36px, 5vw, 80px); }
+@media (max-width: 900px) {
+  .ov-principles { grid-template-columns: minmax(0, 1fr); }
+  .ov-principle:nth-child(even) { margin-top: clamp(36px, 5vw, 80px); }
+  .ov-figBlock { margin-top: -24px; }
+}
+
+.ov-ledgerHead { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.ov-group { margin-top: 44px; }
+.ov-group h3 { font-weight: 500; font-size: 11px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+.ov-ledger { list-style: none; margin: 0; padding: 0; }
+.ov-row {
+  display: grid; grid-template-columns: 44px minmax(0, 1fr) minmax(0, 1.3fr) 24px; gap: 16px; align-items: baseline;
+  padding: 16px 0; border-bottom: 1px solid var(--line); text-decoration: none; color: var(--ink);
+  transition: color var(--dur-1) var(--ease-out), transform var(--dur-2) var(--ease-out), background-color var(--dur-2) var(--ease-out);
+}
+.ov-row .ov-num { font-size: 12px; font-weight: 400; color: var(--muted); font-variant-numeric: tabular-nums; }
+.ov-row .ov-name { font-size: clamp(20px, 2vw, 30px); font-weight: 300; line-height: 1.2; }
+.ov-row .ov-what { font-size: 14px; font-weight: 400; color: var(--muted); line-height: 1.4; }
+.ov-row .ov-go { justify-self: end; color: var(--blue-ink); transition: transform var(--dur-2) var(--ease-out); }
+.ov-row:hover { color: var(--blue-ink); transform: translateX(6px); }
+.ov-row:hover .ov-go { transform: translateX(4px); }
+.ov-row:active { transform: translateX(3px); }
+.ov-row:focus-visible { outline-offset: 2px; }
+@media (max-width: 700px) {
+  .ov-row { grid-template-columns: 34px minmax(0, 1fr) 20px; }
+  .ov-row .ov-what { grid-column: 2; grid-row: 2; }
+  .ov-row .ov-go { grid-row: 1; grid-column: 3; }
+}
+.ov-ledgerGrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 clamp(24px, 5vw, 96px); }
+@media (max-width: 900px) { .ov-ledgerGrid { grid-template-columns: minmax(0, 1fr); } }
+.ov-sectionHead { display: grid; gap: 12px; }
+
+.ov-run[data-run="0"] * { animation-play-state: paused !important; }
+.ov-idea { display: grid; gap: 20px; }

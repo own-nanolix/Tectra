@@ -1,0 +1,84 @@
+/* lp-timeline: page-only styles. Keyframes are named lp-timeline-xxx. */
+.root.root { padding: 0 0 120px; }
+.band { padding-block: calc(var(--band) / 2); }
+.headRow { display: grid; gap: 24px; justify-items: start; margin-bottom: clamp(28px, 4vw, 56px); }
+
+/* ---------- Hero: the roadmap, full bleed ---------- */
+.hero { position: relative; }
+.stage { position: relative; container-type: inline-size; width: 100%; }
+.headline { padding: 8px var(--pad) 20px; max-width: 760px; font-size: clamp(30px, 6vw, 44px); }
+.scroll { overflow-x: auto; scrollbar-width: thin; }
+.canvas { position: relative; min-width: 860px; aspect-ratio: 1600 / 740; outline-offset: -3px; }
+.canvas:focus-visible { outline: 2px solid var(--blue-ink); border-radius: 4px; }
+.canvas svg { width: 100%; height: auto; }
+.roadmapSvg { overflow: visible; }
+@media (min-width: 900px) {
+  .headline { position: absolute; z-index: 2; right: var(--pad); top: 2.2cqw; width: 34cqw; max-width: none; padding: 0; font-size: clamp(26px, 2.7cqw, 46px); pointer-events: none; }
+  .canvas { min-width: 0; }
+}
+.handleLine { transition: stroke var(--dur-2) var(--ease-in-out); }
+.handleEnd { animation: lp-timeline-slide var(--dur-4) var(--ease-out) 700ms both; }
+.handleEnd rect, .handleEnd circle { transition: fill var(--dur-2) var(--ease-in-out), stroke var(--dur-2) var(--ease-in-out); }
+@keyframes lp-timeline-slide { from { opacity: 0; transform: translateX(calc(var(--from, 0) * 1px)); } to { opacity: 1; transform: none; } }
+
+.controls { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; padding-block: 8px 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.readout { display: inline-flex; align-items: baseline; gap: 12px; margin-left: auto; }
+.readoutName { font-weight: 300; font-size: clamp(22px, 2.4vw, 34px); line-height: 1; }
+@media (max-width: 760px) { .readout { margin-left: 0; width: 100%; } }
+
+/* ---------- Track of stage cards ---------- */
+.trackSec { padding-block: calc(var(--band) / 2); }
+.trackHead { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; margin-bottom: clamp(24px, 3vw, 40px); }
+.arrows { display: flex; gap: 6px; flex: none; }
+.track { overflow-x: auto; scroll-snap-type: x proximity; padding-bottom: 18px; margin-inline: calc(var(--pad) * -1); padding-inline: var(--pad); scrollbar-width: thin; border-radius: 4px; }
+.cards { list-style: none; display: flex; gap: var(--gap); padding: 0; margin: 0; position: relative; width: max-content; }
+.card { flex: none; width: clamp(272px, 28vw, 380px); background: var(--tile); border-radius: var(--r-1); overflow: hidden; scroll-snap-align: center; display: grid; grid-template-rows: auto 1fr; transition: transform var(--dur-3) var(--ease-out), box-shadow var(--dur-3) var(--ease-out); box-shadow: inset 0 0 0 0 var(--yellow); }
+.card:hover { transform: translateY(-4px); }
+.cardOn { box-shadow: inset 0 -4px 0 0 var(--yellow); }
+.scene { background: var(--chip); }
+.scene svg { width: 100%; height: auto; }
+.cardBody { padding: 20px 22px 24px; display: grid; gap: 10px; align-content: start; justify-items: start; }
+.clamp { display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+.bar { display: block; height: 10px; width: 80%; background: var(--track); border-radius: 2px; }
+.barShort { width: 55%; }
+
+/* ---------- Device path ---------- */
+.deviceGrid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(24px, 4vw, 64px); align-items: center; margin-top: 28px; }
+.deviceArt { background: var(--tile); border-radius: var(--r-2); overflow: hidden; animation: lp-timeline-swap var(--dur-3) var(--ease-out) both; }
+.deviceArt svg { width: 100%; height: auto; }
+.deviceText { justify-items: start; animation: lp-timeline-swap var(--dur-3) var(--ease-out) 80ms both; }
+@keyframes lp-timeline-swap { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@media (max-width: 900px) { .deviceGrid { grid-template-columns: minmax(0, 1fr); } }
+
+/* ---------- Calendar strip ---------- */
+.calTop { margin-bottom: 20px; }
+.yearScroll { overflow-x: auto; background: var(--tile); border-radius: var(--r-2); padding: 20px clamp(12px, 2vw, 28px); }
+.yearSvg { min-width: 760px; width: 100%; height: auto; }
+.calMark { transition: opacity var(--dur-3) var(--ease-out); }
+.calBottom { display: grid; grid-template-columns: minmax(0, 8fr) minmax(0, 4fr); gap: var(--gap); margin-top: var(--gap); align-items: stretch; }
+.monthBox { background: var(--tile); border-radius: var(--r-2); padding: 22px clamp(12px, 2vw, 28px); display: grid; gap: 14px; align-content: center; }
+.days { display: grid; grid-template-columns: repeat(31, minmax(0, 1fr)); gap: 3px; }
+.day { aspect-ratio: 1 / 1.7; min-width: 0; background: var(--track); border-radius: 2px; display: grid; place-items: center; font-size: 12px; font-weight: 500; color: var(--ink); animation: lp-timeline-day var(--dur-3) var(--ease-out) both; animation-delay: calc(var(--i, 0) * 14ms); }
+.dayY { background: var(--yellow); }
+.dayB { background: var(--blue-ink); color: var(--white); }
+@keyframes lp-timeline-day { from { opacity: 0; transform: scaleY(0.2); } to { opacity: 1; transform: none; } }
+@media (max-width: 760px) { .day { font-size: 0; } }
+.calCard { display: grid; gap: 10px; align-content: center; animation: lp-timeline-swap var(--dur-3) var(--ease-out) both; }
+.kv { display: grid; gap: 8px; margin: 0; }
+.kv dd { margin: 0; }
+@media (max-width: 900px) { .calBottom { grid-template-columns: minmax(0, 1fr); } }
+
+/* ---------- Results ---------- */
+.results { margin-top: 8px; }
+.resultCard { min-height: 300px; display: grid; align-content: space-between; }
+.resultHero { background: var(--yellow); color: var(--ink); }
+.resultFigure { font-size: clamp(56px, 6vw, 96px); position: relative; z-index: 1; }
+.gauge { position: absolute; right: 0; bottom: 0; width: 100%; height: 100%; pointer-events: none; }
+
+/* ---------- Quote and split CTA ---------- */
+.quote { max-width: 1240px; }
+.split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--gap); }
+.splitA, .splitB { border-radius: var(--r-1); padding: clamp(24px, 4vw, 64px); display: grid; gap: 24px; align-content: space-between; min-height: 420px; }
+.splitB { background: var(--tile); }
+@media (max-width: 800px) { .split { grid-template-columns: minmax(0, 1fr); } }

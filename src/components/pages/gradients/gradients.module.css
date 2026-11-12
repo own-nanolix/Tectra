@@ -1,0 +1,42 @@
+/* Gradients page: gallery wall, film strip, and the looping studies. */
+.wall { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--gap); align-items: start; }
+.plate { grid-column: span var(--span, 6); min-width: 0; margin: 0; }
+.frame { border-radius: var(--r-1); overflow: hidden; background: var(--tile); line-height: 0; }
+.frame > svg { width: 100%; height: auto; }
+.cap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 16px; padding: 12px 2px 0; font-size: 13px; font-weight: 400; line-height: 1.35; color: var(--muted); }
+.cap b { font-weight: 500; color: var(--ink); }
+.dark .cap { color: var(--white); }
+.dark .cap b { color: var(--white); }
+
+.strip { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--gap); background: var(--ink); border-radius: var(--r-2); padding: clamp(14px, 2vw, 28px); }
+.strip .frame { background: transparent; }
+
+.head { padding-bottom: clamp(24px, 4vw, 56px); }
+.section { padding-top: clamp(56px, 8vw, 120px); }
+.section h2 { margin-bottom: 12px; }
+
+@media (max-width: 900px) {
+  .plate { grid-column: span 12; }
+  .strip .plate { grid-column: span 6; }
+}
+@media (max-width: 560px) {
+  .strip .plate { grid-column: span 12; }
+}
+
+/* ---- Motion studies: each starts at the finished frame and drifts away from it and back ---- */
+.wave { transform-box: fill-box; transform-origin: 50% 0; animation: gradients-wave 3.2s var(--ease-in-out) infinite; animation-delay: calc(var(--i, 0) * -80ms); }
+@keyframes gradients-wave { 0%, 100% { transform: scaleY(1); } 50% { transform: scaleY(0.6); } }
+
+.slideA { animation: gradients-slide-a 5s var(--ease-in-out) infinite; }
+.slideB { animation: gradients-slide-b 5s var(--ease-in-out) infinite; }
+.land { transform-box: fill-box; transform-origin: center; animation: gradients-land 5s var(--ease-in-out) infinite; }
+@keyframes gradients-slide-a { 0%, 30%, 100% { transform: none; } 65% { transform: translate(-16px, -16px); } }
+@keyframes gradients-slide-b { 0%, 30%, 100% { transform: none; } 65% { transform: translate(16px, 16px); } }
+@keyframes gradients-land { 0%, 30%, 100% { transform: none; opacity: 1; } 65% { transform: scale(0.8); opacity: 0.6; } }
+
+.travel { animation: gradients-travel 5s var(--ease-in-out) infinite alternate; }
+@keyframes gradients-travel { 0%, 12% { transform: none; } 88%, 100% { transform: translateX(250px); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .wave, .slideA, .slideB, .land, .travel { animation: none; }
+}

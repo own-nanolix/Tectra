@@ -1,0 +1,143 @@
+/* lp-dashboard: data-led landing page built around live widgets. Keyframes would be named lp-dashboard-xxx. */
+
+.lpd-root.page { padding: 0; overflow-x: clip; }
+
+/* Hold the CSS draw-on animations until the block scrolls into view */
+.lpd-seen[data-seen="false"] :global(.draw),
+.lpd-seen[data-seen="false"] :global(.rise),
+.lpd-seen[data-seen="false"] :global(.pop),
+.lpd-seen[data-seen="false"] :global(.grow-x),
+.lpd-seen[data-seen="false"] :global(.fade-in) { animation-play-state: paused; }
+
+.lpd-band { padding-block: var(--band); }
+.lpd-tileBand { background: var(--tile); }
+.lpd-center { display: grid; justify-items: center; }
+
+/* ---------- Hero ---------- */
+.lpd-heroField { position: relative; overflow: hidden; }
+.lpd-hero { position: relative; padding: clamp(24px, 4vw, 56px) 0 clamp(48px, 7vw, 110px); }
+.lpd-heroTrees { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.lpd-heroGrid { position: relative; display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: clamp(24px, 4vw, 64px); align-items: center; }
+.lpd-heroText { display: grid; gap: 24px; align-content: center; }
+.lpd-heroTitle { color: var(--white); }
+.lpd-bento { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 12px; }
+.lpd-bTick { grid-column: span 6; min-width: 0; }
+.lpd-bGauge { grid-column: span 2; min-width: 0; }
+.lpd-bHalf { grid-column: span 3; min-width: 0; }
+.lpd-bTick > *, .lpd-bGauge > *, .lpd-bHalf > * { height: 100%; }
+@media (max-width: 1100px) {
+  .lpd-heroGrid { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 720px) {
+  .lpd-bGauge, .lpd-bHalf { grid-column: span 6; }
+}
+
+/* ---------- App cards ---------- */
+.lpd-figRow { display: flex; align-items: baseline; gap: 12px; margin-top: 10px; }
+.lpd-legend { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 400; color: var(--muted); }
+.lpd-read { display: flex; flex-wrap: wrap; gap: 6px 20px; margin-top: 8px; font-size: 13px; font-weight: 400; color: var(--ink); font-variant-numeric: tabular-nums; }
+
+.lpd-tick, .lpd-gauge, .lpd-cutfill { color: var(--ink); }
+.lpd-tick { padding: 20px 20px 16px; }
+.lpd-tickWrap { position: relative; margin-top: 12px; touch-action: pan-y; }
+.lpd-tickSlider { position: absolute; inset: 0; cursor: ew-resize; border-radius: 2px; touch-action: none; }
+.lpd-tickSlider:hover { background: rgba(64, 147, 236, 0.06); }
+.lpd-tickSlider:active { cursor: grabbing; }
+
+.lpd-gauge { min-height: 170px; display: flex; flex-direction: column; transition: background-color var(--dur-2) var(--ease-out), transform var(--dur-2) var(--ease-out); }
+.lpd-gauge:hover, .lpd-gauge:focus-visible { background: #efefef; transform: translateY(-2px); }
+.lpd-gaugeBody { display: grid; gap: 4px; justify-items: start; margin-top: 12px; position: relative; z-index: 1; }
+.lpd-gaugeBody p { line-height: 1.1; }
+.lpd-gaugeArt { position: absolute; right: 0; bottom: 0; height: 100%; width: auto; aspect-ratio: 200 / 170; pointer-events: none; }
+
+.lpd-cutfill { display: flex; flex-direction: column; gap: 8px; }
+.lpd-cutArt { width: 100%; height: auto; margin-top: 4px; }
+.lpd-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.lpd-ind { background: var(--chip); font-size: 13px; padding: 8px 12px; }
+.lpd-ind[aria-pressed="true"] { background: var(--ink); color: var(--white); }
+
+/* Glass completion card */
+.lpd-glass { padding: 18px; display: flex; flex-direction: column; gap: 6px; min-height: 100%; }
+.lpd-overall { display: inline-flex; align-items: center; gap: 6px; align-self: flex-end; background: rgba(255, 255, 255, 0.3); border-radius: var(--r-1); padding: 6px 10px; font-size: 13px; font-weight: 500; color: var(--navy); }
+.lpd-glassLabel { font-size: 14px; font-weight: 400; color: var(--navy); }
+.lpd-glassFig { font-weight: 300; font-size: clamp(40px, 4vw, 60px); line-height: 1; color: var(--white); font-variant-numeric: tabular-nums; }
+.lpd-glassTrend { color: var(--navy); }
+.lpd-glassChart { margin-top: 4px; cursor: crosshair; }
+.lpd-glassChart > svg { width: 100%; height: auto; }
+.lpd-segs { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 4px; margin-top: 6px; }
+.lpd-segs span { height: 6px; border-radius: 1px; background: rgba(255, 255, 255, 0.35); transition: background-color var(--dur-2) var(--ease-in-out); }
+.lpd-segs span[data-on="true"] { background: var(--white); }
+.lpd-vol { display: flex; justify-content: space-between; gap: 8px; font-size: 12px; font-weight: 400; color: var(--navy); font-variant-numeric: tabular-nums; }
+
+/* ---------- Features ---------- */
+.lpd-featTabs { margin-top: clamp(28px, 4vw, 56px); }
+.lpd-featPanel { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(24px, 4vw, 72px); align-items: center; background: var(--tile); border-radius: var(--r-2); padding: clamp(24px, 4vw, 64px); margin-top: 16px; }
+.lpd-featNote { color: var(--muted); margin-top: 20px; }
+.lpd-featVisual { min-width: 0; }
+.lpd-featVisual > svg { width: 100%; height: auto; }
+.lpd-miniBars { list-style: none; padding: 0; margin: 0; display: grid; gap: 22px; }
+.lpd-miniBars li { display: grid; grid-template-columns: 110px minmax(0, 1fr) 64px; gap: 16px; align-items: center; }
+.lpd-miniTrack { height: 6px; background: var(--track); border-radius: 1px; overflow: hidden; display: block; }
+.lpd-miniTrack span { display: block; height: 100%; width: var(--v); background: var(--blue); }
+.lpd-miniTrack span[data-tone="yellow"] { background: var(--yellow); }
+.lpd-crew { display: grid; gap: 28px; }
+.lpd-crewAvatar { background: var(--chip); color: var(--ink); width: 64px; height: 64px; }
+.lpd-steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; width: 100%; max-width: 280px; }
+.lpd-steps span { height: 6px; background: var(--track); border-radius: 1px; }
+.lpd-steps span[data-on="true"] { background: var(--blue); }
+@media (max-width: 900px) {
+  .lpd-featPanel { grid-template-columns: minmax(0, 1fr); }
+  .lpd-miniBars li { grid-template-columns: 90px minmax(0, 1fr) 52px; gap: 10px; }
+}
+
+/* ---------- Tick band ---------- */
+.lpd-insGrid { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: clamp(24px, 4vw, 72px); margin-top: clamp(32px, 4vw, 64px); align-items: center; }
+.lpd-insList { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+.lpd-insBtn { width: 100%; text-align: left; border: 0; border-radius: var(--r-1); background: var(--paper); padding: 20px 24px; display: grid; gap: 6px; transition: background-color var(--dur-2) var(--ease-out), transform var(--dur-1) var(--ease-out); }
+.lpd-insBtn:hover { background: var(--chip); }
+.lpd-insBtn:active { transform: translateY(1px); }
+.lpd-insBtn[aria-pressed="true"] { background: var(--ink); color: var(--white); }
+.lpd-insFig { font-size: 44px; }
+.lpd-insBtn[aria-pressed="true"] .lpd-insFig[data-tone="yellow"] { color: var(--yellow); }
+.lpd-insBtn[aria-pressed="false"] .lpd-insFig[data-tone="blue"] { color: var(--blue-ink); }
+.lpd-insBtn[aria-pressed="false"] .lpd-insFig[data-tone="yellow"] { color: var(--yellow-ink); }
+.lpd-insChart > svg { width: 100%; height: auto; }
+.lpd-insRead { display: flex; flex-wrap: wrap; align-items: baseline; gap: 12px; margin-top: 12px; }
+@media (max-width: 900px) { .lpd-insGrid { grid-template-columns: minmax(0, 1fr); } }
+
+/* ---------- Results ---------- */
+.lpd-results { margin-top: clamp(32px, 4vw, 64px); }
+.lpd-result { min-height: 300px; aspect-ratio: 340 / 300; display: flex; flex-direction: column; transition: background-color var(--dur-2) var(--ease-out); }
+.lpd-result:hover, .lpd-result:focus-visible { background: var(--chip); }
+.lpd-resultFig { display: flex; align-items: center; gap: 8px; margin-top: auto; position: relative; z-index: 1; padding-bottom: 8px; }
+.lpd-resultArt { position: absolute; right: 0; bottom: 0; height: 78%; width: auto; aspect-ratio: 340 / 236; pointer-events: none; }
+@media (max-width: 900px) { .lpd-result { aspect-ratio: auto; min-height: 280px; } }
+
+/* ---------- Table ---------- */
+.lpd-tableHead { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(20px, 4vw, 64px); align-items: end; margin-bottom: clamp(24px, 4vw, 56px); }
+@media (max-width: 900px) { .lpd-tableHead { grid-template-columns: minmax(0, 1fr); } }
+.lpd-tableTools { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: clamp(24px, 3vw, 40px) 0 12px; }
+.lpd-tableScroll { overflow-x: auto; position: relative; }
+.lpd-table { width: 100%; border-collapse: collapse; min-width: 520px; }
+.lpd-table th, .lpd-table td { text-align: left; padding: 18px 16px; border-bottom: 1px solid var(--line); font-weight: 400; }
+.lpd-table tbody tr { transition: background-color var(--dur-1) var(--ease-out); outline-offset: -2px; }
+.lpd-table tbody tr[data-hot="true"], .lpd-table tbody tr:hover { background: var(--paper); }
+.lpd-sortBtn { display: inline-flex; align-items: center; gap: 6px; border: 0; background: transparent; padding: 6px 8px; margin: -6px -8px; border-radius: 3px; font-size: 13px; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); transition: background-color var(--dur-1) var(--ease-out), color var(--dur-1) var(--ease-out); }
+.lpd-sortBtn:hover { background: var(--chip); color: var(--ink); }
+.lpd-sortBtn:active { transform: translateY(1px); }
+.lpd-sortBtn span { display: inline-flex; opacity: 0.35; transition: transform var(--dur-2) var(--ease-in-out), opacity var(--dur-2) var(--ease-out); }
+.lpd-sortBtn span[data-on="true"] { opacity: 1; color: var(--blue-ink); }
+.lpd-sortBtn span[data-dir="1"] { transform: rotate(180deg); }
+
+/* ---------- Quote ---------- */
+.lpd-quoteTabs { display: grid; gap: clamp(24px, 3vw, 40px); }
+.lpd-quote { margin: 0; padding-top: clamp(24px, 3vw, 48px); max-width: 1200px; }
+.lpd-quoteCap { display: flex; flex-wrap: wrap; align-items: center; gap: 24px 40px; margin-top: clamp(24px, 3vw, 40px); }
+.lpd-mountain { width: 100%; height: auto; margin-top: clamp(24px, 4vw, 56px); }
+
+/* ---------- CTA strip ---------- */
+.lpd-cta { padding-block: var(--band); overflow: hidden; }
+.lpd-ctaGrid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(24px, 4vw, 72px); align-items: center; }
+.lpd-ctaHl { color: var(--navy); }
+.lpd-ctaArt { width: 100%; height: auto; }
+@media (max-width: 900px) { .lpd-ctaGrid { grid-template-columns: minmax(0, 1fr); } }
