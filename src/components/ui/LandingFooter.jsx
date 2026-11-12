@@ -1,11 +1,11 @@
-import Icon from '@/components/site/Icon';
 import { FOOTER } from '@/lib/brand';
 
 // The landing footer from the case study: mark, four link columns, a hairline and the legal row.
 // <LandingFooter />        shared version: no address and no copyright line
 // <LandingFooter full />   the footer laid out as in the case study, with a neutral placeholder address and
 //                          copyright line in place of the source's leftover text (used on lp-home only)
-// Column entries are plain text, as in the source: they name no real destinations.
+// Column entries are plain text and name no real destinations. The three social marks of the source are
+// neutral tiles: no other company's logo is drawn.
 export default function LandingFooter({ full = false, className = '' }) {
   return (
     <footer className={`lp-footer wrap ${className}`}>
@@ -22,9 +22,9 @@ export default function LandingFooter({ full = false, className = '' }) {
             </address>
           )}
           <p className="lp-social" aria-hidden="true">
-            <Icon name="x" size={18} />
-            <Icon name="linkedin" size={18} />
-            <Icon name="youtube" size={18} />
+            {[0, 1, 2].map((i) => (
+              <span key={i} style={{ width: 18, height: 18, borderRadius: 5, border: '1.5px solid currentColor', display: 'inline-block' }} />
+            ))}
           </p>
         </div>
         {FOOTER.columns.map(([head, items]) => (

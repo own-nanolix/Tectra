@@ -2,7 +2,7 @@
 // Each component is shown with its states; data-s forces a state so it can be seen without hovering.
 import Icon from '@/components/site/Icon';
 import Chip, { Trend } from '@/components/ui/Chip';
-import { NAV, KPI, KOMATSU } from '@/lib/brand';
+import { NAV, KPI, WORKCARD } from '@/lib/brand';
 import { TickChart, ProgressBar, AreaChart, VolumeBar, GaugeArt, CutFillChart, Site } from './charts';
 import s from './dashboard.module.css';
 
@@ -100,20 +100,20 @@ export default function Sheet() {
       <Spec title="Status row" states={['Attention', 'Alert', 'Normal', 'Hover']} render={(st) => (
         <div className={s.status} data-s={st === 'Hover' ? 'hover' : undefined}>
           <i className={`dot ${st === 'Attention' ? 'dot-yellow' : st === 'Alert' ? 'dot-red' : ''}`} />
-          <span>{st === 'Attention' ? KOMATSU.name : st === 'Alert' ? KPI.notes.label : KPI.material.legend}</span>
-          <b>{st === 'Attention' ? KOMATSU.value : st === 'Alert' ? KPI.notes.trend : KPI.material.trend}</b>
+          <span>{st === 'Attention' ? WORKCARD.name : st === 'Alert' ? KPI.notes.label : KPI.material.legend}</span>
+          <b>{st === 'Attention' ? WORKCARD.value : st === 'Alert' ? KPI.notes.trend : KPI.material.trend}</b>
         </div>
       )} />
       <Spec title="Search field" states={['Empty', 'Focus', 'Filled', 'Disabled']} render={(st) => (
         <label className={s.search} data-s={lo(st)}>
           <Icon name="search" size={18} />
           <span className="sr-only">Search, {lo(st)}</span>
-          <input type="search" placeholder="Search" defaultValue={st === 'Filled' ? KOMATSU.name : ''} disabled={st === 'Disabled'} tabIndex={-1} />
+          <input type="search" placeholder="Search" defaultValue={st === 'Filled' ? WORKCARD.name : ''} disabled={st === 'Disabled'} tabIndex={-1} />
         </label>
       )} />
       <Spec title="Date range" states={['Default', 'Hover', 'Open', 'Focus', 'Disabled']} render={(st) => (
         <button type="button" className={`${s.ctl} ${s.date2}`} data-s={lo(st)} aria-expanded={st === 'Open'} disabled={st === 'Disabled'}>
-          <Icon name="calendar" size={18} />{KOMATSU.dates}<Icon name="chevron-down" size={16} />
+          <Icon name="calendar" size={18} />{WORKCARD.dates}<Icon name="chevron-down" size={16} />
         </button>
       )} />
       <Spec title="Account chip" states={['Default', 'Hover', 'Open', 'Focus']} render={(st) => (

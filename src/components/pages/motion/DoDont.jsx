@@ -89,11 +89,13 @@ function Move({ k, started, slow }) {
       <span className={s.slideLine} />
       <motion.span
         key={k}
-        className={s.slide}
-        initial={go(started, { left: '8%' })}
-        animate={{ left: '78%' }}
-        transition={tx(slow ? { duration: dur.d5, ease: 'linear' } : { duration: dur.d2, ease: ease.inOut })}
-      />
+        className={s.track}
+        initial={go(started, { x: '0%' })}
+        animate={{ x: '70%' }}
+        transition={tx(slow ? { duration: dur.d5, ease: [0, 0, 1, 1] } : { duration: dur.d2, ease: ease.inOut })}
+      >
+        <span className={s.slide} />
+      </motion.span>
     </div>
   );
 }

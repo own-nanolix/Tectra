@@ -4,7 +4,7 @@ import { createContext, useContext } from 'react';
 import Icon from '@/components/site/Icon';
 import { IsoSiteG, PinG } from '@/components/art/KeyArt';
 import { CutFillG } from '@/components/art/Devices';
-import { HERO, KOMATSU, KPI, VOLUME, CUT_FILL } from '@/lib/brand';
+import { HERO, WORKCARD, KPI, VOLUME, CUT_FILL } from '@/lib/brand';
 import { r2 } from '@/lib/charts';
 import { StatusBar, LogoTile, InnerHead, TabBar, GaugeCard, SitePins, TickChart, AxisRow, HALF, FULL } from './shared';
 import s from './mobile-a.module.css';
@@ -34,10 +34,10 @@ export function Screen1() {
       <div className={s.pill}><span>Overall <Icon name="chevron-down" size={16} /></span><span><Icon name="more" size={18} /></span></div>
       <h3 className={s.hero}>{HERO.title[0]}<br />{HERO.title[1]}</h3>
       <p className={s.heroSub}>{HERO.sub}</p>
-      <div className={`${s.gl} ${s.komatsu}`}>
-        <div className={s.glRow}><span>{KOMATSU.name}</span><Icon name="arrow-right" size={18} /></div>
-        <div className={s.glSmall}>{KOMATSU.dates}</div>
-        <div className={s.glBig}>{KOMATSU.value}</div>
+      <div className={`${s.gl} ${s.workcard}`}>
+        <div className={s.glRow}><span>{WORKCARD.name}</span><Icon name="arrow-right" size={18} /></div>
+        <div className={s.glSmall}>{WORKCARD.dates}</div>
+        <div className={s.glBig}>{WORKCARD.value}</div>
         <svg className={s.glPin} width="26" height="26" viewBox="-13 -13 26 26" aria-hidden="true"><g className="pop" style={{ '--i': 4 }}><PinG r={10} tone="yellow" /></g></svg>
       </div>
       <div className={`${s.gl} ${s.vol}`}>

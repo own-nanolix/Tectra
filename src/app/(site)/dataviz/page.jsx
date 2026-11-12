@@ -63,10 +63,10 @@ export default function Page() {
             <Cell title="Flow" span="w2" note="Cut divides into Fill and Net as straight-edged bands.">
               <Flow />
             </Cell>
-            <Cell title="Place" span="w2 h2" delay={60} note="The cut-away site with its location pins. Only the Komatsu work card has a published value, so only its yellow pin carries one.">
+            <Cell title="Place" span="w2 h2" delay={60} note="The cut-away site with its location pins. Only the work card has a published value, so only its yellow pin carries one.">
               <Place />
             </Cell>
-            <Cell title="Time: calendar" span="w2" delay={100} note="The Komatsu work dates as a range, and the Cut and Fill date apart.">
+            <Cell title="Time: calendar" span="w2" delay={100} note="The work dates as a range, and the Cut and Fill date apart.">
               <Calendar />
             </Cell>
             <Cell title="Comparison" span="w2" note="Two insights side by side on the same tick-bar scale.">

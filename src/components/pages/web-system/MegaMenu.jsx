@@ -3,7 +3,7 @@
 import { useRef, useState } from 'react';
 import Link from 'next/link';
 import Icon from '@/components/site/Icon';
-import { KPI, KOMATSU, ROADMAP, CUT_FILL, NAV_LINKS } from '@/lib/brand';
+import { KPI, WORKCARD, ROADMAP, CUT_FILL, NAV_LINKS } from '@/lib/brand';
 import { MegaTileArt } from './Arts';
 import s from './web-system.module.css';
 
@@ -12,7 +12,7 @@ const COLUMNS = [
   { id: 'lp-dashboard', items: [['note', 'Details', KPI.details.value], ['note', 'Notes', KPI.notes.value], ['cube', 'Material', KPI.material.value]] },
   { id: 'lp-progress', items: [['ruler', KPI.cross.label, KPI.cross.value], ['chart', CUT_FILL.title, ''], ['check', KPI.overall.label, KPI.overall.value]] },
   { id: 'lp-timeline', items: ROADMAP.done.slice(0, 3).map((n, i) => [['layers', 'grid', 'home'][i], n, '']) },
-  { id: 'lp-work-areas', items: [['crane', KOMATSU.name, KOMATSU.value], ['hardhat', 'Overall', '']] },
+  { id: 'lp-work-areas', items: [['crane', WORKCARD.name, WORKCARD.value], ['hardhat', 'Overall', '']] },
 ];
 
 export default function MegaMenu() {

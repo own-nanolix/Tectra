@@ -1,7 +1,7 @@
 import Art from '@/components/art/Art';
 import { AppIconG } from '@/components/art/Mark';
 import { IsoSiteG, PinG, GaugeG } from '@/components/art/KeyArt';
-import { HEX, HERO, KOMATSU, KPI } from '@/lib/brand';
+import { HEX, HERO, WORKCARD, KPI } from '@/lib/brand';
 import { contrast } from '@/lib/site';
 
 // Where each colour goes, drawn from the case study's own screens: the landing hero on Field Blue (m12) and two
@@ -50,7 +50,7 @@ export default function InUse() {
       {/* the hero on Field Blue */}
       <g>
         <rect x="40" y="40" width="900" height="560" rx="6" fill={HEX.field} />
-        <IsoSiteG x={420} y={170} scale={0.95} tone="blue" pins={['ridge', 'wing']} yellowPin="komatsu" seed={9} />
+        <IsoSiteG x={420} y={170} scale={0.95} tone="blue" pins={['ridge', 'wing']} yellowPin="workcard" seed={9} />
         <AppIconG x={72} y={72} size={52} radius={6} />
         <text x="72" y="220" fontSize="64" fontWeight="300" fill={HEX.white} letterSpacing="-0.6">{HERO.title[0]}</text>
         <text x="72" y="290" fontSize="64" fontWeight="300" fill={HEX.white} letterSpacing="-0.6">{HERO.title[1]}</text>
@@ -60,9 +60,9 @@ export default function InUse() {
         <text x="284" y="451" textAnchor="middle" fontSize="16" fontWeight="400" fill={HEX.ink}>{HERO.cta[1]}</text>
         <g>
           <rect x="660" y="88" width="220" height="120" rx="4" fill={HEX.white} opacity="0.22" />
-          <text x="680" y="122" fontSize="16" fontWeight="500" fill={HEX.white}>{KOMATSU.name}</text>
-          <text x="680" y="144" fontSize="12" fontWeight="400" fill={HEX.white}>{KOMATSU.dates}</text>
-          <text x="680" y="188" fontSize="30" fontWeight="300" fill={HEX.white}>{KOMATSU.value}</text>
+          <text x="680" y="122" fontSize="16" fontWeight="500" fill={HEX.white}>{WORKCARD.name}</text>
+          <text x="680" y="144" fontSize="12" fontWeight="400" fill={HEX.white}>{WORKCARD.dates}</text>
+          <text x="680" y="188" fontSize="30" fontWeight="300" fill={HEX.white}>{WORKCARD.value}</text>
           <PinG x={856} y={186} r={8} tone="yellow" />
         </g>
       </g>

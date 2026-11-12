@@ -5,7 +5,7 @@
 // 106 high Progres card; Details / Notes / Material 190 high over the Cut and Fill card.
 // Option B: top tab bar, one hero site view, a strip of KPI tiles under it.
 import { Site } from './charts';
-import { box, TopBar, Rail, HeroTitle, Avatars, KomatsuCard, OverallSel, OverallPanel, GaugeCard, CrossCard, ProgressCard, CutFillCard, KpiTile } from './parts';
+import { box, TopBar, Rail, HeroTitle, Avatars, WorkCardCard, OverallSel, OverallPanel, GaugeCard, CrossCard, ProgressCard, CutFillCard, KpiTile } from './parts';
 import s from './dashboard.module.css';
 
 export function ScreenA() {
@@ -18,7 +18,7 @@ export function ScreenA() {
         <Site idp={`${p}-site`} className={s.abs} style={{ left: 400, top: -86, width: 896, height: 640 }} />
         <HeroTitle x={30} y={30} />
         <Avatars x={30} y={376} />
-        <KomatsuCard x={640} y={80} />
+        <WorkCardCard x={640} y={80} />
         <OverallPanel x={1110} y={60} h={360} idp={p} />
         <OverallSel x={1242} y={36} />
       </section>
@@ -43,7 +43,7 @@ export function ScreenB() {
         <Site idp={`${p}-site`} className={s.abs} style={{ left: 500, top: 10, width: 880, height: 629 }} />
         <HeroTitle x={44} y={44} />
         <Avatars x={44} y={566} />
-        <KomatsuCard x={610} y={200} />
+        <WorkCardCard x={610} y={200} />
         <OverallPanel x={1190} y={190} idp={p} />
         <OverallSel x={1322} y={166} />
       </section>

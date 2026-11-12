@@ -158,7 +158,7 @@ export function SitePins({ x = 0, y = 0, scale = 1, names = [], yellow }) {
   );
 }
 
-export function SiteG({ x = 0, y = 0, scale = 1, tone = 'paper', names = ['ridge', 'wing', 'yard', 'gate'], yellow = 'komatsu', seed = 5 }) {
+export function SiteG({ x = 0, y = 0, scale = 1, tone = 'paper', names = ['ridge', 'wing', 'yard', 'gate'], yellow = 'workcard', seed = 5 }) {
   return (
     <g>
       <IsoSiteG x={x} y={y} scale={scale} tone={tone} seed={seed} />

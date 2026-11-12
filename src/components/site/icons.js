@@ -49,8 +49,6 @@ export const UTIL = {
   alert: 'M12 4l9 16H3l9-16ZM12 10v4M12 17v.5',
   sort: 'M8 4v16M4 8l4-4 4 4M16 20V4M12 16l4 4 4-4',
   x: 'M5 4l14 16M19 4 5 20',
-  linkedin: 'M5 9v10M5 5.5v.5M10 19v-6a3.5 3.5 0 0 1 7 0v6M10 9v10',
-  youtube: 'M3 7h18v10H3zM10 9.5l5 2.5-5 2.5v-5Z',
 };
 
 export const ICONS = { ...CORE, ...UTIL };

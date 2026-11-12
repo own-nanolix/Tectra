@@ -1,7 +1,7 @@
 import Art from '@/components/art/Art';
 import { PhoneG, ScreenHomeG } from '@/components/art/Devices';
 import { AxisG, BackdropG, LayerG, MaterialDefs, SheenG, ShadowG } from '@/components/art/Mockup';
-import { AppCardG, KomatsuCardG, OverallCardG } from './parts';
+import { AppCardG, WorkCardCardG, OverallCardG } from './parts';
 
 // Scene 1: the phone in front elevation, five data cards pulled out along the x axis to the left and right, each at
 // its own depth (scale, haze, and where its shadow meets the floor). One light from the upper left; blue shadows.
@@ -16,7 +16,7 @@ const CARDS = [
   { key: 'material', label: 'Material', cx: 205, y: 468, s: 0.8, depth: 0.9, draw: (id) => <AppCardG idp={id} k="material" /> },
   { key: 'details', label: 'Details', cx: 468, y: 196, s: 1.04, depth: 0.1, draw: (id) => <AppCardG idp={id} k="details" /> },
   { key: 'notes', label: 'Notes', cx: 1112, y: 452, s: 1.0, depth: 0.2, draw: (id) => <AppCardG idp={id} k="notes" /> },
-  { key: 'komatsu', label: 'Komatsu', cx: 1196, y: 140, s: 1.1, depth: 0.05, draw: (id) => <KomatsuCardG idp={id} /> },
+  { key: 'workcard', label: 'Work card', cx: 1196, y: 140, s: 1.1, depth: 0.05, draw: (id) => <WorkCardCardG idp={id} /> },
   { key: 'overall', label: 'Overall Completion', cx: 1462, y: 372, s: 0.84, depth: 0.75, draw: (id) => <OverallCardG idp={id} /> },
 ];
 

@@ -3,6 +3,7 @@ import { Plate } from '@/components/pages/use-product/parts';
 import { HatHero, HatFrontArt, HatSideArt, HatExplodedArt } from '@/components/pages/use-product/HardHat';
 import { TabletArt, TabletExplodedArt } from '@/components/pages/use-product/Tablet';
 import { CardArt, WAYS } from '@/components/pages/use-product/Cards';
+import { CaseArt } from '@/components/pages/use-product/Case';
 import { TrioArt } from '@/components/pages/use-product/DeviceTrio';
 import { IconArt, IconLadderArt, SIZES } from '@/components/pages/use-product/Icons';
 import s from '@/components/pages/use-product/use-product.module.css';
@@ -56,6 +57,9 @@ export default function Page() {
               ))}
             </div>
           </div>
+          <Plate caption="Site tablet in its case, with charging cable" note="Base, tablet and cable, lid">
+            <CaseArt />
+          </Plate>
         </div>
 
         <div className={s.sec}>

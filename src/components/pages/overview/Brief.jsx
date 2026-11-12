@@ -16,15 +16,14 @@ export function Brief() {
   );
 }
 
-// The case study's own credits, as a right-hand margin note. Facts from the Behance page (SOURCE.md).
+// The case study's own credits, as a right-hand margin note. Facts from the case study page (SOURCE.md).
 export function Credits() {
   return (
     <div className={s.credits}>
       <h2 className="t-caps" style={{ color: 'var(--ink)' }}>Case study</h2>
       <dl>
         <div><dt>By</dt><dd>{DESIGNER}</dd></div>
-        <div><dt>Published</dt><dd>May 19th 2025, on Behance</dd></div>
-        <div><dt>Made in</dt><dd>Figma, XD, Illustrator, Photoshop, InDesign</dd></div>
+        <div><dt>Published</dt><dd>May 19th 2025</dd></div>
       </dl>
       <ul className={s.scope} aria-label="Scope of the case study">
         {SCOPE_CHIPS.map((c) => <li key={c}><Chip size="sm">{c}</Chip></li>)}

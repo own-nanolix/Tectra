@@ -182,7 +182,7 @@ export function Site({ idp, name, yellow = false, ...rest }) {
       <IsoSiteG tone="blue" seed={5} />
       <g transform="translate(262 118)">
         {['ridge', 'wing'].map((p, i) => pin(p, i))}
-        {yellow && pin('komatsu', 2, { tone: 'yellow', pulse: true, r: 8 })}
+        {yellow && pin('workcard', 2, { tone: 'yellow', pulse: true, r: 8 })}
       </g>
     </Plot>
   );

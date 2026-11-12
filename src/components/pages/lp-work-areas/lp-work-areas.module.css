@@ -91,7 +91,7 @@ button.tile:active { transform: translateY(0) scale(0.96); }
 
 /* ---------- Ledger ---------- */
 .ledger { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(24px, 4vw, 64px); align-items: center; }
-.tableWrap { overflow-x: auto; }
+.tableWrap { position: relative; overflow-x: auto; }
 .table { width: 100%; border-collapse: collapse; min-width: 480px; }
 .table th, .table td { text-align: left; padding: 18px 12px; border-bottom: 1px solid var(--line); font-weight: 400; vertical-align: middle; }
 .table thead th { color: var(--muted); padding-block: 10px; }

@@ -41,7 +41,7 @@ Stop the dev server before `npm run build`.
 | `src/components/ui` | Buttons, chips, cards, tabs, toggle, field, landing nav and footer, live device frames |
 | `src/components/art` | The traced mark and lockups, key art, device frames for mockups, the mockup kit |
 | `src/lib` | Page list, motion tokens, chart helpers, brand copy and figures (`brand.js`) |
-| `export/svg/` | Every graphic and mockup as a standalone SVG (420 files) |
+| `export/svg/` | Every graphic and mockup as a standalone SVG (421 files) |
 | `SOURCE.md`, `LAYOUTS.md`, `BRIEF.md` | What the case study shows, the layout of every page, the builders' brief |
 | `REPORT.md`, `STATE.md` | The final report and the build log with decisions |
 | `rule/` | The original instructions (not edited) |

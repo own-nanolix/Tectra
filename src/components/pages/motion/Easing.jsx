@@ -75,12 +75,13 @@ function EaseCard({ c }) {
       <div className={s.ruler} aria-hidden="true">
         <motion.span
           key={p.k}
-          className={s.marker}
-          data-tone={c.tone}
-          initial={go(p.started, { left: '0%' })}
-          animate={{ left: '88%' }}
+          className={s.track}
+          initial={go(p.started, { x: '0%' })}
+          animate={{ x: '88%' }}
           transition={tx({ duration: dur.d4, ease: c.b })}
-        />
+        >
+          <span className={s.marker} data-tone={c.tone} />
+        </motion.span>
       </div>
       <p className={s.kicker}>{c.css}. Demo at 900 ms (dur-4).</p>
     </div>

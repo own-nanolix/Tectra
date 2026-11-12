@@ -37,7 +37,7 @@
    slide back, the body (with its fillets) returns, then the small circle lands. */
 .slideA { animation: gradients-slide-a 5s var(--ease-in-out) infinite; }
 .slideB { animation: gradients-slide-b 5s var(--ease-in-out) infinite; }
-.body { animation: gradients-body 5s linear infinite; }
+.body { animation: gradients-body 5s var(--ease-linear) infinite; }
 .land { transform-box: fill-box; transform-origin: center; animation: gradients-land 5s var(--ease-in-out) infinite; }
 @keyframes gradients-slide-a { 0%, 30%, 80%, 100% { transform: none; } 50%, 60% { transform: translate(-7px, -7px); } }
 @keyframes gradients-slide-b { 0%, 30%, 80%, 100% { transform: none; } 50%, 60% { transform: translate(7px, 7px); } }

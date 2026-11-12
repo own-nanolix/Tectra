@@ -14,7 +14,7 @@ export default function Secondary() {
           <rect width="960" height="520" rx="6" fill={HEX.field} />
           <MarkWindowG idp="logo-win-site" x={70} y={50} size={420}>
             <rect width="100" height="100" fill={HEX.tile} />
-            <IsoSiteG x={-8} y={4} scale={0.2} tone="paper" pins={['ridge', 'wing']} yellowPin="komatsu" />
+            <IsoSiteG x={-8} y={4} scale={0.2} tone="paper" pins={['ridge', 'wing']} yellowPin="workcard" />
           </MarkWindowG>
           <LockupG x={560} y={70} size={70} fill={HEX.white} />
           <rect x="560" y="400" width="190" height="6" fill={HEX.white} opacity="0.9" />

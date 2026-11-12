@@ -81,7 +81,7 @@ const PLAN = [
   { type: 'room', x: 12, y: 7, w: 4, d: 4, h: 2 },
 ];
 // Where pins can sit: [gridX, gridY, gridZ]
-export const SITE_PINS = { ridge: [5, 5.5, 3.7], wing: [10.5, 11, 3.7], yard: [14, 9, 0], gate: [4, 9, 0], komatsu: [8, 5.5, 3.7] };
+export const SITE_PINS = { ridge: [5, 5.5, 3.7], wing: [10.5, 11, 3.7], yard: [14, 9, 0], gate: [4, 9, 0], workcard: [8, 5.5, 3.7] };
 
 // <IsoSiteG x y scale tone pins /> : the cut-away building. Its own box is about 560 x 400 at scale 1,
 // with the origin at the top-left of that box. tone: 'blue' | 'paper' | 'ghost'.

@@ -7,7 +7,7 @@ import Icon from '@/components/site/Icon';
 import { Trend } from '@/components/ui/Chip';
 import { MarkG } from '@/components/art/Mark';
 import { PinG } from '@/components/art/KeyArt';
-import { NAV, KPI, HERO, KOMATSU, CUT_FILL } from '@/lib/brand';
+import { NAV, KPI, HERO, WORKCARD, CUT_FILL } from '@/lib/brand';
 import { Tip, TickChart, ProgressBar, AreaChart, VolumeBar, Gauge, CutFillChart } from './charts';
 import s from './dashboard.module.css';
 
@@ -87,12 +87,12 @@ export function Avatars({ x, y }) {
 }
 
 // Glass work card with the yellow pin.
-export function KomatsuCard({ x, y, w = 200, h = 130 }) {
+export function WorkCardCard({ x, y, w = 200, h = 130 }) {
   return (
     <article className={`glass ${s.abs} ${s.kom}`} style={box(x, y, w, h)}>
-      <header><h4>{KOMATSU.name}</h4><Icon name="arrow-right" size={16} /></header>
-      <p>{KOMATSU.dates}</p>
-      <b>{KOMATSU.value}</b>
+      <header><h4>{WORKCARD.name}</h4><Icon name="arrow-right" size={16} /></header>
+      <p>{WORKCARD.dates}</p>
+      <b>{WORKCARD.value}</b>
       <svg className={s.kpin} viewBox="-14 -14 28 28" aria-hidden="true"><PinG tone="yellow" r={10} pulse /></svg>
     </article>
   );

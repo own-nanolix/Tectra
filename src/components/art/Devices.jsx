@@ -154,7 +154,7 @@ export function ScreenHomeG({ idp }) {
       </text>
       <IsoSiteG x={-150} y={300} scale={1.25} tone="blue" seed={11} />
       <rect x="62" y="410" width="205" height="128" rx="4" fill="#FFFFFF" fillOpacity="0.24" />
-      <text x="84" y="446" fontSize="14" fontWeight="500" fill="#FFFFFF">Komatsu</text>
+      <text x="84" y="446" fontSize="14" fontWeight="500" fill="#FFFFFF">Work area 01</text>
       <text x="84" y="466" fontSize="11.5" fontWeight="400" fill="#FFFFFF" fillOpacity="0.72">10 - 14 Jan, 2025</text>
       <text x="84" y="514" fontSize="27" fontWeight="300" fill="#FFFFFF">32%</text>
       <path d="M236 443h10m-4-4 4 4-4 4" fill="none" stroke="#FFFFFF" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
@@ -251,7 +251,7 @@ export function ScreenAppG({ idp }) {
         </g>
       ))}
       <rect x="640" y="330" width="200" height="130" rx="4" fill="#FFFFFF" fillOpacity="0.24" />
-      <text x="662" y="366" fontSize="15" fontWeight="500" fill="#FFFFFF">Komatsu</text>
+      <text x="662" y="366" fontSize="15" fontWeight="500" fill="#FFFFFF">Work area 01</text>
       <text x="662" y="388" fontSize="12" fontWeight="400" fill="#FFFFFF" fillOpacity="0.72">10 - 14 Jan, 2025</text>
       <text x="662" y="436" fontSize="28" fontWeight="300" fill="#FFFFFF">32%</text>
       <PinG x={826} y={446} r={10} tone="yellow" />
@@ -333,7 +333,7 @@ export function ScreenWatchG() {
     <g>
       <rect width="184" height="224" fill="#3E93EE" />
       <MarkG x={18} y={20} size={26} fill="#FFFFFF" />
-      <text x="18" y="96" fontSize="15" fontWeight="500" fill="#FFFFFF">Komatsu</text>
+      <text x="18" y="96" fontSize="15" fontWeight="500" fill="#FFFFFF">Work area 01</text>
       <text x="18" y="150" fontSize="48" fontWeight="300" fill="#FFFFFF">32%</text>
       <rect x="18" y="176" width="148" height="6" rx="2" fill="#FFFFFF" fillOpacity="0.3" />
       <rect x="18" y="176" width="48" height="6" rx="2" fill="#FFB83D" />

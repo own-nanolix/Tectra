@@ -29,7 +29,7 @@ function Wrap({ k }) {
         <TreesG x={720} y={420} w={300} h={170} count={5} tone="paper" seed={41} minSize={44} maxSize={74} />
         <path d={FIELD} fill={`url(#${P}-field)`} />
         <g clipPath={`url(#${P}-field-${k})`}>
-          <IsoSiteG x={455} y={520} scale={0.66} tone="blue" pins={['ridge']} yellowPin="komatsu" trees={false} />
+          <IsoSiteG x={455} y={520} scale={0.66} tone="blue" pins={['ridge']} yellowPin="workcard" trees={false} />
           <TreesG x={780} y={560} w={420} h={160} count={4} tone="blue" seed={43} minSize={40} maxSize={60} />
         </g>
         <LockupG x={432} y={452} size={54} fill="#FFFFFF" />

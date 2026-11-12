@@ -4,7 +4,7 @@ import { MarkG, AppIconG, LockupG } from '@/components/art/Mark';
 import { IsoSiteG, PinG, TickBarsG, GaugeG, PatternDefs } from '@/components/art/KeyArt';
 import { PhoneG, ScreenHomeG } from '@/components/art/Devices';
 import { IconUse } from '@/components/site/Icon';
-import { HEX, HERO, KOMATSU, INSIGHTS, RESULTS, QUOTES, HEADINGS } from '@/lib/brand';
+import { HEX, HERO, WORKCARD, INSIGHTS, RESULTS, QUOTES, HEADINGS } from '@/lib/brand';
 import { axisLabels } from '@/lib/charts';
 import { Lines, GroundG, PersonG, SZ } from './shared';
 
@@ -28,7 +28,7 @@ function ChipG({ x, y, label, w = 240 }) {
   );
 }
 
-// 1. The hero: app icon, "Smart Construction", the site with pins and the Komatsu card.
+// 1. The hero: app icon, "Smart Construction", the site with pins and the card.
 export function StorySmart() {
   const id = 'campaign-story-smart';
   return (
@@ -41,13 +41,13 @@ export function StorySmart() {
         lines={['Smart construction uses technology like AI and IoT', 'to improve efficiency, safety, and sustainability.']}
       />
       <g className="fade-in" style={{ '--i': 2 }}>
-        <IsoSiteG x={20} y={740} scale={1.86} tone="blue" pins={['ridge', 'wing']} yellowPin="komatsu" seed={4} />
+        <IsoSiteG x={20} y={740} scale={1.86} tone="blue" pins={['ridge', 'wing']} yellowPin="workcard" seed={4} />
       </g>
       <g transform="translate(90 1560)"><g className="slide-up" style={{ '--i': 5 }}>
         <rect width="560" height="210" rx="4" fill="#FFFFFF" fillOpacity="0.2" />
-        <text x="36" y="72" fontSize="44" fontWeight="500" fill="#FFFFFF">{KOMATSU.name}</text>
-        <text x="36" y="122" fontSize="28" fontWeight="500" fill={HEX.navy}>{KOMATSU.dates}</text>
-        <text x="36" y="182" fontSize="64" fontWeight="300" fill="#FFFFFF" letterSpacing="-1">{KOMATSU.value}</text>
+        <text x="36" y="72" fontSize="44" fontWeight="500" fill="#FFFFFF">{WORKCARD.name}</text>
+        <text x="36" y="122" fontSize="28" fontWeight="500" fill={HEX.navy}>{WORKCARD.dates}</text>
+        <text x="36" y="182" fontSize="64" fontWeight="300" fill="#FFFFFF" letterSpacing="-1">{WORKCARD.value}</text>
         <PinG x={510} y={50} r={16} tone="yellow" pulse />
       </g></g>
     </Art>

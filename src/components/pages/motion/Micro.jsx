@@ -90,12 +90,12 @@ function RangeHandle() {
         <span className={s.rangeLine} />
         <span className={s.rangeTicks} />
         <span className={s.rangeFill} data-drag={drag} style={{ width: `${v}%` }} />
+        <span className={s.rangeCarrier} data-drag={drag} style={{ transform: `translateX(${v}%)` }}>
         <button
           type="button"
           role="slider"
           className={s.rangeHandle}
           data-drag={drag}
-          style={{ left: `${v}%` }}
           aria-label="Range value"
           aria-valuemin={0}
           aria-valuemax={100}
@@ -103,6 +103,7 @@ function RangeHandle() {
           aria-valuetext={`${v} percent`}
           onKeyDown={key}
         />
+        </span>
       </div>
       <div className={s.row}>
         <Button size="sm" variant="ghost" onClick={() => setV((x) => clamp(x - 10, 0, 100))}>-10</Button>

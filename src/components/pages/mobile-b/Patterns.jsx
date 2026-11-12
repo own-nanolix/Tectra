@@ -7,7 +7,7 @@ import Button from '@/components/ui/Button';
 import Toggle from '@/components/ui/Toggle';
 import { GaugeG } from '@/components/art/KeyArt';
 import { Trend } from '@/components/ui/Chip';
-import { KPI, KOMATSU, NAV } from '@/lib/brand';
+import { KPI, WORKCARD, NAV } from '@/lib/brand';
 import { tickBars } from '@/lib/charts';
 import { tMove, tEnter } from '@/lib/motion';
 import { Artboard } from './Screens';
@@ -191,8 +191,8 @@ function Hold() {
         onPointerDown={start} onPointerUp={stop} onPointerLeave={stop} onPointerCancel={stop} onContextMenu={(e) => e.preventDefault()}
         onKeyDown={(e) => { if (isKey(e)) { e.preventDefault(); if (!e.repeat) start(); } }} onKeyUp={(e) => { if (isKey(e)) stop(); }} onBlur={stop}>
         <span className={s.holdPin}><Icon name="pin" size={22} /></span>
-        <span style={{ display: 'grid', gap: 2, fontWeight: 500 }}>{KOMATSU.name}<small style={{ fontWeight: 400, color: 'var(--muted)' }}>{KOMATSU.dates}</small></span>
-        <span className={s.fig} style={{ marginLeft: 'auto', fontSize: 28 }}>{KOMATSU.value}</span>
+        <span style={{ display: 'grid', gap: 2, fontWeight: 500 }}>{WORKCARD.name}<small style={{ fontWeight: 400, color: 'var(--muted)' }}>{WORKCARD.dates}</small></span>
+        <span className={s.fig} style={{ marginLeft: 'auto', fontSize: 28 }}>{WORKCARD.value}</span>
         <span className={s.holdFill} />
       </button>
       <Toggle label={on ? 'Pinned' : 'Hold the card, or switch here'} checked={on} onChange={setOn} />

@@ -70,7 +70,7 @@
 /* ---------- Artboard ---------- */
 .board { position: absolute; left: 0; top: 0; width: 390px; height: 844px; overflow: hidden; transform: scale(var(--k, 0.9)); transform-origin: 0 0; font-family: var(--font); font-weight: 400; line-height: 1.3; }
 .grey { background: var(--app); color: var(--ink); }
-.blue { background: linear-gradient(160deg, #4c9bf3 0%, #3e93ee 100%); color: var(--navy); }
+.blue { background: var(--grad-field); color: var(--navy); }
 .abs { position: absolute; }
 .status { position: absolute; top: 19px; left: 0; right: 0; padding: 0 42px 0 57px; display: flex; justify-content: space-between; align-items: center; font-size: 16px; font-weight: 500; height: 24px; z-index: 3; }
 .statusIcons { display: flex; gap: 5px; align-items: center; }
@@ -91,7 +91,7 @@
 .heroSub { position: absolute; left: 12px; top: 264px; width: 310px; margin: 0; font-size: 12.3px; line-height: 18px; font-weight: 400; color: var(--navy); }
 .siteSvg { position: absolute; left: 0; top: 0; width: 390px; height: 844px; pointer-events: none; }
 .gl { position: absolute; background: rgba(255, 255, 255, 0.24); border-radius: var(--r-1); color: var(--navy); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
-.komatsu { left: 50px; top: 412px; width: 210px; height: 130px; padding: 20px 21px; }
+.workcard { left: 50px; top: 412px; width: 210px; height: 130px; padding: 20px 21px; }
 .glRow { display: flex; justify-content: space-between; align-items: center; font-size: 14px; font-weight: 500; }
 .glSmall { font-size: 13px; font-weight: 400; margin-top: 3px; }
 .glBig { position: absolute; left: 21px; bottom: 24px; font-size: 26px; line-height: 1; font-weight: 300; color: var(--white); }
@@ -187,9 +187,9 @@
 .notesTrack { position: absolute; left: 21px; right: 21px; bottom: 26px; height: 6px; border-radius: 2px; background: var(--track); }
 .notesTrack i { display: block; height: 100%; border-radius: 2px; background: var(--yellow); transform-origin: 0 50%; animation: mobile-a-grow var(--dur-4) var(--ease-out) 200ms both; }
 .noteList { position: absolute; left: 11px; right: 12px; top: 268px; list-style: none; margin: 0; padding: 0 0 0 22px; display: grid; gap: 10px; }
-.noteList::before { content: ""; position: absolute; left: 4px; top: 30px; bottom: 30px; width: 1px; background: #C4C4C4; }
+.noteList::before { content: ""; position: absolute; left: 4px; top: 30px; bottom: 30px; width: 1px; background: var(--grey-active); }
 .noteList li { position: relative; display: grid; grid-template-columns: minmax(0, 1fr); align-items: center; height: 64px; padding: 0 18px; background: var(--card); border-radius: var(--r-1); animation: mobile-a-rowin var(--dur-3) var(--ease-out) both; animation-delay: calc(var(--i, 0) * 80ms + 200ms); }
-.noteMark { position: absolute; left: -22px; top: 28px; width: 9px; height: 9px; border-radius: 50%; background: #C4C4C4; box-shadow: 0 0 0 3px var(--app); }
+.noteMark { position: absolute; left: -22px; top: 28px; width: 9px; height: 9px; border-radius: 50%; background: var(--grey-active); box-shadow: 0 0 0 3px var(--app); }
 .noteMark[data-on="true"] { background: var(--yellow); }
 .fab { position: absolute; right: 20px; bottom: 84px; width: 54px; height: 54px; border-radius: var(--r-1); background: var(--yellow); color: var(--ink); display: grid; place-items: center; z-index: 4; animation: mobile-a-fade var(--dur-3) var(--ease-snap) 500ms both; }
 

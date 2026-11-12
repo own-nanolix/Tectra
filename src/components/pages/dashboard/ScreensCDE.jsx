@@ -8,8 +8,8 @@ import { Trend } from '@/components/ui/Chip';
 import { Site, TickChart, ProgressBar, Gauge, Tip, CutFillChart } from './charts';
 import DataTable from './DataTable';
 import { ROWS, TREND_CHIPS } from './data';
-import { KPI, KOMATSU, CUT_FILL } from '@/lib/brand';
-import { box, TopBar, HeroTitle, Avatars, KomatsuCard, OverallSel, OverallPanel, GaugeCard, CrossCard, CutFillCard, Indicators } from './parts';
+import { KPI, WORKCARD, CUT_FILL } from '@/lib/brand';
+import { box, TopBar, HeroTitle, Avatars, WorkCardCard, OverallSel, OverallPanel, GaugeCard, CrossCard, CutFillCard, Indicators } from './parts';
 import s from './dashboard.module.css';
 
 const cols = [
@@ -78,8 +78,8 @@ export function ScreenD() {
       <Lane y={110} title={x.label} left={<><h4 className={s.ct}>{x.label}</h4><p className={s.cv}>{x.value}<Trend dir={x.dir}>{x.trend}</Trend></p></>}>
         <TickChart idp={`${p}-l1`} w={1150} H={110} />
       </Lane>
-      <Lane y={404} title="Work card and progress" left={<><h4 className={s.ct}>{KOMATSU.name}</h4><p className={s.cv}>{KOMATSU.value}</p><p className={s.date}>{KOMATSU.dates}</p></>}>
-        <ProgressBar idp={`${p}-l2`} w={1150} value={0.32} legend={false} date={KOMATSU.dates} tip={`${KOMATSU.name} ${KOMATSU.value}, ${KOMATSU.dates}`} />
+      <Lane y={404} title="Work card and progress" left={<><h4 className={s.ct}>{WORKCARD.name}</h4><p className={s.cv}>{WORKCARD.value}</p><p className={s.date}>{WORKCARD.dates}</p></>}>
+        <ProgressBar idp={`${p}-l2`} w={1150} value={0.32} legend={false} date={WORKCARD.dates} tip={`${WORKCARD.name} ${WORKCARD.value}, ${WORKCARD.dates}`} />
         <ProgressBar idp={`${p}-l3`} w={1150} value={0.24} />
         <p className={s.laneNote}>{g.label} {g.value}<Trend dir={g.dir}>{g.trend}</Trend></p>
       </Lane>
@@ -98,7 +98,7 @@ export function ScreenE() {
         <Site idp={`${p}-site`} className={s.abs} style={{ left: 330, top: 30, width: 1270, height: 907 }} />
         <HeroTitle x={60} y={150} />
         <Avatars x={60} y={420} />
-        <KomatsuCard x={760} y={330} />
+        <WorkCardCard x={760} y={330} />
         <OverallSel x={1362} y={110} />
         <OverallPanel x={1244} y={170} idp={p} />
       </section>

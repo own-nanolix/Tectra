@@ -50,7 +50,7 @@ function SlideTitle({ idp }) {
     <g>
       <Field idp={idp} />
       <TreesG x={0} y={0} w={SW} h={SH} count={13} tone="blue" seed={21} clear={[60, 250, 800, 440]} minSize={70} maxSize={150} />
-      <IsoSiteG tone="blue" x={840} y={230} scale={1.28} pins={['ridge', 'wing']} yellowPin="komatsu" trees={false} />
+      <IsoSiteG tone="blue" x={840} y={230} scale={1.28} pins={['ridge', 'wing']} yellowPin="workcard" trees={false} />
       <MarkG x={84} y={78} size={92} fill="#fff" />
       <g fontSize="132" fontWeight="300" fill="#fff" letterSpacing="-1.3">
         <text x="80" y="400">{HERO.title[0]}</text>

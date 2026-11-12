@@ -49,7 +49,7 @@ function Sheet({ cx, kind }) {
           <g>
             <rect x={x} y={y} width={SHEET.w} height={SHEET.h} fill={`url(#${P}-glow)`} opacity="0.6" />
             <TreesG x={x} y={y + 170} w={SHEET.w} h={200} count={5} tone="blue" seed={31} minSize={46} maxSize={78} clear={[40, 120, 150, 60]} />
-            <IsoSiteG x={x - 52} y={y + 310} scale={0.62} tone="blue" pins={['ridge', 'wing']} yellowPin="komatsu" trees={false} />
+            <IsoSiteG x={x - 52} y={y + 310} scale={0.62} tone="blue" pins={['ridge', 'wing']} yellowPin="workcard" trees={false} />
             <LockupG x={x + 22} y={y + 30} size={30} fill="#FFFFFF" />
             <Lines lines={HERO.title} x={x + 22} y={y + 122} size={31} lh={35} fill="#FFFFFF" />
           </g>

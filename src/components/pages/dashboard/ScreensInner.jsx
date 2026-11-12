@@ -3,12 +3,12 @@
 // Inner screens: Cut and Fill detail, and the Work areas table.
 import Icon from '@/components/site/Icon';
 import { Trend } from '@/components/ui/Chip';
-import { KOMATSU, CUT_FILL } from '@/lib/brand';
+import { WORKCARD, CUT_FILL } from '@/lib/brand';
 import { r2 } from '@/lib/charts';
 import { Site } from './charts';
 import DataTable from './DataTable';
 import { LEVELS, WORK, ROW_CHIPS, TREND_CHIPS } from './data';
-import { box, TopBar, IconBtn, KomatsuCard, GaugeCard, CrossCard, ProgressCard, CutFillCard } from './parts';
+import { box, TopBar, IconBtn, WorkCardCard, GaugeCard, CrossCard, ProgressCard, CutFillCard } from './parts';
 import s from './dashboard.module.css';
 
 const levelCols = [
@@ -54,9 +54,9 @@ export function WorkAreasScreen() {
       <section className={`${s.c} ${s.abs} ${s.pad}`} style={box(24, 110, 876, 866)} aria-label="Work areas">
         <DataTable label="work areas" rows={WORK} cols={workCols} chips={TREND_CHIPS} ph={4} />
       </section>
-      <section className={`field ${s.abs} ${s.hero}`} style={box(924, 110, 652, 360)} aria-label={KOMATSU.name}>
+      <section className={`field ${s.abs} ${s.hero}`} style={box(924, 110, 652, 360)} aria-label={WORKCARD.name}>
         <Site idp={`${p}-site`} yellow={false} className={s.abs} style={{ left: 70, top: -40, width: 600, height: 429 }} />
-        <KomatsuCard x={40} y={50} />
+        <WorkCardCard x={40} y={50} />
       </section>
       {['details', 'notes', 'material'].map((k, i) => (
         <GaugeCard key={k} k={k} x={r2(924 + i * 221.33)} y={486} w={209} h={190} idp={p} />

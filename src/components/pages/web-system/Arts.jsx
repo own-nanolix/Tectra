@@ -115,7 +115,7 @@ export function MegaTileArt() {
         </linearGradient>
       </defs>
       <rect width="560" height="400" rx="6" fill="url(#web-system-tile-sky)" />
-      <IsoSiteG x={0} y={0} scale={1} tone="blue" pins={['ridge', 'wing']} yellowPin="komatsu" />
+      <IsoSiteG x={0} y={0} scale={1} tone="blue" pins={['ridge', 'wing']} yellowPin="workcard" />
     </Art>
   );
 }

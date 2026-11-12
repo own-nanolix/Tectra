@@ -71,7 +71,7 @@ function SiteView({ mode }) {
   const t = THEMES[mode];
   return (
     <Frame theme={t} title={`Site view on ${mode === 'light' ? 'light' : 'blue'}: cut-away building with pins`} exportName={`icons-site-view-${mode === 'light' ? 'light' : 'dark'}`}>
-      <IsoSiteG tone={t.tone} pins={['ridge', 'wing']} yellowPin="komatsu" seed={7} />
+      <IsoSiteG tone={t.tone} pins={['ridge', 'wing']} yellowPin="workcard" seed={7} />
       <FenceG x={20} y={382} line={t.line} w={130} bays={4} />
       <TripodG x={58} y={326} line={t.line} />
       <StackG x={448} y={376} line={t.line} />

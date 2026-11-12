@@ -105,7 +105,7 @@ function Instrument() {
   return (
     <Art viewBox="0 0 800 1000" title="The isometric site above a tick-bar instrument" exportName="gradients-key-instrument">
       <rect width="800" height="1000" fill="#FAFAFA" />
-      <IsoSiteG x={36} y={50} scale={1.3} tone="paper" pins={['ridge']} yellowPin="komatsu" seed={3} />
+      <IsoSiteG x={36} y={50} scale={1.3} tone="paper" pins={['ridge']} yellowPin="workcard" seed={3} />
       <path d="M36 610H764" stroke="#DFDFDF" />
       <TickBarsG idp="gradients-k5" x={36} y={640} w={728} h={170} count={48} from={0.33} to={0.6} />
       <LockupG x={36} y={900} size={56} fill="#2F2F2F" markFill="#4093EC" />

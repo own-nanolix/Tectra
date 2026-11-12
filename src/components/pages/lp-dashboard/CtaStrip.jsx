@@ -20,7 +20,7 @@ export default function CtaStrip() {
         </Reveal>
         <Reveal delay={100} from="scale">
           <Art viewBox="0 0 560 400" title="The site: isometric cut-away building with location pins" exportName="lp-dashboard-site" className={s.ctaArt}>
-            <IsoSiteG tone="blue" pins={['ridge', 'wing', 'gate']} yellowPin="komatsu" />
+            <IsoSiteG tone="blue" pins={['ridge', 'wing', 'gate']} yellowPin="workcard" />
           </Art>
         </Reveal>
       </div>

@@ -1,7 +1,7 @@
 import Art from '@/components/art/Art';
 import { TickBarsG, IsoSiteG, SITE_PINS, iso } from '@/components/art/KeyArt';
 import { scale, shares, ruler, r2 } from '@/lib/charts';
-import { KPI, CUT_FILL, INSIGHTS, RESULTS, KOMATSU } from '@/lib/brand';
+import { KPI, CUT_FILL, INSIGHTS, RESULTS, WORKCARD } from '@/lib/brand';
 import { C, tp, FadeDef, wrap } from './parts';
 
 // The seven charts added in the same language: thin, angular, measured, fading bars, ring markers, handles.
@@ -114,11 +114,11 @@ export function Flow() {
 }
 
 // Place: the isometric site with its location pins. The case study gives a value to one place only, the
-// Komatsu work card (10 - 14 Jan, 2025, 32%), so only that pin is labelled; the others are plain location pins.
+// The work card (10 - 14 Jan, 2025, 32%), so only that pin is labelled; the others are plain location pins.
 export function Place() {
   const plain = ['ridge', 'wing', 'yard', 'gate'];
-  const [kx, ky] = iso(...SITE_PINS.komatsu, 20);
-  const tip = `${KOMATSU.name}, ${KOMATSU.dates}, ${KOMATSU.value}`;
+  const [kx, ky] = iso(...SITE_PINS.workcard, 20);
+  const tip = `${WORKCARD.name}, ${WORKCARD.dates}, ${WORKCARD.value}`;
   return (
     <Art viewBox="0 0 560 400" title={`Site with location pins: ${tip}`} exportName="dataviz-place">
       <IsoSiteG tone="paper" />
@@ -139,22 +139,22 @@ export function Place() {
         <circle cx={kx} cy={ky} r="16" fill={C.yellow} fillOpacity="0" {...tp(tip)} />
         <g className="fade-in" style={{ '--i': 7 }}>
           <path d={`M${kx + 12} ${ky - 6}L${kx + 34} ${ky - 40}H${kx + 46}`} fill="none" stroke={C.ink} strokeWidth="1" />
-          <text x={kx + 50} y={ky - 46} fontSize="17" fontWeight="500" fill={C.ink} stroke="#FFFFFF" strokeWidth="4" paintOrder="stroke">{KOMATSU.name}</text>
-          <text x={kx + 50} y={ky - 18} fontSize="26" fontWeight="300" fill={C.ink} stroke="#FFFFFF" strokeWidth="4" paintOrder="stroke">{KOMATSU.value}</text>
+          <text x={kx + 50} y={ky - 46} fontSize="17" fontWeight="500" fill={C.ink} stroke="#FFFFFF" strokeWidth="4" paintOrder="stroke">{WORKCARD.name}</text>
+          <text x={kx + 50} y={ky - 18} fontSize="26" fontWeight="300" fill={C.ink} stroke="#FFFFFF" strokeWidth="4" paintOrder="stroke">{WORKCARD.value}</text>
         </g>
       </g>
     </Art>
   );
 }
 
-// Time: the Komatsu work dates and the Cut and Fill date as a calendar strip.
+// Time: the work dates and the Cut and Fill date as a calendar strip.
 export function Calendar() {
   const days = [10, 11, 12, 13, 14];
   const w = 56, gap = 6, x0 = 20;
   const end = x0 + days.length * w + (days.length - 1) * gap;
   return (
     <Art viewBox="0 0 520 150" title="Calendar strip: 10 to 14 Jan, 2025 and 17 Dec" exportName="dataviz-calendar">
-      <text x={x0} y="22" fontSize="16" fontWeight="500" fill={C.ink}>{KOMATSU.name}</text>
+      <text x={x0} y="22" fontSize="16" fontWeight="500" fill={C.ink}>{WORKCARD.name}</text>
       {days.map((d, i) => (
         <g key={d} className="fade-in" style={{ '--i': i }}>
           <rect x={x0 + i * (w + gap)} y="34" width={w} height="52" rx="2" fill={C.sky} {...tp(`${d} Jan, 2025`)} />
@@ -164,7 +164,7 @@ export function Calendar() {
       <path d={`M${x0} 102H${end}`} stroke={C.blue} strokeWidth="1.2" />
       <rect x={x0 - 2} y="98.5" width="10" height="7" rx="1" fill={C.blue} />
       <rect x={end - 8} y="98.5" width="10" height="7" rx="1" fill={C.blue} />
-      <text x={x0} y="130" fontSize="16" fontWeight="400" fill={C.muted}>{KOMATSU.dates}</text>
+      <text x={x0} y="130" fontSize="16" fontWeight="400" fill={C.muted}>{WORKCARD.dates}</text>
       <text x="352" y="74" fontSize="22" fontWeight="300" fill={C.muted} textAnchor="middle">{'//'}</text>
       <g className="fade-in" style={{ '--i': 6 }}>
         <rect x="388" y="34" width={w} height="52" rx="2" fill={C.yellow} {...tp('17 Dec')} />

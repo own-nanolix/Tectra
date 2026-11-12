@@ -6,7 +6,7 @@ import { IsoSiteG, PinG, SITE_PINS, iso } from '@/components/art/KeyArt';
 import Button from '@/components/ui/Button';
 import Chip from '@/components/ui/Chip';
 import Reveal from '@/components/site/Reveal';
-import { FEATURES, KOMATSU, VOLUME } from '@/lib/brand';
+import { FEATURES, WORKCARD, VOLUME } from '@/lib/brand';
 import { SegBar } from './Parts';
 import s from './styles';
 
@@ -21,7 +21,7 @@ export default function Explorer() {
   const t = v / MAX;
   const filled = Math.floor(t * VOLUME.segments);
   const whites = WHITE_PINS.filter((_, i) => t >= 0.2 + i * 0.2);
-  const komatsu = t >= 0.5;
+  const workcard = t >= 0.5;
 
   useEffect(() => {
     if (!play) return;
@@ -61,21 +61,21 @@ export default function Explorer() {
                     </g>
                   );
                 })}
-                {komatsu && (() => {
-                  const [x, y] = iso(...SITE_PINS.komatsu, 20);
+                {workcard && (() => {
+                  const [x, y] = iso(...SITE_PINS.workcard, 20);
                   return (
-                    <g key="komatsu" transform={`translate(${x} ${y})`}>
+                    <g key="workcard" transform={`translate(${x} ${y})`}>
                       <g className="pop"><PinG tone="yellow" pulse /></g>
                     </g>
                   );
                 })()}
               </g>
             </Art>
-            {komatsu && (
-              <div className={`glass slide-up ${s.komatsu}`}>
-                <span className="t-title">{KOMATSU.name}</span>
-                <span>{KOMATSU.dates}</span>
-                <span className={s.komFig}>{KOMATSU.value}</span>
+            {workcard && (
+              <div className={`glass slide-up ${s.workcard}`}>
+                <span className="t-title">{WORKCARD.name}</span>
+                <span>{WORKCARD.dates}</span>
+                <span className={s.komFig}>{WORKCARD.value}</span>
               </div>
             )}
           </div>

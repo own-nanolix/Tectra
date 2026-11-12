@@ -15,7 +15,7 @@ import s from './lp-work-areas.module.css';
 
 // Hero (the site with its pins) and the 3-up of area cards share the selected pin.
 export default function WorkAreasLive({ nav }) {
-  const [sel, setSel] = useState('komatsu');
+  const [sel, setSel] = useState('workcard');
   const cur = PINS.find((p) => p.id === sel);
   return (
     <>
@@ -72,7 +72,7 @@ export default function WorkAreasLive({ nav }) {
                 })}
               </div>
               <div className={`glass ${s.workCard}`} aria-live="polite" key={cur.id}>
-                <p className={s.workName}>{cur.name}{cur.id === 'komatsu' || cur.id === 'cutfill' ? ' →' : ''}</p>
+                <p className={s.workName}>{cur.name}{cur.id === 'workcard' || cur.id === 'cutfill' ? ' →' : ''}</p>
                 {cur.sub && <p className={s.workSub}>{cur.sub}</p>}
                 <p className={s.workFigure}><CountUp value={cur.value} /></p>
                 {cur.trend && <p className={s.workTrend}><span className={`trend trend-${cur.dir}`}>{cur.trend}</span>{cur.legend && <span className={s.workSub}> {cur.legend}</span>}</p>}

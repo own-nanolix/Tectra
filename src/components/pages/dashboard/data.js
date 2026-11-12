@@ -1,5 +1,5 @@
 // Data for the dashboard page. Everything comes from the case study (src/lib/brand.js); nothing is invented.
-import { KPI, CUT_FILL, KOMATSU } from '@/lib/brand';
+import { KPI, CUT_FILL, WORKCARD } from '@/lib/brand';
 
 // The six KPI cards, in the case study's order.
 export const ROWS = Object.entries(KPI).map(([id, k]) => ({
@@ -13,7 +13,7 @@ export const LEVELS = [...CUT_FILL.top.map((t) => lv(t, 'Top')), ...CUT_FILL.bot
 
 // The one named work card, then the six cards.
 export const WORK = [
-  { id: 'komatsu', name: KOMATSU.name, sub: KOMATSU.dates, value: 32, vText: KOMATSU.value, trend: null, tText: '', dir: null },
+  { id: 'workcard', name: WORKCARD.name, sub: WORKCARD.dates, value: 32, vText: WORKCARD.value, trend: null, tText: '', dir: null },
   ...ROWS,
 ];
 

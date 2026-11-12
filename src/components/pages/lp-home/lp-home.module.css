@@ -46,7 +46,7 @@
 
 .lp-home-stage { position: absolute; right: -1%; bottom: 0; width: 74%; aspect-ratio: 1200 / 860; container-type: inline-size; z-index: 1; }
 .lp-home-stage > svg:first-child { position: absolute; inset: 0; width: 100%; height: 100%; }
-.lp-home-komatsu { position: absolute; left: 35.4%; top: 34.8%; width: 22.4%; min-width: 150px; aspect-ratio: 1.6; padding: 1.7cqw 1.9cqw; display: flex; flex-direction: column; z-index: 2; animation: lp-home-card var(--dur-4) var(--ease-out) 1000ms both; }
+.lp-home-workcard { position: absolute; left: 35.4%; top: 34.8%; width: 22.4%; min-width: 150px; aspect-ratio: 1.6; padding: 1.7cqw 1.9cqw; display: flex; flex-direction: column; z-index: 2; animation: lp-home-card var(--dur-4) var(--ease-out) 1000ms both; }
 @keyframes lp-home-card { from { opacity: 0; transform: translateX(-34px); } to { opacity: 1; transform: none; } }
 .lp-home-kHead { display: flex; justify-content: space-between; align-items: center; margin: 0; font-weight: 500; font-size: clamp(14px, 1.3cqw, 20px); color: var(--navy); }
 .lp-home-kDates { margin: 4px 0 0; font-weight: 400; font-size: clamp(13px, 1.15cqw, 18px); color: var(--navy); }
@@ -60,7 +60,7 @@
   .lp-home-ctas { margin-top: 28px; }
   .lp-home-hats { margin-top: 28px; }
   .lp-home-stage { position: relative; right: 0; width: 100%; margin-top: 12px; }
-  .lp-home-komatsu { left: 32%; top: 30%; width: 38%; }
+  .lp-home-workcard { left: 32%; top: 30%; width: 38%; }
 }
 
 /* ---------- 2. Key features ---------- */

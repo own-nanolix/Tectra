@@ -41,7 +41,7 @@ export const OVERVIEW = 'A smart construction app for tracking project completio
 export const ABOUT = [['Project', 'Tectra'], ['Category', 'B2B SaaS'], ['Location', 'USA'], ['Year', '2024']];
 
 // Work card on the site view
-export const KOMATSU = { name: 'Komatsu', dates: '10 - 14 Jan, 2025', value: '32%' };
+export const WORKCARD = { name: 'Work area 01', dates: '10 - 14 Jan, 2025', value: '32%' };
 
 // App figures
 export const KPI = {

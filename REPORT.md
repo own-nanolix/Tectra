@@ -10,7 +10,7 @@ Rondesignlab and team (https://www.behance.net/gallery/225852373/Tectra-Construc
   lp-mobile, lp-pricing, dashboard, mobile-a, mobile-b, feature, showcase, campaign, use-apparel,
   use-accessories, use-stationery, use-packaging, use-event, use-world, use-product.
 - **Static export:** `npm run build` writes the site to `out/` (about 28 MB). It needs no server features.
-- **GitHub:** https://github.com/own-nanolix/Tectra (branch `main`, every milestone pushed).
+- **GitHub:** https://github.com/own-nanolix/Tectra (branch `main`; pushed once per round of work, after the final review, because every push goes live).
 - **Live link:** https://tectra-phi.vercel.app/ . Vercel is connected to the GitHub repo, so every push to `main`
   goes live. The link is not listed in search engines, but anyone who has it can open it.
 
@@ -49,7 +49,7 @@ Exportable SVGs per page, as counted by `node tools/check.mjs` on the built site
 | 27 | use-packaging | 12 | 14 |
 | 28 | use-event | 19 | 19 |
 | 29 | use-world | 6 | 6 |
-| 30 | use-product | 12 | 16 |
+| 30 | use-product | 12 | 17 |
 
 Content counts reported by the builders and checked by the reviewers: logo (1 primary lockup, construction,
 clear space, 4 minimum sizes, 5 colour versions, 5 lockups, 6 misuse examples, 3 secondary graphics, draw-on);
@@ -64,7 +64,7 @@ wrap, plus the shipping container).
 
 ## SVG export
 
-`node tools/export-svg.mjs` wrote **420 SVGs** to `export/svg/` with **0 warnings**. Six exported files were
+`node tools/export-svg.mjs` wrote **421 SVGs** to `export/svg/` with **0 warnings**. Six exported files were
 opened directly in a browser (primary lockup, the place chart, a mug mockup, a social post, the exploded hard
 hat, the reception sign): each matched the page. Text in exported files is live SVG text in the brand font
 stack, so a computer without Urbanist shows a system font until the text is outlined in a design tool.
@@ -176,6 +176,14 @@ Not verified:
   describes this Next.js site and says it gives "everything else" beyond the link, site name and layout
   direction. `Brand-site.md` is followed; from `07-tectra.md` only the Behance link, the site name and section
   2b (layout direction) apply.
-- No other company's name, address, product names or copyright appears on any page; the `lp-home` footer uses
-  neutral placeholders (this overrides "copy verbatim" for that footer).
+- No other company's name, address, product names or copyright appears on any page (this overrides "copy
+  verbatim" where the source carries them): the `lp-home` footer uses neutral placeholders and neutral tiles in
+  place of three social logos; the work card the source labels "Komatsu" reads "Work area 01" on every page and
+  in every exported SVG; the overview's credits no longer name the publishing platform or the design tools.
+- An independent reviewer checked the code and all 30 pages against both rule files before the push. Its
+  findings were fixed: the names above, page-private greys and a repeated gradient moved to shared tokens, three
+  motion demos changed to animate transform with shared easings, a 4 px sideways scroll on `lp-work-areas` at
+  390 px, and a case for the product on `use-product`. Left as they are, by decision: an empty `Drawings.jsx` in
+  the project root (files are never deleted); component specimens on the dashboard sheet that show states but
+  do nothing when clicked; `lp-home` and `lp-pricing` both close on the plan call, as the source's page does.
 - Pushes: one push per round of work, after the final review, because every push to `main` goes live.

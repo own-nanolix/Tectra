@@ -3,7 +3,7 @@ import Icon from '@/components/site/Icon';
 import Art from '@/components/art/Art';
 import { PinG } from '@/components/art/KeyArt';
 import LandingNav from '@/components/ui/LandingNav';
-import { HERO, KOMATSU } from '@/lib/brand';
+import { HERO, WORKCARD } from '@/lib/brand';
 import HeroArt from './HeroArt';
 import s from './s';
 
@@ -43,13 +43,13 @@ export default function Hero() {
       </div>
       <div className={s.stage}>
         <HeroArt />
-        <div className={`glass ${s.komatsu}`}>
+        <div className={`glass ${s.workcard}`}>
           <p className={s.kHead}>
-            <span>{KOMATSU.name}</span>
+            <span>{WORKCARD.name}</span>
             <Icon name="arrow-right" size={18} />
           </p>
-          <p className={s.kDates}>{KOMATSU.dates}</p>
-          <p className={s.kValue}>{KOMATSU.value}</p>
+          <p className={s.kDates}>{WORKCARD.dates}</p>
+          <p className={s.kValue}>{WORKCARD.value}</p>
           <Art viewBox="-18 -18 36 36" title="Active work pin" exportName="lp-home-hero-pin" decorative className={s.kPin}>
             <g className="pop" style={{ '--i': 12 }}>
               <PinG r={13} tone="yellow" pulse />

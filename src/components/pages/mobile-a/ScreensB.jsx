@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Icon from '@/components/site/Icon';
 import { tickBars, ruler, r2 } from '@/lib/charts';
 import { clamp } from '@/lib/site';
-import { KPI, KOMATSU, VOLUME } from '@/lib/brand';
+import { KPI, WORKCARD, VOLUME } from '@/lib/brand';
 import { StatusBar, InnerHead, TabBar, GaugeCard, GaugeBody, AxisRow, SiteG, TimelineG, HALF } from './shared';
 import { Board } from './ScreensA';
 import s from './mobile-a.module.css';
@@ -106,7 +106,7 @@ export function Screen5() {
   );
 }
 
-// 6. Work areas: the site drawing with pins, the Komatsu card as a bottom sheet
+// 6. Work areas: the site drawing with pins, the card as a bottom sheet
 export function Screen6() {
   return (
     <Board>
@@ -116,10 +116,10 @@ export function Screen6() {
         <SiteG x={-110} y={30} scale={1.08} />
       </svg>
       <div className={s.sheet}>
-        <div className={s.gcHead} style={{ top: 28 }}><span>{KOMATSU.name}</span><Icon name="arrow-right" size={18} /></div>
-        <div className={s.cfDate} style={{ top: 58 }}>{KOMATSU.dates}</div>
-        <div className={s.sheetVal}>{KOMATSU.value}</div>
-        <div className={s.sheetBar}><i style={{ width: KOMATSU.value }} /></div>
+        <div className={s.gcHead} style={{ top: 28 }}><span>{WORKCARD.name}</span><Icon name="arrow-right" size={18} /></div>
+        <div className={s.cfDate} style={{ top: 58 }}>{WORKCARD.dates}</div>
+        <div className={s.sheetVal}>{WORKCARD.value}</div>
+        <div className={s.sheetBar}><i style={{ width: WORKCARD.value }} /></div>
       </div>
     </Board>
   );
@@ -147,9 +147,9 @@ export function Screen7() {
           <em>{o.trend}<Tri cls={s.triUp} /></em>
         </div>
         <div className={s.pairTile}>
-          <span>{KOMATSU.name}</span>
-          <strong>{KOMATSU.value}</strong>
-          <em>{KOMATSU.dates}</em>
+          <span>{WORKCARD.name}</span>
+          <strong>{WORKCARD.value}</strong>
+          <em>{WORKCARD.dates}</em>
         </div>
       </div>
     </Board>

@@ -2,7 +2,7 @@
 import { GaugeG } from '@/components/art/KeyArt';
 import { AppIconG } from '@/components/art/Mark';
 import { areaPath, curvePath, r2 } from '@/lib/charts';
-import { KPI, KOMATSU } from '@/lib/brand';
+import { KPI, WORKCARD } from '@/lib/brand';
 
 // A grey app card with title, trend, figure and the corner gauge: Details, Notes, Material. Origin top-left.
 // `idp` must be unique (it names the clip path).
@@ -29,8 +29,8 @@ export function AppCardG({ idp, k, w = 270, h = 190, ...rest }) {
   );
 }
 
-// The Komatsu work card (glass on a blue card) with the yellow pin. 270 x 190.
-export function KomatsuCardG({ idp, ...rest }) {
+// The work card (glass on a blue card) with the yellow pin. 270 x 190.
+export function WorkCardCardG({ idp, ...rest }) {
   return (
     <g {...rest}>
       <linearGradient id={`${idp}-kb`} x1="0" y1="0" x2="1" y2="1">
@@ -39,9 +39,9 @@ export function KomatsuCardG({ idp, ...rest }) {
       </linearGradient>
       <rect width="270" height="190" rx="4" fill={`url(#${idp}-kb)`} />
       <rect x="22" y="24" width="226" height="142" rx="4" fill="#FFFFFF" fillOpacity="0.24" />
-      <text x="44" y="62" fontSize="18" fontWeight="500" fill="#FFFFFF">{KOMATSU.name}</text>
-      <text x="44" y="84" fontSize="13" fill="#FFFFFF" fillOpacity="0.8">{KOMATSU.dates}</text>
-      <text x="44" y="144" fontSize="40" fontWeight="300" fill="#FFFFFF">{KOMATSU.value}</text>
+      <text x="44" y="62" fontSize="18" fontWeight="500" fill="#FFFFFF">{WORKCARD.name}</text>
+      <text x="44" y="84" fontSize="13" fill="#FFFFFF" fillOpacity="0.8">{WORKCARD.dates}</text>
+      <text x="44" y="144" fontSize="40" fontWeight="300" fill="#FFFFFF">{WORKCARD.value}</text>
       <path d="M204 56h12m-5-5 5 5-5 5" fill="none" stroke="#FFFFFF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
       <circle cx="222" cy="140" r="11" fill="#FFB83D" />
       <circle cx="222" cy="140" r="4" fill="#FFFFFF" />

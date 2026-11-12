@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { groups, pageIndex, href } from '@/lib/pages';
-import { tEnter, listV, itemV } from '@/lib/motion';
+import { tEnter, listV, itemV, dur, ease } from '@/lib/motion';
 import Icon from './Icon';
 
 // Full-screen index of every page, by group. Opened from the dock; Escape closes it.
@@ -46,7 +46,7 @@ export default function IndexOverlay({ current, onClose }) {
       aria-label="Index of pages"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1, transition: tEnter }}
-      exit={{ opacity: 0, transition: { duration: 0.2 } }}
+      exit={{ opacity: 0, transition: { duration: dur.d2, ease: ease.inOut } }}
     >
       <div className="site-index-head">
         <p className="row" style={{ gap: 14 }}>

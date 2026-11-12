@@ -2,7 +2,7 @@
 
 /* ---------- Artboard and parts ---------- */
 .art { position: relative; width: 390px; height: 844px; overflow: hidden; background: var(--app); color: var(--ink); font-family: var(--font); font-weight: 400; line-height: 1.3; text-align: left; }
-.artBlue { background: var(--blue-field); background-image: linear-gradient(160deg, #5ba8f8 0%, #4c9bf3 100%); }
+.artBlue { background: var(--blue-field); background-image: var(--grad-field); }
 .scaled { position: absolute; inset: 0; overflow: hidden; }
 .scaledIn { width: 390px; height: 844px; transform-origin: 0 0; }
 .status { display: flex; justify-content: space-between; align-items: center; height: 54px; padding: 8px 32px 0 34px; font-weight: 500; font-size: 15px; position: relative; z-index: 2; }
@@ -65,7 +65,7 @@
 .setRow + .setRow { border-top: 1px solid var(--track); }
 .arrowRot { transition: transform var(--dur-2) var(--ease-in-out); }
 .arrowRot[data-open="true"] { transform: rotate(90deg); }
-.blueTile { background: var(--blue-field); background-image: linear-gradient(160deg, #5ba8f8 0%, #4c9bf3 100%); border-radius: 4px; height: 170px; position: relative; overflow: hidden; display: grid; place-items: center; color: var(--white); }
+.blueTile { background: var(--blue-field); background-image: var(--grad-field); border-radius: 4px; height: 170px; position: relative; overflow: hidden; display: grid; place-items: center; color: var(--white); }
 .btnRow { display: flex; gap: 8px; }
 
 /* ---------- Page layout ---------- */
@@ -137,8 +137,8 @@
 .rangeRead { font-size: 13px; font-weight: 500; display: flex; justify-content: space-between; margin-top: 4px; }
 .hold { position: relative; overflow: hidden; width: 100%; max-width: 340px; display: flex; align-items: center; gap: 12px; border: 0; border-radius: 4px; background: var(--card); padding: 12px; text-align: left; color: var(--ink); user-select: none; touch-action: none; transition: background-color var(--dur-2) var(--ease-out); }
 .hold[data-on="true"] { background: var(--tile); }
-.holdFill { position: absolute; left: 0; bottom: 0; height: 3px; width: 0; background: var(--blue-ink); transition: width 80ms linear; }
-.hold[data-holding="true"] .holdFill { width: 100%; transition: width 650ms linear; }
+.holdFill { position: absolute; left: 0; bottom: 0; height: 3px; width: 0; background: var(--blue-ink); transition: width 80ms var(--ease-linear); }
+.hold[data-holding="true"] .holdFill { width: 100%; transition: width 650ms var(--ease-linear); }
 .holdPin { width: 40px; height: 40px; border-radius: 4px; display: grid; place-items: center; background: var(--app); transition: background-color var(--dur-2) var(--ease-out); flex: none; }
 .hold[data-on="true"] .holdPin { background: var(--yellow); }
 

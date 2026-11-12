@@ -79,10 +79,10 @@
 .panel .tip { margin-bottom: 8px; }
 
 /* ---- navigation ---- */
-.ibtn { position: relative; width: 52px; height: 52px; border: 0; border-radius: 4px; background: #e4e4e4; color: var(--ink); display: grid; place-items: center; transition: background-color var(--dur-1) var(--ease-out), transform var(--dur-1) var(--ease-out); }
-.ibtn:hover, .ibtn[data-s="hover"] { background: #cfcfcf; }
+.ibtn { position: relative; width: 52px; height: 52px; border: 0; border-radius: 4px; background: var(--grey-rest); color: var(--ink); display: grid; place-items: center; transition: background-color var(--dur-1) var(--ease-out), transform var(--dur-1) var(--ease-out); }
+.ibtn:hover, .ibtn[data-s="hover"] { background: var(--grey-hover); }
 .ibtn:active { transform: scale(0.95); }
-.ibtn[aria-current], .ibtn[data-s="active"] { background: #c4c4c4; }
+.ibtn[aria-current], .ibtn[data-s="active"] { background: var(--grey-active); }
 .ibtn:disabled, .ibtn[data-s="disabled"] { opacity: 0.45; pointer-events: none; }
 .ndot { position: absolute; top: 14px; right: 14px; width: 8px; height: 8px; border-radius: 50%; background: var(--yellow); }
 .logo { display: grid; place-items: center; background: var(--yellow); border-radius: 4px; }
@@ -94,10 +94,10 @@
 .strip button { height: 46px; padding: 0 24px; border: 0; border-radius: 3px; background: transparent; font-size: 16px; font-weight: 500; color: var(--ink); transition: background-color var(--dur-1) var(--ease-out); }
 .strip button:hover { background: rgba(0, 0, 0, 0.06); }
 .strip button:active { background: rgba(0, 0, 0, 0.12); }
-.strip button[aria-current] { background: #cfcfcf; }
+.strip button[aria-current] { background: var(--grey-hover); }
 .tools { position: absolute; right: 0; top: 0; display: flex; gap: 8px; }
 .tools .ibtn { width: 58px; height: 58px; background: var(--card); }
-.tools .ibtn:hover { background: #d8d8d8; }
+.tools .ibtn:hover { background: var(--grey-soft); }
 .tools .ndot { top: 16px; right: 16px; }
 
 /* ---- tables ---- */
@@ -106,7 +106,7 @@
 .search { display: flex; align-items: center; gap: 8px; background: var(--chip); border-radius: 4px; padding: 0 12px; height: 40px; min-width: 200px; color: var(--ink); box-shadow: inset 0 -1px 0 var(--track); transition: box-shadow var(--dur-2) var(--ease-out); }
 .search input { border: 0; background: transparent; font: inherit; font-size: 15px; color: var(--ink); outline: none; width: 100%; min-width: 0; }
 .search input::placeholder { color: var(--muted); }
-.search:hover { background: #ececec; }
+.search:hover { background: var(--grey-wash); }
 .search:focus-within, .search[data-s="focus"] { box-shadow: inset 0 -2px 0 var(--blue-ink); }
 .search[data-s="disabled"] { opacity: 0.45; }
 .chips { display: flex; gap: 6px; }
@@ -149,14 +149,14 @@
 .crumb .dh { flex: 1; }
 .links { display: flex; gap: 16px; }
 .big { flex: 1; display: flex; justify-content: space-between; align-items: center; border: 0; background: var(--card); border-radius: 4px; padding: 0 28px; font-size: 22px; font-weight: 300; color: var(--ink); transition: background-color var(--dur-1) var(--ease-out), transform var(--dur-1) var(--ease-out); }
-.big:hover { background: #f0f0f0; }
+.big:hover { background: var(--chip); }
 .big:active { transform: translateY(1px); }
 
 /* ---- overview ---- */
 .ovH { position: absolute; left: 48px; top: 48px; font-size: 64px; font-weight: 300; margin: 0; line-height: 1.1; }
 .ovRow { position: absolute; left: 48px; right: 48px; top: 170px; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 24px; list-style: none; margin: 0; padding: 0; }
 .ovCard { position: relative; background: var(--card); border-radius: 4px; padding: 20px; display: flex; flex-direction: column; gap: 16px; min-height: 600px; transition: background-color var(--dur-2) var(--ease-out); }
-.ovCard:hover { background: #f0f0f0; }
+.ovCard:hover { background: var(--chip); }
 .ovLetter { font-size: 88px; font-weight: 300; line-height: 1; color: var(--blue); }
 .ovCard svg { width: 100%; height: auto; border-radius: 3px; }
 .ovName { margin: 0; font-size: 22px; font-weight: 500; line-height: 1.25; }

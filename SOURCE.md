@@ -177,9 +177,10 @@ Artboard 2:
    Connectors, Security); SOLUTIONS (All Teams, Engineering, Sales, Support, People, Knowledge Management);
    RESOURCES (Resources Center, Product Videos, Guides, Customer Stories, Blog, Webinars, Developers, Help
    Center); COMPANY (About, Careers, Press). "© 2024, Glean Technologies, Inc.", "Terms", "Privacy".
-   Note: this footer is placeholder text from another company left in the source. It is reproduced on `lp-home`
-   only because rule 1 says verbatim, and it is listed in the report. Other pages use the shared footer without
-   the address and the copyright line.
+   Note: this footer is placeholder text from another company left in the source. It is NOT reproduced: on
+   `lp-home` the address, copyright line, link columns and social marks are neutral placeholders (owner's
+   standing orders, point 4). Other pages use the shared footer without the address and the copyright line.
+   The same applies to the work card's name ("Komatsu" in the source): the site shows "Work area 01".
 
 ## Palette
 

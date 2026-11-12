@@ -6,7 +6,7 @@ import Chip from '@/components/ui/Chip';
 import { Hl } from '@/components/ui/Card';
 import Reveal from '@/components/site/Reveal';
 import CountUp from '@/components/site/CountUp';
-import { KOMATSU, CUT_FILL, HEADINGS } from '@/lib/brand';
+import { WORKCARD, CUT_FILL, HEADINGS } from '@/lib/brand';
 import { r2, ruler } from '@/lib/charts';
 import s from './lp-timeline.module.css';
 
@@ -16,12 +16,12 @@ const dayX = (d) => r2((d / 365) * W);
 const WEEKS = ruler(52, W);
 
 const ITEMS = {
-  komatsu: { name: KOMATSU.name, when: KOMATSU.dates, days: [10, 11, 12, 13, 14] },
+  workcard: { name: WORKCARD.name, when: WORKCARD.dates, days: [10, 11, 12, 13, 14] },
   cutfill: { name: CUT_FILL.title, when: CUT_FILL.date.replace('Date: ', ''), days: [17] },
 };
 
 export default function CalendarStrip() {
-  const [sel, setSel] = useState('komatsu');
+  const [sel, setSel] = useState('workcard');
   const it = ITEMS[sel];
   const k0 = dayX(9), k1 = dayX(14);
   const c0 = dayX(351);
@@ -36,24 +36,24 @@ export default function CalendarStrip() {
 
       <Reveal delay={60} className={s.calTop}>
         <div className={s.chips} role="group" aria-label="Dates">
-          <Chip pressed={sel === 'komatsu'} onClick={() => setSel('komatsu')}>{KOMATSU.name}</Chip>
+          <Chip pressed={sel === 'workcard'} onClick={() => setSel('workcard')}>{WORKCARD.name}</Chip>
           <Chip pressed={sel === 'cutfill'} onClick={() => setSel('cutfill')}>{CUT_FILL.title}</Chip>
         </div>
       </Reveal>
 
       <Reveal delay={100}>
         <div className={s.yearScroll}>
-          <Art viewBox="0 0 1200 190" title={`Calendar strip: ${KOMATSU.dates} and ${CUT_FILL.date.replace('Date: ', '')}`} exportName="lp-timeline-calendar" className={s.yearSvg}>
+          <Art viewBox="0 0 1200 190" title={`Calendar strip: ${WORKCARD.dates} and ${CUT_FILL.date.replace('Date: ', '')}`} exportName="lp-timeline-calendar" className={s.yearSvg}>
             <rect x="0" y="118" width={W} height="8" fill="#DFDFDF" />
             <path d={WEEKS.map((x) => `M${x} 104v36`).join('')} stroke="#C9C9C9" strokeWidth="1" />
             <path d={MONTHS.map((d) => `M${dayX(d)} 96v52`).join('')} stroke="#8F8F8F" strokeWidth="1.5" />
             {/* only the marks dim when the other date is selected; the labels keep their contrast */}
-            <g opacity={sel === 'komatsu' ? 1 : 0.4} className={s.calMark}>
+            <g opacity={sel === 'workcard' ? 1 : 0.4} className={s.calMark}>
               <rect x={k0} y="108" width={r2(k1 - k0)} height="28" fill="#FFB83D" />
               <path d={`M${k0} 108V52`} stroke="#FFB83D" strokeWidth="2" />
             </g>
-            <text x={k0} y="40" fontSize="18" fontWeight="500" fill="#2F2F2F">{KOMATSU.name}</text>
-            <text x={k0} y="62" fontSize="16" fontWeight="400" fill="#5E5E5E" dx="8">{KOMATSU.dates}</text>
+            <text x={k0} y="40" fontSize="18" fontWeight="500" fill="#2F2F2F">{WORKCARD.name}</text>
+            <text x={k0} y="62" fontSize="16" fontWeight="400" fill="#5E5E5E" dx="8">{WORKCARD.dates}</text>
             <g opacity={sel === 'cutfill' ? 1 : 0.4} className={s.calMark}>
               <path d={`M${c0} 122V52`} stroke="#4093EC" strokeWidth="2" />
               <circle cx={c0} cy="122" r="9" fill="#4093EC" />
@@ -71,15 +71,15 @@ export default function CalendarStrip() {
           <div className={s.days} key={sel} role="img" aria-label={`${it.name}: ${it.when}`}>
             {Array.from({ length: 31 }, (_, d) => {
               const on = it.days.includes(d + 1);
-              return <span key={d} className={`${s.day} ${on ? (sel === 'komatsu' ? s.dayY : s.dayB) : ''}`} style={{ '--i': d }} />;
+              return <span key={d} className={`${s.day} ${on ? (sel === 'workcard' ? s.dayY : s.dayB) : ''}`} style={{ '--i': d }} />;
             })}
           </div>
         </div>
         <div className={`card ${s.calCard}`} aria-live="polite">
           <h3 className="t-h3">{it.name}</h3>
           <p className="t-label">{it.when}</p>
-          {sel === 'komatsu' ? (
-            <p className="t-figure"><CountUp value={KOMATSU.value} /></p>
+          {sel === 'workcard' ? (
+            <p className="t-figure"><CountUp value={WORKCARD.value} /></p>
           ) : (
             <dl className={s.kv}>
               {CUT_FILL.indicators.map(([k, v]) => (

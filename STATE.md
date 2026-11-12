@@ -25,7 +25,7 @@ Spec: `rule/Brand-site.md` (master spec) and `rule/07-tectra.md` (this project's
 - [x] 6. Review team; shared fixes applied
 - [x] 7. Verify in the browser; SVG export
 - [x] 8. `REPORT.md` and `README.md`
-- [ ] 9. Offer to publish to Vercel
+- [x] 9. Offer to publish to Vercel (live at https://tectra-phi.vercel.app/ ; Vercel is connected to the GitHub repo)
 
 ## Decisions
 
