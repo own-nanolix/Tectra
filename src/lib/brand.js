@@ -148,7 +148,8 @@ export const FAQ = {
     'Community support',
   ],
 };
-// Footer columns as printed (placeholder text left in the source by the designer).
+// Footer columns as printed. The source's address and copyright lines were another company's placeholder
+// text; they are replaced here with neutral placeholders.
 export const FOOTER = {
   columns: [
     ['Product', ['Overview', 'Workplace Search', 'Assistant', 'Platform', 'Knowledge Management', 'Work Hub', 'Connectors', 'Security']],
@@ -156,8 +157,8 @@ export const FOOTER = {
     ['Resources', ['Resources Center', 'Product Videos', 'Guides', 'Customer Stories', 'Blog', 'Webinars', 'Developers', 'Help Center']],
     ['Company', ['About', 'Careers', 'Press']],
   ],
-  address: ['260 Sheridan Ave', 'Suite 300', 'Palo Alto, CA 94306', 'United States'],
-  copyright: '© 2024, Glean Technologies, Inc.',
+  address: ['Street address', 'Suite', 'City, postcode', 'Country'],
+  copyright: '© Tectra',
   legal: ['Terms', 'Privacy'],
 };
 

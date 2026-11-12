@@ -112,9 +112,10 @@ card, the device trio and the icon size ladder.
 - **Placeholders (quiet grey bars):** annual prices, names, addresses, phone numbers, dates, seat and card
   numbers on stationery, tickets, labels and cards; note text on the mobile Notes screen.
 - **Source oddities kept as printed:** "Progres", "Localiztion", the axis order `0 10 20 60 70 80 90 100 30 40
-  50`, the cut-off sentence on the second mobile text card, and the footer on `lp-home`, which is another
-  company's placeholder text ("260 Sheridan Ave ... Palo Alto", "© 2024, Glean Technologies, Inc."). That
-  footer appears on `lp-home` only; you may want it removed before showing the site to the designer.
+  50`, and the cut-off sentence on the second mobile text card.
+- **Source text replaced:** the footer on `lp-home` carried another company's leftover address and copyright
+  line in the source. Both are replaced with neutral placeholders ("Street address / Suite / City, postcode /
+  Country", "© Tectra"). The footer's link columns are still as printed in the source.
 - **Illegible or wrong in the source:** the black colour ring is labelled "#FFB83D"; it is shown as `#000000`.
   The badge contact lines are too small to rely on and are placeholder bars.
 

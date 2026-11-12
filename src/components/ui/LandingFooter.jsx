@@ -2,8 +2,9 @@ import Icon from '@/components/site/Icon';
 import { FOOTER } from '@/lib/brand';
 
 // The landing footer from the case study: mark, four link columns, a hairline and the legal row.
-// <LandingFooter />        shared version: no address and no copyright line (those are placeholders in the source)
-// <LandingFooter full />   the footer exactly as printed in the case study (used on lp-home only)
+// <LandingFooter />        shared version: no address and no copyright line
+// <LandingFooter full />   the footer laid out as in the case study, with a neutral placeholder address and
+//                          copyright line in place of the source's leftover text (used on lp-home only)
 // Column entries are plain text, as in the source: they name no real destinations.
 export default function LandingFooter({ full = false, className = '' }) {
   return (
