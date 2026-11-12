@@ -63,3 +63,4 @@ http://localhost:3102 (start with `npx next dev -p 3102`; stop it before `npm ru
 - Fix: scripts/flatten-prefetch.mjs runs as postbuild. The export writes segment prefetch files in nested folders while the browser asks for dotted names, which gave 404 console errors on every page of the static preview.
 - Wave 2 launched (B13 to B24, Sonnet): dashboard, mobile-a, mobile-b, feature, showcase, campaign, use-apparel, use-accessories, use-stationery, use-packaging, use-event, use-world, use-product.
 - Step 5 done: wave 2 finished; build passes; check reports 30 of 30 ok; lint clean. No builder was relaunched in either wave.
+- Step 6 started: 8 reviewers launched (R1 to R8, Opus). Audit of the built site before review: 29 of 30 clean; dataviz overflows 192 px at 390 px. If a session ends here, trust only `npm run build`, `node tools/check.mjs` and `node tools/audit.mjs`.
