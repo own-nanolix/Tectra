@@ -23,7 +23,7 @@ function DimH({ x1, x2, y, label, ox, oy }) {
     <g stroke={BLUE} strokeWidth="1" fill="none">
       <path d={`M${a} ${yy}H${b}M${a} ${yy - 5}V${yy + 5}M${b} ${yy - 5}V${yy + 5}`} />
       <path d={`M${a + 7} ${yy - 3}L${a} ${yy}L${a + 7} ${yy + 3}M${b - 7} ${yy - 3}L${b} ${yy}L${b - 7} ${yy + 3}`} />
-      <text x={(a + b) / 2} y={yy - 8} fontSize="13" fontWeight="500" fill="#145CB8" stroke="none" textAnchor="middle">{label}</text>
+      <text x={(a + b) / 2} y={yy - 8} fontSize="13" fontWeight="500" fill="#145CB8" stroke="#FFFFFF" strokeWidth="5" strokeLinejoin="round" paintOrder="stroke" textAnchor="middle">{label}</text>
     </g>
   );
 }
@@ -33,7 +33,7 @@ function DimV({ y1, y2, x, label, ox, oy, side = 1 }) {
     <g stroke={BLUE} strokeWidth="1" fill="none">
       <path d={`M${xx} ${a}V${b}M${xx - 5} ${a}H${xx + 5}M${xx - 5} ${b}H${xx + 5}`} />
       <path d={`M${xx - 3} ${a + 7}L${xx} ${a}L${xx + 3} ${a + 7}M${xx - 3} ${b - 7}L${xx} ${b}L${xx + 3} ${b - 7}`} />
-      <text x={xx + 9 * side} y={(a + b) / 2 + 4} fontSize="13" fontWeight="500" fill="#145CB8" stroke="none" textAnchor={side > 0 ? 'start' : 'end'}>{label}</text>
+      <text x={xx + 9 * side} y={(a + b) / 2 + 4} fontSize="13" fontWeight="500" fill="#145CB8" stroke="#FFFFFF" strokeWidth="5" strokeLinejoin="round" paintOrder="stroke" textAnchor={side > 0 ? 'start' : 'end'}>{label}</text>
     </g>
   );
 }
@@ -71,7 +71,7 @@ function Drawing({ view, ox, oy }) {
       <DimV y1={neckMid} y2={top} x={px - 14} label={`${back ? 60 : 90} mm`} ox={ox} oy={oy} side={-1} />
       {!back && (
         <g>
-          <path d={`M${ox + 20 * SC} ${oy + 126 * SC}L${ox + 8 * SC} ${oy + 150 * SC}`} stroke={BLUE} strokeWidth="1" />
+          <path d={`M${ox + 20 * SC} ${oy + 110 * SC}L${ox + 8 * SC} ${oy + 150 * SC}`} stroke={BLUE} strokeWidth="1" />
           <text x={ox - 4} y={oy + 168 * SC} fontSize="13" fontWeight="500" fill="#145CB8">80 x 80 mm</text>
         </g>
       )}

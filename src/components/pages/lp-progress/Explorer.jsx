@@ -5,7 +5,6 @@ import Art from '@/components/art/Art';
 import { IsoSiteG, PinG, SITE_PINS, iso } from '@/components/art/KeyArt';
 import Button from '@/components/ui/Button';
 import Chip from '@/components/ui/Chip';
-import { Hl } from '@/components/ui/Card';
 import Reveal from '@/components/site/Reveal';
 import { FEATURES, KOMATSU, VOLUME } from '@/lib/brand';
 import { SegBar } from './Parts';
@@ -46,7 +45,7 @@ export default function Explorer() {
     <section className={s.band} id="lp-progress-explorer" aria-labelledby="lp-progress-explorer-h">
       <div className="wrap-narrow">
         <Reveal className={s.head}>
-          <h2 id="lp-progress-explorer-h" className="t-display t-balance t-center"><Hl text={title} hl="progress tracking" /></h2>
+          <h2 id="lp-progress-explorer-h" className="t-display t-balance t-center">{title}</h2>
           <p className="t-lead muted t-center">{text}</p>
         </Reveal>
         <Reveal delay={80}>
@@ -73,7 +72,7 @@ export default function Explorer() {
               </g>
             </Art>
             {komatsu && (
-              <div className={`glass ${s.komatsu}`}>
+              <div className={`glass slide-up ${s.komatsu}`}>
                 <span className="t-title">{KOMATSU.name}</span>
                 <span>{KOMATSU.dates}</span>
                 <span className={s.komFig}>{KOMATSU.value}</span>

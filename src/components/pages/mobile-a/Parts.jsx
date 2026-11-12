@@ -63,14 +63,6 @@ export default function Parts() {
         </Art>
       </Part>
 
-      <Part title="Floating tab bar">
-        <Art viewBox="0 0 300 76" title="Floating tab bar, five icons, link active" exportName="mobile-a-tab-bar">
-          <rect x="8" y="10" width="284" height="56" rx="4" fill="#C4C4C4" />
-          <rect x="62" y="14" width="52" height="48" rx="3" fill="#FFB83D" />
-          {TAB_ICONS.map((n, i) => <IconUse key={n} name={n} x={20 + i * 54 + 4} y={26} size={24} color={INK} stroke={INK} />)}
-        </Art>
-      </Part>
-
       <Part title="Work areas" wide>
         <Art viewBox="0 0 560 400" title="Site drawing with location pins" exportName="mobile-a-site-pins">
           <rect width="560" height="400" rx="4" fill="#F5F5F5" />
@@ -79,14 +71,22 @@ export default function Parts() {
       </Part>
 
       <Part title="Timeline">
-        <Art viewBox="0 0 340 450" title="Timeline: roadmap stages as a vertical stepped list" exportName="mobile-a-timeline">
-          <rect width="340" height="450" rx="4" fill="#E9E9E9" />
+        <Art viewBox="0 0 340 490" title="Timeline: roadmap stages as a vertical stepped list" exportName="mobile-a-timeline">
+          <rect width="340" height="490" rx="4" fill="#E9E9E9" />
           <text x="20" y="36" fontSize="18" fontWeight="500" fill={INK}>Timeline</text>
           <g transform="translate(14 56)"><TimelineG /></g>
         </Art>
       </Part>
 
-      <Part title="Volume bar">
+      <Part title="Floating tab bar">
+        <Art viewBox="0 0 300 76" title="Floating tab bar, five icons, link active" exportName="mobile-a-tab-bar">
+          <rect x="8" y="10" width="284" height="56" rx="4" fill="#C4C4C4" />
+          <rect x="62" y="14" width="52" height="48" rx="3" fill="#FFB83D" />
+          {TAB_ICONS.map((n, i) => <IconUse key={n} name={n} x={20 + i * 54 + 4} y={26} size={24} color={INK} stroke={INK} />)}
+        </Art>
+      </Part>
+
+      <Part title="Volume bar" wide>
         <Art viewBox="0 0 310 96" title={`${VOLUME.from} to ${VOLUME.to}, 4 of 8 segments`} exportName="mobile-a-volume-bar">
           <VolumeG from={VOLUME.from} to={VOLUME.to} />
         </Art>

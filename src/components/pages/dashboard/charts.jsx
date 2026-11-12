@@ -47,16 +47,17 @@ const handle = (x, y, col) => (
 );
 
 // Tick-bar chart: bars fade downward, a yellow or blue band, ruler, range handle and the designer's axis order.
-export function TickChart({ idp, name, w = 600, H = 60, tone = 'yellow', from = 0.36, to = 0.6, legend = KPI.cross.legend }) {
+export function TickChart({ idp, name, w = 600, H = 60, tone = 'yellow', from = 0.36, to = 0.6, legend = KPI.cross.legend, axis = true }) {
   const col = tone === 'yellow' ? '#FFB83D' : '#4093EC';
-  const zones = AXIS.map((a, i) => ({ x: Math.max(0, i / 10 - 0.05), w: 0.1, text: `${legend}: ${a}` }));
+  const c = KPI.cross;
+  const zones = [{ x: from, w: to - from, text: `${c.label} ${c.value}, ${c.trend}` }];
   return (
     <Tip zones={zones}>
-      <Plot vb={`0 -24 ${w} ${H + 60}`} title={`2D Cross Section ${legend} tick-bar chart, axis ${AXIS.join(' ')}`} name={name}>
+      <Plot vb={`0 -24 ${w} ${H + (axis ? 78 : 50)}`} title={`${c.label} tick-bar chart, axis ${AXIS.join(' ')}`} name={name}>
         <TickBarsG idp={idp} w={w} h={H} count={Math.round(w / 10.7)} from={from} to={to} tone={tone} base="#CFCFCF" rise />
         {handle(w - 78, -20, col)}
         <text x={w} y="-12" fontSize="12" textAnchor="end" fill={MUTED}>{legend}</text>
-        {axisLabels(w).map((a, i) => (
+        {axis && axisLabels(w).map((a, i) => (
           <text key={i} x={a.x} y={H + 46} fontSize="12" textAnchor={i === 0 ? 'start' : i === 10 ? 'end' : 'middle'} fill={MUTED}>{a.label}</text>
         ))}
       </Plot>
@@ -109,8 +110,8 @@ export function VolumeBar({ name }) {
   const text = `${VOLUME.from} to ${VOLUME.to}, ${VOLUME.filled} of ${VOLUME.segments} segments`;
   return (
     <Tip zones={[{ x: 0, w: 1, text }]}>
-      <Plot vb="0 0 286 40" title={text} name={name}>
-        {name && <rect width="286" height="40" rx="4" fill="#53A2F7" />}
+      <Plot vb={name ? '-16 -14 318 68' : '0 0 286 40'} title={text} name={name}>
+        {name && <rect x="-16" y="-14" width="318" height="68" rx="4" fill="#53A2F7" />}
         <text x="0" y="12" fontSize="12" fill="#0A2E63">{VOLUME.from}</text>
         <text x="286" y="12" fontSize="12" textAnchor="end" fill="#0A2E63">{VOLUME.to}</text>
         <path d="M116 8h50m-4-3 4 3-4 3" fill="none" stroke="#0A2E63" strokeWidth="1" />
@@ -123,13 +124,15 @@ export function VolumeBar({ name }) {
 }
 
 // Quarter-arc gauge cut by the card corner. `k` is a key of KPI (details, notes, material, ...).
+// The radius is capped so the arc never runs into the figure at the card's bottom left (about 104 px wide).
 function GaugeLayer({ idp, k, w, h }) {
   const d = KPI[k];
+  const r = r2(Math.min(Math.min(w, h) * 0.52, (w - 104) / 1.28));
   return (
     <>
       <clipPath id={`${idp}-gc-${k}`}><rect width={w} height={h} rx="4" /></clipPath>
       <g clipPath={`url(#${idp}-gc-${k})`}>
-        <GaugeG w={w} h={h} r={Math.min(w, h) * 0.52} value={parseFloat(d.value) / 100} tone={d.tone === 'yellow' ? 'yellow' : 'blue'} track="#D2D2D2" draw />
+        <GaugeG w={w} h={h} r={r} value={parseFloat(d.value) / 100} tone={d.tone === 'yellow' ? 'yellow' : 'blue'} track="#D2D2D2" draw />
       </g>
     </>
   );
@@ -156,7 +159,7 @@ export function GaugeArt({ idp, k, name }) {
       <text x="24" y={h - 78} fontSize="13" fill="#2F2F2F">{d.trend}</text>
       <path d={d.dir === 'up' ? `M${24 + d.trend.length * 7.6 + 6} ${h - 78}l6-7 6 7z` : `M${24 + d.trend.length * 7.6 + 6} ${h - 85}l6 7 6-7z`} fill={d.dir === 'up' ? '#FFB83D' : '#E2383B'} />
       <text x="24" y={h - 30} fontSize="36" fontWeight="300" fill="#2F2F2F">{d.value}</text>
-      {d.legend && (<g><circle cx="30" cy="132" r="4" fill="#4093EC" /><text x="40" y="136" fontSize="12" fill={MUTED}>{d.legend}</text></g>)}
+      {d.legend && (<g><circle cx={w - 74} cy="68" r="4" fill="#4093EC" /><text x={w - 24} y="72" fontSize="12" textAnchor="end" fill={MUTED}>{d.legend}</text></g>)}
       <GaugeLayer idp={idp} k={k} w={w} h={h} />
     </Plot>
   );

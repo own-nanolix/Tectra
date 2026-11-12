@@ -1,6 +1,5 @@
 import { pageMeta } from '@/lib/pages';
 import Reveal from '@/components/site/Reveal';
-import Icon from '@/components/site/Icon';
 import Chip from '@/components/ui/Chip';
 import { HEADINGS, QUOTES, STRATEGY_CHIPS, OVERVIEW, ABOUT, KPI, EFFICIENCY } from '@/lib/brand';
 import { SectionHead, QuoteBlock, MarginFig, Steps } from '@/components/pages/strategy/parts';
@@ -14,12 +13,16 @@ import s from '@/components/pages/strategy/styles';
 
 export const metadata = pageMeta('strategy');
 
-function QuoteStep({ quote, label, className }) {
+// A quote of the strategic plan with its three-segment bar. In m04 the first quote reads bar, quote, name;
+// the two lower ones read name, bar, quote (the arrows from the chart point at the name chip).
+function QuoteStep({ quote, label, className, whoFirst = false }) {
+  const who = <Who name={quote.name} role={quote.role} initials={quote.initials} className={whoFirst ? s.whoTop : s.who} />;
   return (
     <Reveal className={className}>
+      {whoFirst && who}
       <Steps filled={quote.steps} label={label} />
       <p className={s.quoteSm}><Hl text={quote.text} hl={quote.hl} className="hl-ink" /></p>
-      <Who name={quote.name} role={quote.role} initials={quote.initials} className={s.who} />
+      {!whoFirst && who}
     </Reveal>
   );
 }
@@ -46,20 +49,20 @@ export default function Page() {
             <div className={s.twoCol}>
               <Reveal className={s.colWithBar}>
                 <div className={s.vbar} aria-hidden="true"><i data-on="1" /><i /></div>
-                <div>
-                  <h3 className="t-h2">Overview</h3>
-                  <p className="t-lead" style={{ marginTop: 18, maxWidth: '36ch' }}>{OVERVIEW}</p>
+                <div className={s.colBody}>
+                  <h3 className={s.colHead}>Overview</h3>
+                  <p className={s.overviewText}>{OVERVIEW}</p>
                 </div>
               </Reveal>
               <Reveal className={s.colWithBar} delay={120}>
                 <div className={`${s.vbar} ${s.vbarLow}`} aria-hidden="true"><i /><i data-on="1" /></div>
-                <div>
-                  <h3 className="t-h2">About</h3>
+                <div className={s.colBody}>
+                  <h3 className={s.colHead}>About</h3>
                   <ul className={s.aboutRows}>
                     {ABOUT.map(([k, v]) => (
                       <li key={k}>
                         <span>{k}</span>
-                        <Icon name="arrow-right" size={40} />
+                        <svg viewBox="0 0 76 8" aria-hidden="true" className={s.thinArrow}><path d="M0 4H75M71 1L75 4L71 7" fill="none" stroke="currentColor" strokeWidth="1" /></svg>
                         <span>{v}</span>
                       </li>
                     ))}
@@ -87,8 +90,8 @@ export default function Page() {
             <Mountain />
           </div>
           <div className={s.pair}>
-            <QuoteStep quote={QUOTES.modular} label="Progress: 1 of 3 segments filled" className={s.pairL} />
-            <QuoteStep quote={QUOTES.live} label="Progress: 3 of 3 segments filled" className={s.pairR} />
+            <QuoteStep quote={QUOTES.modular} label="Progress: 1 of 3 segments filled" className={s.pairL} whoFirst />
+            <QuoteStep quote={QUOTES.live} label="Progress: 3 of 3 segments filled" className={s.pairR} whoFirst />
           </div>
         </section>
 
@@ -98,15 +101,13 @@ export default function Page() {
           <div style={{ marginTop: 'clamp(28px, 4vw, 56px)' }}>
             <Insights />
           </div>
-          <div className={s.story} style={{ marginTop: 'clamp(40px, 6vw, 96px)' }}>
-            <MarginFig value={KPI.cross.value} caption={KPI.cross.label} side="left" />
+          <div className={s.story} style={{ marginTop: 'clamp(56px, 9vw, 150px)' }}>
             <div className={s.measure}>
               <Reveal>
-                <p className={s.quote}><Hl text={QUOTES.research.text} hl={QUOTES.research.hl} /></p>
+                <p className={s.quoteMid}><Hl text={QUOTES.research.text} hl={QUOTES.research.hl} /></p>
                 <Who name={QUOTES.research.name} role={QUOTES.research.role} initials={QUOTES.research.initials} className={s.who} />
               </Reveal>
             </div>
-            <MarginFig value={KPI.material.value} caption={KPI.material.label} side="right" />
           </div>
         </section>
 

@@ -55,7 +55,7 @@ shown exploded along one axis; the axis and the view differ every time.
 |---|---|---|
 | showcase | Phone with data cards | Front elevation; phone centred, five glass data cards pulled out along the x axis to left and right at different depths; blue shadow |
 | showcase | Line-up of 8 phones | Three-quarter view from above; eight phones in a fanned row, each screen layer lifted along the y axis by an increasing amount; yellow shadow under the first |
-| showcase | Laptop on a plinth | Side elevation; plinth, laptop base, screen glass and UI layer separated along the vertical axis; sky shadow |
+| showcase | Laptop on a plinth | Front elevation (seen edge-on the glass and UI layers would vanish); plinth, laptop base, screen glass and UI layer separated along the vertical axis; sky shadow |
 | showcase | Event stage | Wide front elevation; floor, stage deck, screen frame and brand screen stepped back along the depth axis (drawn as diagonal offset up-right); blue shadow |
 | campaign | Posts, posters, stories | Flat artwork (not objects): no explode. Posters shown with a frame layer lifted off the print along the diagonal |
 | use-apparel | Collection scene | Front elevation of a rail; garments hang at different heights, print layers lifted off two of them along the x axis |

@@ -27,7 +27,7 @@ function SignIn({ idp }) {
     <div className={`${s.art} ${s.artBlue}`}>
       <div className={s.heroField}>
         <svg viewBox="0 0 390 380" width="390" height="380" aria-hidden="true">
-          <IsoSiteG x={-30} y={150} scale={0.82} tone="blue" seed={11} />
+          <IsoSiteG x={-6} y={168} scale={0.74} tone="blue" seed={11} trees={false} />
         </svg>
       </div>
       <StatusBar tone="navy" />
@@ -146,7 +146,6 @@ function Help() {
 
 function Settings({ idp, go }) {
   const [n, setN] = useState(true);
-  const [ft, setFt] = useState(true);
   const [per, setPer] = useState('Monthly');
   return (
     <div className={s.art}>
@@ -156,7 +155,6 @@ function Settings({ idp, go }) {
         <div className={s.h}>Settings</div>
         <div className={s.card} style={{ paddingTop: 8, paddingBottom: 8 }}>
           <div className={s.setRow}>Notifications<Toggle hideLabel label="Notifications" checked={n} onChange={setN} /></div>
-          <div className={s.setRow}>Units: ft<Toggle hideLabel label="Units: ft" checked={ft} onChange={setFt} /></div>
           <div className={s.setRow}><span>Billing</span><Segmented id={`${idp}-billing`} label="Billing period" options={PLANS.toggle} value={per} onChange={setPer} /></div>
         </div>
         <Row icon="briefcase" title="Plans" trailing="chevron-right" onClick={() => go && go(13)} />

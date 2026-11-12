@@ -1,11 +1,11 @@
 import Art from '@/components/art/Art';
 import { GaugeG } from '@/components/art/KeyArt';
 import { CORE } from '@/components/site/icons';
+import { HEX } from '@/lib/brand';
 import s from './icons.module.css';
 
-const INK = '#2F2F2F';
-const APP = '#DDDDDD';
-const CARD = '#E9E9E9';
+const INK = HEX.ink;
+const CARD = HEX.card;
 
 // An icon placed at x, y at a size, inside an exportable SVG (the path is copied, no sprite reference).
 function Ic({ name, x, y, size = 24, color = INK }) {
@@ -16,36 +16,44 @@ function Ic({ name, x, y, size = 24, color = INK }) {
   );
 }
 
-const RAIL = ['layers', 'link', 'headset', 'gear', 'folder'];
-const TABS = ['home', 'layers', 'note', 'chart', 'user'];
+// The case study's own sets: the app rail (m01) and the floating tab bar (m09) carry the same five icons,
+// the second (link) active.
+const FIVE = ['layers', 'link', 'headset', 'gear', 'folder'];
 
 function Rail() {
   return (
-    <Art viewBox="0 0 96 372" title="App left rail: five icons, link active, with sign-out and user" exportName="icons-use-rail" className={s.useSvg}>
-      <rect width="96" height="372" rx="6" fill={APP} />
-      {RAIL.map((name, i) => (
+    <Art viewBox="0 0 96 520" title="App left rail: five icons with link active, then sign-out and the user tile" exportName="icons-use-rail" className={s.useSvg}>
+      <defs>
+        <linearGradient id="icons-use-who" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stopColor={HEX.blue} />
+          <stop offset="1" stopColor={HEX.sky} />
+        </linearGradient>
+      </defs>
+      <rect width="96" height="520" rx="6" fill={HEX.card} />
+      {FIVE.map((name, i) => (
         <g key={name}>
-          <rect x="26" y={20 + i * 52} width="44" height="44" rx="4" fill={i === 1 ? '#C2C2C2' : CARD} />
-          <Ic name={name} x={36} y={30 + i * 52} />
+          {i === 1 && <rect x="26" y={24 + i * 56} width="44" height="44" rx="4" fill={HEX.app} />}
+          <Ic name={name} x={36} y={34 + i * 56} />
         </g>
       ))}
-      <rect x="26" y="262" width="44" height="44" rx="4" fill={CARD} />
-      <Ic name="logout" x={36} y={272} />
-      <rect x="26" y="314" width="44" height="44" rx="4" fill={CARD} />
-      <Ic name="user" x={36} y={324} />
+      <rect x="26" y="404" width="44" height="44" rx="4" fill={HEX.chip} />
+      <Ic name="logout" x={36} y={414} />
+      <rect x="26" y="456" width="44" height="44" rx="4" fill="url(#icons-use-who)" />
+      <Ic name="user" x={36} y={466} color={HEX.white} />
     </Art>
   );
 }
 
 function TabBar() {
+  const x0 = 20, tw = 64;
   return (
-    <Art viewBox="0 0 360 100" title="Mobile floating tab bar: five icons, second tab active in yellow" exportName="icons-use-tabbar" className={s.useSvg}>
-      <rect width="360" height="100" rx="6" fill={APP} />
-      <rect x="20" y="18" width="320" height="64" rx="6" fill="#F5F5F5" />
-      {TABS.map((name, i) => (
+    <Art viewBox="0 0 360 100" title="Mobile floating tab bar: layers, link (active, yellow), headset, gear, folder" exportName="icons-use-tabbar" className={s.useSvg}>
+      <rect width="360" height="100" rx="6" fill={HEX.card} />
+      <rect x={x0} y="22" width={tw * 5} height="56" rx="6" fill={HEX.app} />
+      {FIVE.map((name, i) => (
         <g key={name}>
-          {i === 1 && <rect x={38 + i * 58} y="28" width="52" height="44" rx="4" fill="#FFB83D" />}
-          <Ic name={name} x={52 + i * 58} y={38} />
+          {i === 1 && <rect x={x0 + i * tw} y="22" width={tw} height="56" rx="4" fill={HEX.yellow} />}
+          <Ic name={name} x={x0 + i * tw + 20} y={38} color={i === 1 ? HEX.white : INK} />
         </g>
       ))}
     </Art>
@@ -55,12 +63,12 @@ function TabBar() {
 function TopButtons() {
   return (
     <Art viewBox="0 0 140 80" title="Top right square buttons: briefcase and bell with a yellow dot" exportName="icons-use-topbar" className={s.useSvg}>
-      <rect width="140" height="80" rx="6" fill={APP} />
-      <rect x="16" y="16" width="48" height="48" rx="4" fill="#EFEFEF" />
+      <rect width="140" height="80" rx="6" fill={HEX.card} />
+      <rect x="16" y="16" width="48" height="48" rx="4" fill={HEX.tile} />
       <Ic name="briefcase" x={28} y={28} />
-      <rect x="76" y="16" width="48" height="48" rx="4" fill="#EFEFEF" />
+      <rect x="76" y="16" width="48" height="48" rx="4" fill={HEX.tile} />
       <Ic name="bell" x={88} y={28} />
-      <circle cx="109" cy="30" r="4" fill="#FFB83D" />
+      <circle cx="109" cy="30" r="4" fill={HEX.yellow} />
     </Art>
   );
 }
@@ -87,8 +95,8 @@ function CardHead() {
 }
 
 const ITEMS = [
-  { id: 'rail', title: 'Left rail', note: 'Five icons, the active one filled darker', Art: Rail },
-  { id: 'tabs', title: 'Floating tab bar', note: 'Five tabs, the active one yellow', Art: TabBar },
+  { id: 'rail', title: 'Left rail', note: 'Five icons, the active one filled darker; sign-out and user below', Art: Rail },
+  { id: 'tabs', title: 'Floating tab bar', note: 'The same five icons, the active one yellow', Art: TabBar },
   { id: 'top', title: 'Top right buttons', note: 'Briefcase and bell as square buttons', Art: TopButtons },
   { id: 'card', title: 'Card header', note: 'Arrow-up-right, trend line and figure', Art: CardHead },
 ];

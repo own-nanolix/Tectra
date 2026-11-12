@@ -1,5 +1,4 @@
 import Art from '@/components/art/Art';
-import { MarkG } from '@/components/art/Mark';
 import { BackdropG, ShadowG, MaterialDefs, SheenG, LayerG, AxisG, CalloutG } from '@/components/art/Mockup';
 import { HatDefs, perp } from './parts';
 
@@ -127,9 +126,6 @@ function HatFront({ idp }) {
         ))}
         <path d="M40 130C140 144 300 144 400 130L400 224L40 224Z" fill={`url(#${idp}-band)`} />
         <path d="M40 130C140 144 300 144 400 130" fill="none" stroke="#FFFFFF" strokeWidth="2.5" opacity="0.9" />
-        <g transform="translate(220 172) scale(0.9 1) translate(-26 -26)">
-          <MarkG size={52} fill="#4093EC" />
-        </g>
         <path d={DOME_F} fill={`url(#${idp}-core)`} />
         <path d={DOME_F} fill="none" stroke={`url(#${idp}-rimlight)`} strokeWidth="12" opacity="0.6" />
         <ellipse cx="126" cy="84" rx="40" ry="76" transform="rotate(-14 126 84)" fill="#FFFFFF" opacity="0.8" filter={`url(#${idp}-b8)`} />
@@ -147,7 +143,7 @@ export function HatFrontArt() {
       <MaterialDefs idp={idp} />
       <HatDefs idp={idp} />
       <BackdropG w={640} h={520} />
-      <ShadowG idp={idp} cx={330} cy={430} rx={230} ry={26} tone="yellow" opacity={0.34} blur={12} />
+      <ShadowG idp={idp} cx={322} cy={372} rx={236} ry={16} tone="yellow" opacity={0.42} blur={9} />
       <g transform="translate(80 70) scale(1.1)">
         <HatFront idp={idp} />
       </g>
@@ -204,7 +200,7 @@ export function HatSideArt() {
       <MaterialDefs idp={idp} />
       <HatDefs idp={idp} />
       <BackdropG w={640} h={520} />
-      <ShadowG idp={idp} cx={330} cy={420} rx={250} ry={26} tone="sky" opacity={0.4} blur={12} />
+      <ShadowG idp={idp} cx={318} cy={386} rx={260} ry={15} tone="sky" opacity={0.5} blur={9} />
       <g transform="translate(46 90) scale(1.16)">
         <HatSide idp={idp} />
       </g>
@@ -305,7 +301,7 @@ export function HatExplodedArt() {
           <ShellG idp={idp} band={false} />
         </g>
       </LayerG>
-      <CalloutG x={655} y={200} tx={735} ty={200} label="Shell" />
+      <CalloutG x={596} y={236} tx={735} ty={236} label="Shell" />
       <CalloutG x={618} y={500} tx={735} ty={500} label="Brand band" />
       <CalloutG x={610} y={760} tx={735} ty={760} label="Suspension harness" />
     </Art>

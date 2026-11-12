@@ -145,13 +145,31 @@ export function GaugeCard({ k, x, y, w = 270, h = 190, idp, glass }) {
   );
 }
 
-export function CrossCard({ x, y, w = 620, h = 230, idp, glass }) {
+export function CrossCard({ x, y, w = 620, h = 230, H = 60, idp, glass }) {
   const d = KPI.cross;
   return (
     <article className={`${s.c} ${s.abs} ${glass ? s.gl : ''}`} style={box(x, y, w, h)}>
       <CardHead title={d.label} />
       <p className={s.cv}>{d.value}<Trend dir={d.dir}>{d.trend}</Trend></p>
-      <div className={s.chartBox}><TickChart idp={`${idp}-cr`} w={w - 56} /></div>
+      <div className={s.chartBox}><TickChart idp={`${idp}-cr`} w={w - 56} H={H} /></div>
+    </article>
+  );
+}
+
+// A compact KPI tile for the strip of option B. Cross Section and Progres keep their own chart shapes
+// (tick bars, progress run); the other cards keep the corner gauge.
+export function KpiTile({ k, x, y, w, h, idp }) {
+  if (k !== 'cross' && k !== 'progress') return <GaugeCard k={k} x={x} y={y} w={w} h={h} idp={idp} />;
+  const d = KPI[k];
+  return (
+    <article className={`${s.c} ${s.abs}`} style={box(x, y, w, h)}>
+      <CardHead title={d.label} />
+      <div className={s.miniChart}>
+        {k === 'cross'
+          ? <TickChart idp={`${idp}-mt`} w={w - 48} H={16} axis={false} />
+          : <ProgressBar idp={`${idp}-mp`} w={w - 48} />}
+      </div>
+      <p className={`${s.cv} ${s.cvb}`}>{d.value}<Trend dir={d.dir}>{d.trend}</Trend></p>
     </article>
   );
 }
@@ -175,9 +193,13 @@ export function Indicators() {
   );
 }
 
-export function CutFillCard({ x, y, w = 834, h = 128, stack = false, chartW = 370, glass }) {
+// layout: 'row' (title, chart, indicators side by side), 'stack' (one column) or 'grid' (the case study's
+// desktop card: title and date on top, the markers under them, indicators bottom right).
+export function CutFillCard({ x, y, w = 834, h = 128, stack = false, layout, chartW = 370, glass }) {
+  const mode = layout || (stack ? 'stack' : 'row');
+  const cls = mode === 'grid' ? s.cfg : mode === 'stack' ? s.stack : s.cf;
   return (
-    <article className={`${s.c} ${s.abs} ${stack ? s.stack : s.cf} ${glass ? s.gl : ''}`} style={box(x, y, w, h)}>
+    <article className={`${s.c} ${s.abs} ${cls} ${glass ? s.gl : ''}`} style={box(x, y, w, h)}>
       <div>
         <h4 className={s.ct}>{CUT_FILL.title}</h4>
         <p className={s.date}>{CUT_FILL.date}</p>

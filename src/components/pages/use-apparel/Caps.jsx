@@ -3,7 +3,7 @@
 // the front panel and the peak is shaded as a curved board.
 import Art from '@/components/art/Art';
 import { BackdropG, ShadowG, MaterialDefs, LayerG, AxisG } from '@/components/art/Mockup';
-import { MarkG } from '@/components/art/Mark';
+import { MarkG, WordmarkG } from '@/components/art/Mark';
 import { SHADOW_TONES } from '@/components/art/Mockup';
 import { CW, Folds, BLUE, WHITE, INK, YELLOW } from './parts';
 
@@ -96,64 +96,77 @@ export function peak({ body, uid, m, tone }) {
   );
 }
 
-// The badge: an embroidered patch with the mark, drawn flat then skewed onto the front panel.
-export function badge({ body, uid, m, patch = WHITE, mk = BLUE }) {
+// The badge, drawn flat then skewed onto the front panel. kind: 'round' (embroidered patch with the mark) or
+// 'label' (a woven label with the word-mark, stitched at its ends).
+export function badge({ body, uid, m, patch = WHITE, mk = BLUE, kind = 'round' }) {
   const cid = `${uid}-badge`;
+  const round = kind === 'round';
+  const shape = round ? <ellipse rx="40" ry="38" /> : <rect x="-54" y="-21" width="108" height="42" rx="3" />;
   return (
     <g transform="translate(138 128) rotate(-14) skewY(9) scale(0.92 1)">
       <defs>
-        <clipPath id={cid}>
-          <ellipse rx="40" ry="38" />
-        </clipPath>
+        <clipPath id={cid}>{shape}</clipPath>
       </defs>
-      <ellipse rx="41" ry="39" cx="3" cy="6" fill="#000000" opacity="0.22" filter={`url(#${m}-soft)`} />
-      <ellipse rx="40" ry="38" fill={patch} filter={`url(#${m}-fabric)`} />
+      <g transform="translate(4 7)" fill="#000000" opacity="0.22" filter={`url(#${m}-soft)`}>{shape}</g>
+      <g fill={patch} filter={`url(#${m}-fabric)`}>{shape}</g>
       <g clipPath={`url(#${cid})`}>
-        <MarkG x={-26} y={-26} size={52} fill={mk} />
-        <rect x="-44" y="-42" width="88" height="84" fill={`url(#${m}-shade)`} />
-        <ellipse cx="-14" cy="-20" rx="24" ry="12" fill="#FFFFFF" opacity="0.28" transform="rotate(-24 -14 -20)" />
+        {round ? <MarkG x={-26} y={-26} size={52} fill={mk} /> : <WordmarkG x={0} y={11} size={32} fill={mk} anchor="middle" />}
+        <rect x="-60" y="-44" width="120" height="88" fill={`url(#${m}-shade)`} />
+        <ellipse cx="-16" cy="-20" rx="28" ry="12" fill="#FFFFFF" opacity="0.26" transform="rotate(-24 -16 -20)" />
+        {/* thickness of the patch on its lower-right edge */}
+        <g transform="translate(-2 -2)" fill="none" stroke="#000000" strokeOpacity="0.22" strokeWidth="3">{shape}</g>
       </g>
-      <ellipse rx="35" ry="33" fill="none" stroke={mk} strokeOpacity="0.55" strokeWidth="1" strokeDasharray="2 2.4" />
-      <ellipse rx="40" ry="38" fill="none" stroke="#000000" strokeOpacity="0.2" />
-      <ellipse rx="40" ry="38" fill="none" stroke={CW[body].fill} strokeOpacity="0.0" />
+      {round ? (
+        <ellipse rx="35" ry="33" fill="none" stroke={mk} strokeOpacity="0.55" strokeWidth="1" strokeDasharray="2 2.4" />
+      ) : (
+        <path d="M-48 -16V16M48 -16V16" stroke={mk} strokeOpacity="0.6" strokeWidth="1" strokeDasharray="2 2.4" />
+      )}
+      <g fill="none" stroke="#000000" strokeOpacity="0.2">{shape}</g>
     </g>
   );
 }
 
 // Assembled cap, used in the collection scene if needed.
-export function cap({ body, uid, m, tone = 'blue', patch, mk }) {
+export function cap({ body, uid, m, tone = 'blue', patch, mk, kind, peakBody }) {
   return (
     <g>
       {crown({ body, uid: `${uid}-c`, m, tone })}
-      {peak({ body, uid: `${uid}-p`, m, tone })}
-      {badge({ body, uid: `${uid}-b`, m, patch, mk })}
+      {peak({ body: peakBody || body, uid: `${uid}-p`, m, tone })}
+      {badge({ body, uid: `${uid}-b`, m, patch, mk, kind })}
     </g>
   );
 }
 
-// colourways generated with .map()
+// Three caps, each a different build: a round mark patch; a woven word-mark label; a white crown with a blue peak.
 export const CAPS = [
-  { id: 'blue', name: 'Cap, blue', body: 'blue', tone: 'blue', patch: WHITE, mk: BLUE },
-  { id: 'yellow', name: 'Cap, yellow', body: 'yellow', tone: 'yellow', patch: INK, mk: YELLOW },
-  { id: 'white', name: 'Cap, white', body: 'white', tone: 'sky', patch: BLUE, mk: WHITE },
+  { id: 'blue', name: 'Cap, blue', body: 'blue', tone: 'blue', patch: WHITE, mk: BLUE, kind: 'round' },
+  { id: 'yellow', name: 'Cap, yellow', body: 'yellow', tone: 'yellow', patch: INK, mk: WHITE, kind: 'label' },
+  { id: 'white', name: 'Cap, white with blue peak', body: 'white', tone: 'sky', patch: BLUE, mk: WHITE, kind: 'round', peakBody: 'blue' },
 ];
 
-const OX = 130;
-const OY = 120;
-// 30 degree diagonal: crown up and right, peak down and left, badge stays on the original line
-const STEP = { crown: [72, -42], badge: [-16, 9], peak: [-62, 36] };
+const OX = 236;
+const OY = 64;
+// One 30 degree diagonal (up-right is +t): crown pulled up and right, badge and peak down and left, each far
+// enough that the three parts never touch.
+const U = [0.866, -0.5];
+const at = (t) => [Math.round(U[0] * t), Math.round(U[1] * t)];
+const STEP = { crown: at(110), badge: at(-60), peak: at(-180) };
 
 export function CapView({ item }) {
   const idp = `use-apparel-cap-${item.id}`;
-  const pts = [[OX - 100, OY + 300], [OX + 90, OY + 190], [OX + 330, OY + 51], [OX + 400, OY + 10]];
+  // the axis runs through the badge centre (front panel point 138,128 in the cap's own box)
+  const base = [OX + 138, OY + 128];
+  const pts = [-90, -60, 0, 110, 190].map((t) => [base[0] + Math.round(U[0] * t), base[1] + Math.round(U[1] * t)]);
   return (
-    <Art viewBox="0 0 600 500" title={item.name} exportName={`use-apparel-cap-${item.id}`}>
+    <Art viewBox="0 0 680 500" title={item.name} exportName={`use-apparel-cap-${item.id}`}>
       <MaterialDefs idp={idp} />
-      <BackdropG w="600" h="500" />
-      <ShadowG idp={`${idp}-sh`} cx="300" cy="456" rx="220" ry="16" tone={item.tone} opacity="0.3" blur="10" />
+      <BackdropG w="680" h="500" />
+      <ShadowG idp={`${idp}-sh`} cx="340" cy="478" rx="250" ry="14" tone={item.tone} opacity="0.3" blur="10" />
       <AxisG points={pts} />
+      {/* the peak travels the same diagonal: a parallel guide from where it sat to where it lies */}
+      <AxisG points={[[OX + 110, OY + 236], [OX + 110 + STEP.peak[0], OY + 236 + STEP.peak[1]]]} />
       <LayerG i={0} dx={STEP.peak[0]} dy={STEP.peak[1]}>
-        <g transform={`translate(${OX} ${OY})`}>{peak({ body: item.body, uid: idp, m: idp, tone: item.tone })}</g>
+        <g transform={`translate(${OX} ${OY})`}>{peak({ body: item.peakBody || item.body, uid: idp, m: idp, tone: item.tone })}</g>
       </LayerG>
       <LayerG i={1} dx={STEP.crown[0]} dy={STEP.crown[1]}>
         <g transform={`translate(${OX} ${OY})`}>
@@ -161,7 +174,7 @@ export function CapView({ item }) {
         </g>
       </LayerG>
       <LayerG i={2} dx={STEP.badge[0]} dy={STEP.badge[1]}>
-        <g transform={`translate(${OX} ${OY})`}>{badge({ body: item.body, uid: idp, m: idp, patch: item.patch, mk: item.mk })}</g>
+        <g transform={`translate(${OX} ${OY})`}>{badge({ body: item.body, uid: idp, m: idp, patch: item.patch, mk: item.mk, kind: item.kind })}</g>
       </LayerG>
     </Art>
   );

@@ -32,7 +32,7 @@ const raw = Array.from({ length: N }, (_, i) => {
 });
 // Centre the fan on the plate
 const OX = r2(1050 - raw.reduce((a, p) => a + p.x0, 0) / N);
-const OY = r2(560 - raw.reduce((a, p) => a + p.y0, 0) / N);
+const OY = r2(478 - raw.reduce((a, p) => a + p.y0, 0) / N);
 const phones = raw.map((p) => ({ ...p, cx: r2(OX + p.x0), cy: r2(OY + p.y0) })).sort((a, b) => a.cy - b.cy); // back to front
 
 const proj = (p) => `translate(${OX} ${OY}) matrix(${A} ${B} ${C} ${D} 0 0) translate(${p.pu} ${p.pv}) rotate(${r2(p.deg)})`;
@@ -52,8 +52,9 @@ export default function SceneLineup() {
           <stop offset="1" stopColor="#A29B86" />
         </linearGradient>
         <linearGradient id={`${ID}-well`} x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#2A2A2E" />
-          <stop offset="1" stopColor="#0C0C0E" />
+          <stop offset="0" stopColor="#55555E" />
+          <stop offset="0.5" stopColor="#34343A" />
+          <stop offset="1" stopColor="#1A1A1E" />
         </linearGradient>
       </defs>
 
@@ -78,10 +79,18 @@ export default function SceneLineup() {
               <path d={BEZEL} fill={`url(#${ID}-well)`} />
               <path d={BODY} fill="none" stroke="#FFFFFF" strokeOpacity="0.55" strokeWidth="0.8" />
             </g>
+            {/* the lifted screen casts a soft shadow into the empty recess, down and to the right */}
+            <g transform={`translate(${r2(10 + lift * 0.12)} ${r2(12 + lift * 0.1)}) ${proj(p)}`} opacity="0.55" filter={`url(#${ID}-blur)`}>
+              <path d={GLASS} fill="#000000" />
+            </g>
             {/* the y axis of this phone */}
             <AxisG points={[[p.cx, r2(p.cy)], [p.cx, r2(p.cy - lift)]]} />
             {/* screen layer, lifted */}
             <LayerG i={p.i} dx={0} dy={-lift}>
+              {/* edge of the display module: it has thickness */}
+              <g transform={`translate(0 5) ${proj(p)}`}>
+                <path d={BEZEL} fill="#3A3A40" />
+              </g>
               <g transform={proj(p)}>
                 <clipPath id={clip}>
                   <path d={GLASS} />

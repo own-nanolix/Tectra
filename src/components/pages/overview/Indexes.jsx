@@ -2,23 +2,37 @@ import Link from 'next/link';
 import Reveal from '@/components/site/Reveal';
 import Icon from '@/components/site/Icon';
 import { groups, pages, href } from '@/lib/pages';
+import { ROADMAP } from '@/lib/brand';
 import s from '@/components/pages/overview/styles';
 
-// Index of the 30 chapters, grouped, as numbered ledger rows of links.
+// Index of the 30 chapters, grouped, as numbered ledger rows of links. Each group opens with the brand's
+// segmented bar, one segment per chapter; this page's segment and row are marked in yellow, "You're here".
+const HERE = 'overview';
+
 export function ChapterIndex() {
   return (
     <div className={s.ledgerGrid}>
       {groups.map((g) => (
         <Reveal key={g.name} className={s.group}>
-          <h3>{g.name}</h3>
+          <div className={s.groupHead}>
+            <h3>{g.name}</h3>
+            <span className={s.groupCount}>{g.pages.length}</span>
+          </div>
+          <div className={s.segs} aria-hidden="true">
+            {g.pages.map((p, i) => (
+              <i key={p.id} data-here={p.id === HERE ? '1' : undefined} style={{ '--i': i }} />
+            ))}
+          </div>
           <ol className={s.ledger}>
             {g.pages.map((p) => {
               const n = pages.findIndex((x) => x.id === p.id) + 1;
+              const here = p.id === HERE;
               return (
                 <li key={p.id}>
-                  <Link href={href(p.id)} className={s.row} style={{ gridTemplateColumns: '44px minmax(0, 1fr) 24px' }}>
+                  <Link href={href(p.id)} className={`${s.row} ${s.rowChapter}`} aria-current={here ? 'page' : undefined}>
                     <span className={s.num}>{String(n).padStart(2, '0')}</span>
                     <span className={s.name}>{p.title}</span>
+                    <span className={s.here}>{here ? ROADMAP.here : ''}</span>
                     <span className={s.go}><Icon name="arrow-right" size={18} /></span>
                   </Link>
                 </li>

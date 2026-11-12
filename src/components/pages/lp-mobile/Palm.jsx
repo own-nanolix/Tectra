@@ -6,7 +6,6 @@ import { PhoneG, ScreenHomeG } from '@/components/art/Devices';
 import Reveal from '@/components/site/Reveal';
 import Button from '@/components/ui/Button';
 import Chip from '@/components/ui/Chip';
-import { Hl } from '@/components/ui/Card';
 import { PALM, MOBILE_SCREENS, KPI } from '@/lib/brand';
 import { MiniCardG, ScreenCardsG, ScreenCutFillG, StepBarG } from './screens';
 import s from './lp-mobile.module.css';
@@ -34,7 +33,7 @@ export default function Palm() {
       <div className={`wrap ${s.palmGrid}`}>
         <Reveal className={s.palmCopy}>
           <h2 id="lp-mobile-palm-h" className="t-display t-balance">
-            <Hl text={PALM.heading} hl="Palm of Your Hand" />
+            {PALM.heading}
           </h2>
           <p className="t-lead muted">{PALM.sub}</p>
           <div className={s.stepper} role="group" aria-label="Phone screens, use the arrow keys to step" tabIndex={0} onKeyDown={onKey}>
@@ -60,22 +59,23 @@ export default function Palm() {
           </div>
         </Reveal>
         <Reveal delay={120} from="scale" className={s.palmStage}>
-          <Art viewBox="0 0 900 920" title="Phone with the three screens and floating cards" exportName="lp-mobile-palm" className={s.palmArt}>
+          {/* Cards placed as in the case study: Notes upper left and Material right, both tucked behind the phone; Details lower right. */}
+          <Art viewBox="0 0 1000 960" title="Phone with the three screens and floating cards" exportName="lp-mobile-palm" className={s.palmArt}>
             <g className={s.floatA}>
-              <MiniCardG idp="lp-mobile-palmcard" id="notes" x={10} y={190} w={210} h={170} k={KPI.notes} />
+              <MiniCardG idp="lp-mobile-palmcard" id="notes" x={12} y={8} w={330} h={232} k={KPI.notes} />
             </g>
             <g className={s.floatB}>
-              <MiniCardG idp="lp-mobile-palmcard" id="material" x={20} y={470} w={210} h={170} k={KPI.material} />
+              <MiniCardG idp="lp-mobile-palmcard" id="material" x={698} y={212} w={292} h={232} k={KPI.material} />
             </g>
-            <g className={s.floatB}>
-              <MiniCardG idp="lp-mobile-palmcard" id="details" x={680} y={300} w={210} h={170} k={KPI.details} />
+            <g className={s.floatA}>
+              <MiniCardG idp="lp-mobile-palmcard" id="details" x={740} y={650} w={250} h={176} k={KPI.details} />
             </g>
-            <PhoneG idp="lp-mobile-palm" x={235} y={0} w={430}>
+            <PhoneG idp="lp-mobile-palm" x={285} y={40} w={430}>
               <g key={step} className="fade-in">
                 <Screen idp="lp-mobile-palm" />
               </g>
             </PhoneG>
-            <StepBarG x={235} y={904} w={430} on={step + 1} animate={false} />
+            <StepBarG x={285} y={944} w={430} on={step + 1} animate={false} />
           </Art>
         </Reveal>
       </div>

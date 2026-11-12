@@ -26,11 +26,13 @@
 .fig svg { width: 100%; height: auto; border-radius: var(--r-2); }
 
 /* Button state grid */
-.states { display: grid; grid-template-columns: 110px repeat(5, minmax(200px, 1fr)); gap: 18px 14px; align-items: center; min-width: 1240px; }
+.states { display: grid; grid-template-columns: repeat(4, minmax(max-content, 1fr)); gap: 6px 14px; align-items: center; min-width: max-content; }
+.stateName { grid-column: 1 / -1; margin-top: 14px; }
+.blockFixed { width: 240px; }
 .statesHead { font-size: 11px; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); }
 .statesRow { display: contents; }
 .stateCell { display: flex; align-items: center; min-height: 54px; padding: 4px; min-width: 0; }
-.stateCell > .block { width: 100%; }
+.stateCell > .block { width: 100%; min-width: 200px; }
 
 /* Stages */
 .stage { border-radius: var(--r-2); overflow: hidden; }

@@ -1,7 +1,7 @@
 import CopyValue from '@/components/site/CopyValue';
 import { contrast, hexToRgb } from '@/lib/site';
 import { MODES, ROLES, ROLE_LABEL, DARK, LIGHT, fmtRatio, rating, rgbOf } from './colorData';
-import { s } from './colorStyles';
+import s from './color.module.css';
 
 function Ratio({ fg, bg }) {
   const r = contrast(fg, bg);
@@ -12,7 +12,7 @@ function Ratio({ fg, bg }) {
   );
 }
 
-// Spec table: the swatch is the first cell of each row. Every value is a click-to-copy button.
+// Spec table: the swatch is the first cell of each row. Every token, hex and RGB value is a click-to-copy button.
 export function ScaleTable({ rows, caption }) {
   return (
     <div className={s.scroll} role="region" aria-label={caption} tabIndex={0}>
@@ -40,7 +40,7 @@ export function ScaleTable({ rows, caption }) {
               <td><CopyValue value={rgbOf(r.hex)} label={`${r.name} RGB`}>{hexToRgb(r.hex)}</CopyValue></td>
               <td><Ratio fg={r.hex} bg={LIGHT} /></td>
               <td><Ratio fg={r.hex} bg={DARK} /></td>
-              <td><span className={r.source === 'Extension' ? s.ext : ''}>{r.source}</span></td>
+              <td className={s.src}>{r.source}</td>
             </tr>
           ))}
         </tbody>
@@ -49,12 +49,12 @@ export function ScaleTable({ rows, caption }) {
   );
 }
 
-// Semantic roles for the three modes; contrast is the role colour against that mode's background.
+// Semantic roles for light and dark mode; contrast is the role colour against that mode's background.
 export function SemanticTable() {
   return (
     <div className={s.scroll} role="region" aria-label="Semantic tokens" tabIndex={0}>
-      <table className={s.ledger}>
-        <caption className="sr-only">Semantic tokens for light mode, dark mode on ink, and dark mode on the blue field</caption>
+      <table className={`${s.ledger} ${s.ledgerSem}`}>
+        <caption className="sr-only">Semantic tokens for light mode and dark mode</caption>
         <thead>
           <tr>
             <th scope="col">Role</th>

@@ -18,6 +18,7 @@ function Crew() {
       ))}
       <rect x="168" width="52" height="52" rx="4" fill="#2F2F2F" />
       <IconUse name="plus" x={182} y={14} size={24} color="#FFFFFF" />
+      <circle cx="194" cy="52" r="4.5" fill="#FFB83D" className="pop" style={{ '--i': 3 }} />
     </Art>
   );
 }
@@ -27,12 +28,12 @@ export default function Empower() {
   return (
     <section className={`wrap ${s.empower}`} aria-label="Statement">
       <Reveal>
-        <h2 className="t-display t-center">
+        <h2 className={`t-display t-center ${s.eHead}`}>
           <span className={s.eLine}>{EMPOWER[0]}</span>
           <span className={s.eLine}>
             {EMPOWER[1]} <Crew /> {EMPOWER[2]}
           </span>
-          <span className={`${s.eLine} hl`}>{EMPOWER[3]}</span>
+          <span className={s.eLine}>{EMPOWER[3]}</span>
         </h2>
       </Reveal>
     </section>

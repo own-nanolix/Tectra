@@ -1,8 +1,7 @@
 import Art from '@/components/art/Art';
 import { TickBarsG, GaugeG, PinG } from '@/components/art/KeyArt';
 import { CutFillG } from '@/components/art/Devices';
-import { axisLabels, scale, curvePath, areaPath, arcPath, segments, r2 } from '@/lib/charts';
-import { KPI, VOLUME, CUT_FILL, INSIGHTS, EFFICIENCY, ROADMAP } from '@/lib/brand';
+import { axisLabels, scale, curvePath, areaPath, arcPath, segments, r2 } from '@/lib/charts';import { KPI, VOLUME, CUT_FILL, INSIGHTS, EFFICIENCY, ROADMAP } from '@/lib/brand';
 import { C, tp, Tri, FadeDef } from './parts';
 
 // The nine charts rebuilt from the case study. Every figure printed here is a published one.
@@ -17,7 +16,7 @@ export function Ticks({ insight = INSIGHTS[0], idp = 'dataviz-ticks', name = 'da
       <TickBarsG idp={idp} x={X} y={Y} w={W} h={H} count={48} from={insight.from} to={insight.to} tone={insight.tone} rise />
       <rect x={X + insight.from * W} y={Y} width={(insight.to - insight.from) * W} height={H + 30} fill={col} fillOpacity="0" {...tp(tip)} />
       {axisLabels(W).map((a, i) => (
-        <text key={i} x={X + a.x} y={Y + H + 46} fontSize="13" fontWeight="400" fill={C.muted} textAnchor="middle">{a.label}</text>
+        <text key={i} x={X + a.x} y={Y + H + 48} fontSize="16" fontWeight="400" fill={C.muted} textAnchor="middle">{a.label}</text>
       ))}
     </Art>
   );
@@ -39,7 +38,7 @@ export function KpiGauge({ k, idp, name, tone = 'blue' }) {
       <text x="24" y="42" fontSize="20" fontWeight="500" fill={C.ink}>{k.label}</text>
       <text x="24" y="124" fontSize="56" fontWeight="300" fill={C.ink}>{k.value}</text>
       <Tri x={30} y={158} dir={k.dir} />
-      <text x="44" y="162" fontSize="14" fontWeight="400" fill={C.ink}>{k.trend}</text>
+      <text x="44" y="164" fontSize="18" fontWeight="400" fill={C.ink}>{k.trend}</text>
       <rect x="150" y="100" width="190" height="136" fill={C.blue} fillOpacity="0" {...tp(tip)} />
     </Art>
   );
@@ -59,22 +58,26 @@ export function CutFill() {
       {marks.map((m) => (
         <rect key={m.x} x={m.x} y={26} width={bar} height={92} fill={C.blue} fillOpacity="0" {...tp(m.tip)} />
       ))}
-      <text x="10" y="144" fontSize="12" fontWeight="400" fill={C.muted}>{CUT_FILL.date}</text>
+      <text x="10" y="146" fontSize="15" fontWeight="400" fill={C.muted}>{CUT_FILL.date}</text>
     </Art>
   );
 }
 
-// (4) Glass area chart with one ring marker. The curve is drawn in the shape of the source chart; the points
-// carry no labelled values, only the card figures and the date marker are published.
-const AREA = [22, 30, 26, 38, 44, 40, 52, 50, 58, 56, 64, 60];
+// (4) The glass panel of the site view (m01): "Overall" selector, Overall Completion 66% +2.4%, the area chart
+// with one ring marker on its peak, and the 15.837 to 75.484 cu yd volume bar. The curve follows the shape of
+// the source chart; its points carry no labelled values.
+const AREA = [10, 16, 24, 34, 40, 46, 62, 88, 70, 48, 30, 14];
 export function AreaGlass() {
   const idp = 'dataviz-area';
-  const xs = scale(0, AREA.length - 1, 48, 472), ys = scale(0, 100, 340, 175);
-  const pts = AREA.map((v, i) => [xs(i), ys(v)]);
+  const o = KPI.overall;
+  const xs = scale(0, AREA.length - 1, 48, 472), ys = scale(0, 100, 410, 200);
+  const pts = AREA.map((v, i) => [r2(xs(i)), r2(ys(v))]);
   const [mx, my] = pts[7];
-  const tip = `${KPI.progress.label} ${KPI.progress.value}, ${KPI.progress.date}`;
+  const tip = `${o.label} ${o.value}, ${o.trend}`;
+  const vol = `${VOLUME.from} to ${VOLUME.to}, ${VOLUME.filled} of ${VOLUME.segments} segments`;
+  const segs = segments(VOLUME.segments, 424, VOLUME.filled, 6);
   return (
-    <Art viewBox="0 0 520 400" title={`Glass area chart: ${tip}`} exportName="dataviz-area">
+    <Art viewBox="0 0 520 540" title={`Glass panel: ${tip}`} exportName="dataviz-area">
       <defs>
         <linearGradient id={`${idp}-bg`} x1="0" y1="0" x2="1" y2="1">
           <stop offset="0" stopColor="#5BA8F8" />
@@ -82,25 +85,32 @@ export function AreaGlass() {
         </linearGradient>
         <FadeDef id={`${idp}-fill`} color="#FFFFFF" />
       </defs>
-      <rect width="520" height="400" rx="4" fill={`url(#${idp}-bg)`} />
-      <rect x="24" y="24" width="472" height="352" rx="4" fill="#FFFFFF" fillOpacity="0.18" />
-      <text x="48" y="66" fontSize="20" fontWeight="500" fill={C.navy}>{KPI.progress.label}</text>
-      <text x="48" y="124" fontSize="52" fontWeight="300" fill="#FFFFFF">{KPI.progress.value}</text>
-      <Tri x={186} y={116} dir="down" />
-      <text x="200" y="120" fontSize="14" fontWeight="400" fill={C.navy}>{KPI.progress.trend}</text>
-      <circle cx="398" cy="60" r="4" fill={C.yellow} />
-      <text x="408" y="65" fontSize="14" fontWeight="400" fill={C.navy}>{KPI.progress.legend}</text>
-      <path d={areaPath(pts, 340, true)} fill={`url(#${idp}-fill)`} fillOpacity="0.55" className="fade-in" />
+      <rect width="520" height="540" rx="4" fill={`url(#${idp}-bg)`} />
+      <rect x="24" y="56" width="472" height="460" rx="4" fill="#FFFFFF" fillOpacity="0.18" />
+      <rect x="296" y="28" width="200" height="52" rx="4" fill="#FFFFFF" fillOpacity="0.26" />
+      <text x="322" y="60" fontSize="18" fontWeight="500" fill={C.navy}>Overall</text>
+      <path d="M392 50l5 5 5-5" fill="none" stroke={C.navy} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      {[0, 1, 2].map((i) => <circle key={i} cx={458 + i * 8} cy="54" r="2.4" fill="none" stroke={C.navy} strokeWidth="1.3" />)}
+      <text x="48" y="118" fontSize="18" fontWeight="400" fill={C.navy}>{o.label}</text>
+      <text x="48" y="178" fontSize="56" fontWeight="300" fill="#FFFFFF">{o.value}</text>
+      <text x="448" y="176" fontSize="16" fontWeight="400" fill={C.navy} textAnchor="end">{o.trend}</text>
+      <Tri x={462} y={170} dir="up" />
+      <path d={areaPath(pts, 410, true)} fill={`url(#${idp}-fill)`} fillOpacity="0.6" className="fade-in" />
       <path d={curvePath(pts)} fill="none" stroke="#FFFFFF" strokeWidth="2.5" strokeLinecap="round" pathLength="1000" className="draw" />
-      <path d="M48 340H472" stroke="#FFFFFF" strokeOpacity="0.6" strokeWidth="1" />
-      <path d={`M${mx} ${my}V340`} stroke="#FFFFFF" strokeWidth="1" strokeDasharray="3 4" />
+      <path d="M48 410H472" stroke="#FFFFFF" strokeOpacity="0.6" strokeWidth="1" />
       <g className="pop" style={{ '--i': 6 }}>
         <circle cx={mx} cy={my} r="15" fill="#FFFFFF" fillOpacity="0.35" />
         <circle cx={mx} cy={my} r="8" fill="#FFFFFF" />
         <circle cx={mx} cy={my} r="3" fill={C.ink} />
       </g>
-      <circle cx={mx} cy={my} r="18" fill={C.blue} fillOpacity="0" {...tp(tip)} />
-      <text x={mx} y="364" fontSize="14" fontWeight="400" fill={C.navy} textAnchor="middle">{KPI.progress.date}</text>
+      <circle cx={mx} cy={my} r="20" fill={C.blue} fillOpacity="0" {...tp(tip)} />
+      <text x="48" y="450" fontSize="15" fontWeight="400" fill={C.navy}>{VOLUME.from}</text>
+      <text x="472" y="450" fontSize="15" fontWeight="400" fill={C.navy} textAnchor="end">{VOLUME.to}</text>
+      <path d="M232 445h56m-5-4 5 4-5 4" fill="none" stroke={C.navy} strokeWidth="1.2" />
+      {segs.map((g, i) => (
+        <rect key={i} x={48 + g.x} y="468" width={g.w} height="8" rx="1" fill={g.on ? '#2F7FE0' : '#FFFFFF'} fillOpacity={g.on ? 1 : 0.55} className="grow-x" style={{ '--i': i }} />
+      ))}
+      <rect x="48" y="430" width="424" height="56" fill={C.blue} fillOpacity="0" {...tp(vol)} />
     </Art>
   );
 }
@@ -115,8 +125,8 @@ export function Seg8() {
         <rect key={i} x={10 + g.x} y="18" width={g.w} height="12" rx="1" fill={g.on ? C.blue : C.track} className="grow-x" style={{ '--i': i }} />
       ))}
       <rect x="10" y="14" width="280" height="20" fill={C.blue} fillOpacity="0" {...tp(tip)} />
-      <text x="10" y="60" fontSize="13" fontWeight="400" fill={C.muted}>{VOLUME.from}</text>
-      <text x="290" y="60" fontSize="13" fontWeight="400" fill={C.muted} textAnchor="end">{VOLUME.to}</text>
+      <text x="10" y="62" fontSize="18" fontWeight="400" fill={C.muted}>{VOLUME.from}</text>
+      <text x="290" y="62" fontSize="18" fontWeight="400" fill={C.muted} textAnchor="end">{VOLUME.to}</text>
     </Art>
   );
 }
@@ -136,7 +146,7 @@ export function Seg3() {
 export function VBar() {
   const idp = 'dataviz-vbar';
   const top = 20, h = 330, fillH = r2(h * 0.4);
-  const tip = `Task efficiency ${EFFICIENCY.value}`;
+  const tip = `${EFFICIENCY.value}: ${EFFICIENCY.label}`;
   return (
     <Art viewBox="0 0 160 420" title={`Vertical two-segment bar: ${tip}`} exportName="dataviz-vbar">
       <defs>
@@ -211,7 +221,7 @@ export function Roadmap() {
               <path d={Array.from({ length: 13 }, (_, k) => `M${r2(x + 2 + (k * (w - 4)) / 12)} ${top}V${base}`).join('')} stroke={C.track} strokeWidth="1" />
             )}
             <rect x={x} y={top - 14} width={w} height={h + 14} fill={C.blue} fillOpacity="0" {...tp(tip)} />
-            <text x={x + w / 2} y={base + 24} fontSize="13" fontWeight="400" fill={C.ink} textAnchor="middle">{label}</text>
+            <text x={x + w / 2} y={base + 26} fontSize="14" fontWeight="400" fill={C.ink} textAnchor="middle">{label}</text>
           </g>
         );
       })}
@@ -221,7 +231,7 @@ export function Roadmap() {
         return (
           <g className="pop" style={{ '--i': 8 }}>
             <PinG x={x} y={top - 34} r={7} tone="yellow" pulse />
-            <text x={x} y={top - 52} fontSize="13" fontWeight="500" fill={C.ink} textAnchor="middle">{ROADMAP.here}</text>
+            <text x={x} y={top - 52} fontSize="15" fontWeight="500" fill={C.ink} textAnchor="middle">{ROADMAP.here}</text>
           </g>
         );
       })()}

@@ -33,6 +33,12 @@
 .cf .ind { margin-left: auto; }
 .stack { display: flex; flex-direction: column; gap: 10px; padding: 18px 22px; }
 .cfChart { flex: none; max-width: 100%; }
+.cfg { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-rows: auto minmax(0, 1fr); column-gap: 24px; padding: 18px 24px 16px; }
+.cfg > div:first-child { grid-column: 1 / -1; }
+.cfg .cfChart { align-self: end; }
+.cfg .ind { align-self: end; }
+.miniChart { position: absolute; left: 24px; right: 24px; top: 86px; }
+.miniChart svg { width: 100%; height: auto; }
 .ind { font-size: 13px; }
 .ind p { margin: 0 0 6px; font-weight: 500; }
 .ind dl { margin: 0; }

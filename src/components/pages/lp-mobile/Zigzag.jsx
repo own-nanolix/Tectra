@@ -39,13 +39,20 @@ export default function Zigzag() {
                 </PhoneG>
               </Art>
             </Reveal>
+            {/* As in m09: the step bar, then one pale card holding the drawing, the title and the text. */}
             <Reveal delay={140} className={s.zigNotes}>
-              <Art viewBox="0 0 560 344" title={`Step ${i + 1} of 3, line drawing`} exportName={`lp-mobile-note-${r.key}`}>
-                <StepBarG x={0} y={0} w={560} on={i + 1} animate={false} />
-                <Drawing kind={r.art} i={i} />
-              </Art>
-              <h2 id={`lp-mobile-zig-${r.key}`} className={`t-h3 ${s.zigTitle}`}>{m.title}</h2>
-              <p className="t-body">{m.text}</p>
+              <svg viewBox="0 0 560 5" className={s.zigStep} aria-hidden="true">
+                <StepBarG x={0} y={0} w={560} on={i + 1} />
+              </svg>
+              <div className={s.zigCard}>
+                <Art viewBox="0 22 560 320" title={`Step ${i + 1} of 3, line drawing`} exportName={`lp-mobile-note-${r.key}`}>
+                  <Drawing kind={r.art} i={i} />
+                </Art>
+                <div className={s.zigText}>
+                  <h2 id={`lp-mobile-zig-${r.key}`} className={s.zigTitle}>{m.title}</h2>
+                  <p className={s.zigBody}>{m.text}</p>
+                </div>
+              </div>
             </Reveal>
           </section>
         );

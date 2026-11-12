@@ -7,9 +7,9 @@ const W = 1.1; // drawing stroke, in the 1 to 1.2 px range of the case study
 
 // Paint per field. 'light' is the page tile, 'blue' the field blue, 'ink' the dark ink.
 const THEMES = {
-  light: { bg: '#F5F5F5', line: '#8F8F8F', tone: 'paper', cut: '#FFB83D', fill: '#4093EC', fillOp: 0.45, text: '#5E5E5E', marker: '#4093EC', pat: '#8F8F8F' },
-  blue: { bg: '#53A2F7', line: '#0A3D91', tone: 'blue', cut: '#FFB83D', fill: '#006BEE', fillOp: 0.6, text: '#0A2E63', marker: '#FFFFFF', pat: '#0A3D91' },
-  ink: { bg: '#2F2F2F', line: '#C9C9C9', tone: 'paper', cut: '#FFB83D', fill: '#4093EC', fillOp: 0.55, text: '#DDDDDD', marker: '#4093EC', pat: '#8F8F8F' },
+  light: { bg: '#F5F5F5', line: '#8F8F8F', tone: 'paper', cut: '#FFB83D', cutOp: 0.55, fill: '#4093EC', fillOp: 0.45, text: '#5E5E5E', marker: '#4093EC', pat: '#8F8F8F' },
+  blue: { bg: '#53A2F7', line: '#0A3D91', tone: 'blue', cut: '#FFB83D', cutOp: 0.9, fill: '#006BEE', fillOp: 0.6, text: '#0A2E63', marker: '#FFFFFF', pat: '#0A3D91' },
+  ink: { bg: '#2F2F2F', line: '#C9C9C9', tone: 'paper', cut: '#FFB83D', cutOp: 0.75, fill: '#4093EC', fillOp: 0.55, text: '#DDDDDD', marker: '#4093EC', pat: '#8F8F8F' },
 };
 
 // ---- Own line-drawn objects, same stroke and no fills ----
@@ -97,7 +97,7 @@ function CutFill({ mode }) {
   const area = (pts) => `M${pts.map((q) => q.join(' ')).join('L')}L${GX1} ${DESIGN}L${GX0} ${DESIGN}Z`;
   const bestCut = SAMPLES.reduce((a, b) => (DESIGN - b[1] > DESIGN - a[1] ? b : a));
   const bestFill = SAMPLES.reduce((a, b) => (b[1] - DESIGN > a[1] - DESIGN ? b : a));
-  const markerXs = [bestCut[0], bestFill[0], 150, 440];
+  const markerXs = [bestCut[0], bestFill[0], 300, 440];
   const markers = markerXs.map((mx) => {
     const my = ground(mx);
     return { x: mx, y: my, cut: my < DESIGN };
@@ -105,10 +105,10 @@ function CutFill({ mode }) {
   return (
     <Frame theme={t} title={`Cut and fill on ${mode === 'light' ? 'light' : 'blue'}: terrain section with cut and fill markers`} exportName={`icons-cut-fill-${mode === 'light' ? 'light' : 'dark'}`}>
       <PatternDefs idp={idp} color={t.pat} opacity={0.5} />
-      <TreeG x={64} y={ground(64) + 2} size={62} kind="fir" seed={3} stroke={t.line} strokeWidth={W} />
+      <TreeG x={150} y={ground(150) + 2} size={62} kind="fir" seed={3} stroke={t.line} strokeWidth={W} />
       <TreeG x={498} y={ground(498) + 2} size={72} kind="round" seed={5} stroke={t.line} strokeWidth={W} />
       <path d={`${line}V330H${GX0}Z`} fill={`url(#${idp}-pat-boards)`} />
-      <path d={area(cutTop)} fill={t.cut} fillOpacity="0.55" />
+      <path d={area(cutTop)} fill={t.cut} fillOpacity={t.cutOp} />
       <path d={area(fillBot)} fill={t.fill} fillOpacity={t.fillOp} />
       <path d={line} fill="none" stroke={t.line} strokeWidth={W} strokeLinejoin="round" strokeDasharray="5 3" />
       <path d={`M${GX0} ${DESIGN}H${GX1}`} stroke={t.line} strokeWidth="1.2" />

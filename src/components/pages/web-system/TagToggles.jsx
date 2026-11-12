@@ -17,7 +17,7 @@ export default function TagToggles() {
           <Chip key={c} pressed={!!on[c]} onClick={() => setOn((o) => ({ ...o, [c]: !o[c] }))}>{c}</Chip>
         ))}
       </div>
-      <div className="cells">
+      <div className={s.cells}>
         <Segmented id="web-system-billing" label="Billing period" options={PLANS.toggle} />
         <Toggle label={PLANS.toggle[1]} checked={yearly} onChange={setYearly} />
       </div>

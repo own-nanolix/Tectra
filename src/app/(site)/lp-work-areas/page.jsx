@@ -4,7 +4,6 @@ import LandingFooter from '@/components/ui/LandingFooter';
 import Button from '@/components/ui/Button';
 import Art from '@/components/art/Art';
 import { IsoSiteG } from '@/components/art/KeyArt';
-import { Hl } from '@/components/ui/Card';
 import Reveal from '@/components/site/Reveal';
 import { BILLBOARD, PLANS } from '@/lib/brand';
 import WorkAreasLive from '@/components/pages/lp-work-areas/WorkAreasLive';
@@ -36,7 +35,7 @@ export default function Page() {
           </div>
           <div className={s.ctaText}>
             <h2 id="lp-work-areas-cta-h" className="t-display t-balance">
-              <Hl text={BILLBOARD.title} hl="Real-Time Data" />
+              {BILLBOARD.title}
             </h2>
             <p className="t-lead">{BILLBOARD.sub}</p>
             <div className="row" style={{ gap: 12 }}>
@@ -47,7 +46,7 @@ export default function Page() {
         </Reveal>
       </section>
 
-      <LandingFooter />
+      <LandingFooter className={s.footer} />
     </section>
   );
 }

@@ -14,7 +14,7 @@ export function PosterBuildG({ idp }) {
       <MarkG x={90} y={96} size={64} fill={HEX.blue} bodyClass="fuse-a" dotClass="fuse-c" />
       <Lines x={90} y={250} lines={['Build Smarter, Build Faster', 'with Tectra']} size={72} lh={80} fill={HEX.ink} cls="slide-up" />
       <Lines
-        x={90} y={364} size={21} lh={30} weight={400} fill={HEX.muted} cls="fade-in" i={3}
+        x={90} y={388} size={21} lh={30} weight={400} fill={HEX.muted} cls="fade-in" i={3}
         lines={['Streamline project tracking, enhance collaboration, and minimize delays — all', 'in one mobile app for construction teams.']}
       />
       <g className="fade-in" style={{ '--i': 2 }}>
@@ -41,7 +41,7 @@ export function PosterSmartG({ idp }) {
         lines={['Smart construction uses technology like AI and IoT to improve', 'efficiency, safety, and sustainability.']}
       />
       <g className="slide-up" style={{ '--i': 4 }}>
-        <CraneG x={286} y={560} scale={2.46} />
+        <CraneG x={320} y={644} scale={2.2} />
       </g>
     </g>
   );

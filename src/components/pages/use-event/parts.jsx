@@ -44,20 +44,20 @@ export function Barcode({ x, y, w, h, fill = PAL.ink, seed = 5, o = 1 }) {
   );
 }
 
-// The brand gradient that stands in for the photograph, with line-drawn trees.
+// Stands in for the photograph: the pale grey studio backdrop of m10 with grey line-drawn trees (no person).
 export function PhotoG({ id, x, y, w, h, seed = 3 }) {
   return (
     <g>
       <defs>
         <linearGradient id={`${id}-g`} x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor={PAL.sky} />
-          <stop offset="1" stopColor={PAL.blue} />
+          <stop offset="0" stopColor="#E9EBEE" />
+          <stop offset="1" stopColor="#C9CDD2" />
         </linearGradient>
         <clipPath id={`${id}-c`}><rect x={x} y={y} width={w} height={h} /></clipPath>
       </defs>
       <rect x={x} y={y} width={w} height={h} fill={`url(#${id}-g)`} />
-      <g clipPath={`url(#${id}-c)`}>
-        <TreesG x={x} y={y} w={w} h={h} count={4} tone="blue" seed={seed} minSize={h * 0.3} maxSize={h * 0.55} />
+      <g clipPath={`url(#${id}-c)`} opacity="0.8">
+        <TreesG x={x} y={y} w={w} h={h} count={4} tone="paper" seed={seed} minSize={h * 0.3} maxSize={h * 0.55} />
       </g>
     </g>
   );

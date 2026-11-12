@@ -19,9 +19,10 @@ const boundaryTop = (k) => (k === 0 ? TOP[0] : k >= 4 ? TOP[3] : Math.min(TOP[k 
 // The artwork is complete at the default state (marker after "Landing page").
 export default function RoadmapArt({ i = 3, x = B[4] }) {
   const mx = r2(x);
-  const chipX = Math.min(Math.max(mx, 70), 1544);
+  // The marker as printed: a sky ring dot, then "You're here", centred over the line that drops to the bar.
+  const dotX = Math.min(Math.max(mx - 75, 34), 1430);
   return (
-    <Art viewBox="0 0 1600 740" title="Roadmap: Branding, Desktop app, Mobile app and Landing page are done; Responsive and Localiztion are next" exportName="lp-timeline-roadmap" className={s.roadmapSvg}>
+    <Art viewBox="0 -200 1600 940"title="Roadmap: Branding, Desktop app, Mobile app and Landing page are done; Responsive and Localiztion are next" exportName="lp-timeline-roadmap" className={s.roadmapSvg}>
       {/* boundary lines */}
       {[0, 1, 2, 3, 4].map((k) => (
         <path key={k} d={`M${B[k]} ${boundaryTop(k)}V${BAR.y}`} stroke={LINE} strokeWidth="1.5" className="rise" style={{ '--i': k * 5 }} />
@@ -60,13 +61,10 @@ export default function RoadmapArt({ i = 3, x = B[4] }) {
       })}
       {/* marker */}
       <g>
-        <path d={`M${mx} 300V720`} stroke="#2F2F2F" strokeWidth="1.5" />
-        <circle cx={mx} cy={BAR.y + BAR.h / 2} r="9" fill="#FFB83D" />
-        <circle cx={mx} cy={BAR.y + BAR.h / 2} r="3.2" fill="#FFFFFF" />
-        <g transform={`translate(${r2(chipX - 56)} 262)`}>
-          <rect width="112" height="32" rx="4" fill="#FFB83D" />
-          <text x="56" y="21" fontSize="15" fontWeight="500" fill="#2F2F2F" textAnchor="middle">{ROADMAP.here}</text>
-        </g>
+        <path d={`M${mx} -120V${BAR.y}`} stroke="#ABABAB" strokeWidth="1.5" />
+        <circle cx={dotX} cy="-165" r="12" fill="#90C0F3" />
+        <circle cx={dotX} cy="-165" r="4.5" fill="#FFFFFF" />
+        <text x={r2(dotX + 33)} y="-158" fontSize="20" fontWeight="300" fill="#2F2F2F">{ROADMAP.here}</text>
       </g>
     </Art>
   );

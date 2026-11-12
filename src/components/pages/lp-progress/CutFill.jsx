@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import Art from '@/components/art/Art';
 import Tabs from '@/components/ui/Tabs';
-import { Hl } from '@/components/ui/Card';
 import { Trend } from '@/components/ui/Chip';
 import Reveal from '@/components/site/Reveal';
 import CountUp from '@/components/site/CountUp';
@@ -94,7 +93,7 @@ export default function CutFill() {
     <section className={`${s.band} ${s.tileBand}`} aria-labelledby="lp-progress-cutfill-h">
       <div className="wrap-narrow">
         <Reveal className={s.head}>
-          <h2 id="lp-progress-cutfill-h" className="t-display t-balance t-center"><Hl text={m.title} hl="Cut and Fill" /></h2>
+          <h2 id="lp-progress-cutfill-h" className="t-display t-balance t-center">{m.title}</h2>
           <p className="t-lead muted t-center">{m.text}</p>
         </Reveal>
         <Reveal delay={60}>

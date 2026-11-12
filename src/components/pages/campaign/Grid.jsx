@@ -32,7 +32,7 @@ export default function ProfileGrid() {
       </Tile>
       <Tile idp={id} i={1} fill={HEX.paper}>
         <MarkG x={30} y={30} size={40} fill={HEX.blue} />
-        <Lines x={30} y={196} lines={['Build Smarter,', [{ h: 'Build Faster' }], 'with Tectra']} size={42} lh={48} fill={HEX.ink} />
+        <Lines x={30} y={196} lines={['Build Smarter,', 'Build Faster', 'with Tectra']} size={42} lh={48} fill={HEX.ink} />
       </Tile>
       <Tile idp={id} i={2} fill={HEX.yellow}>
         <MarkG x={78} y={78} size={200} fill={HEX.tile} />

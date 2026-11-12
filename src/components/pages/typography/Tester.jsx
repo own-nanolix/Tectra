@@ -1,10 +1,10 @@
-'use client';
+﻿'use client';
 
 import { useState } from 'react';
 import Field from '@/components/ui/Field';
 import { Segmented } from '@/components/ui/Toggle';
 import { WEIGHTS } from '@/lib/brand';
-import { s } from './typoStyles';
+import s from './typography.module.css';
 
 // A live specimen: type a line, pick a weight.
 export default function Tester() {

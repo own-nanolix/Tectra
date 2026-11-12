@@ -69,7 +69,7 @@ export default function Stage() {
         </div>
 
         <div className={s.phoneCol}>
-          <div className={s.phone} role="group" aria-roledescription="carousel" aria-label="Live phone: use Left and Right arrow keys to change screen">
+          <div className={s.phone} tabIndex={0} role="group" aria-roledescription="carousel" aria-label="Live phone: use Left and Right arrow keys to change screen">
             <Phone exportName="mobile-a-phone-frame">
               <Scaled>
                 <AnimatePresence initial={false} custom={dir} mode="popLayout">

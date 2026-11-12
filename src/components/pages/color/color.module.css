@@ -1,0 +1,52 @@
+/* Colour page: a ledger. Spec tables span the full width, rings sit in the left margin as oversized pull-outs,
+   the proportion bar is a full-bleed strip between the tables. Keyframes are named color-xxx. */
+.head { display: grid; gap: var(--gap); justify-items: start; }
+.opening { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: var(--gap); align-items: end; }
+.quoteText { font-size: clamp(24px, 2.2vw, 34px); max-width: 30em; }
+.who { margin-top: 28px; }
+.note { font-size: 13px; font-weight: 400; line-height: 1.45; color: var(--muted); padding-top: 6px; border-top: 1px solid var(--line); }
+.note + .note { margin-top: 18px; }
+.copyAll { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+
+/* A ledger row: the left margin (4 of 12) holds the rings, the right side the heading and the swatch sheet. */
+.row { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: calc(var(--gap) * 1.5); align-items: start; }
+.margin { display: grid; gap: clamp(16px, 2vw, 32px); margin-left: calc(var(--pad) * -0.5); min-width: 0; }
+.marginPair { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: end; }
+.main { display: grid; gap: var(--gap); min-width: 0; align-content: start; }
+.main h2 { max-width: 20em; }
+.section { display: grid; grid-template-columns: minmax(0, 1fr); gap: calc(var(--gap) * 1.2); }
+
+.ring { margin: 0; min-width: 0; }
+.ring svg { display: block; width: 100%; height: auto; }
+.ringSmall { width: 78%; }
+.ringCap { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; margin-top: 6px; padding-top: 6px; border-top: 1px solid var(--line); font-size: 13px; color: var(--muted); }
+
+.sheet { overflow-x: auto; min-width: 0; }
+.sheet svg { display: block; min-width: 720px; width: 100%; height: auto; }
+.panel svg { display: block; width: 100%; height: auto; }
+
+.scroll { overflow-x: auto; max-width: 100%; border-radius: var(--r-1); }
+.scroll:focus-visible { outline: 2px solid var(--blue-ink); outline-offset: 2px; }
+.ledger { width: 100%; min-width: 900px; border-collapse: collapse; font-size: 14px; font-weight: 400; text-align: left; }
+.ledgerSem { min-width: 620px; }
+.ledger th { font-size: 11px; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; white-space: nowrap; }
+.ledger td, .ledger tbody th { padding: 10px 14px 10px 0; border-top: 1px solid var(--line); vertical-align: middle; color: var(--ink); text-transform: none; letter-spacing: 0; font-size: 14px; font-weight: 400; }
+.ledger td small { color: var(--muted); font-size: 12px; margin-left: 6px; }
+.ledger td:first-child { width: 88px; }
+.ledger .src { color: var(--muted); font-size: 13px; }
+.chipSw { display: block; width: 64px; height: 36px; border-radius: var(--r-1); box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08); transform-origin: left center; transition: transform var(--dur-2) var(--ease-out); }
+.ledger tr:hover .chipSw { transform: scaleX(1.12); }
+.cell { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.cell .chipSw { width: 28px; height: 28px; }
+.css { display: block; margin: 2px 0 0; }
+.pass { color: var(--ink); }
+.low { color: var(--muted); }
+
+.bleed { width: 100%; overflow-x: auto; margin: clamp(48px, 8vw, 120px) 0; }
+.bleed svg { display: block; width: 100%; min-width: 760px; height: auto; }
+.pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gap); }
+
+@media (max-width: 900px) {
+  .opening, .row, .pair { grid-template-columns: minmax(0, 1fr); }
+  .margin { margin-left: 0; max-width: 520px; }
+}

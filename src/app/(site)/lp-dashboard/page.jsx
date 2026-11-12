@@ -16,7 +16,7 @@ export default function Page() {
   return (
     <section className={`page ${s.root}`} id="p-lp-dashboard" aria-label="Landing: Dashboard">
       <div className={`field ${s.heroField}`}>
-        <LandingNav current="lp-dashboard" />
+        <LandingNav current="lp-dashboard" className={s.nav} />
         <Hero />
       </div>
       <Features />

@@ -5,8 +5,7 @@ import Icon from '@/components/site/Icon';
 import Art from '@/components/art/Art';
 import { GaugeG } from '@/components/art/KeyArt';
 import { FEATURES, EFFICIENCY, PROBLEM, SOLUTION, KPI, PLANS } from '@/lib/brand';
-import Shelf, { Line, Fig } from './Shelf';
-import { CornerArcCards } from './Arts';
+import Shelf, { Line } from './Shelf';
 import s from './web-system.module.css';
 
 // A decorative corner gauge: the arc rises out of the card's bottom edge and leaves by its right edge.
@@ -78,9 +77,6 @@ export default function CardBench() {
           <Button variant="dark" block>{plan.cta}</Button>
         </Card>
       </Line>
-      <Fig caption="Problem and Solution with their corner arcs, as one sheet.">
-        <CornerArcCards />
-      </Fig>
     </Shelf>
   );
 }

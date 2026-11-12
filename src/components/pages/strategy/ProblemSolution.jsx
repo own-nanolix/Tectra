@@ -55,22 +55,23 @@ export function Ruler() {
   );
 }
 
+// The two cards of m08, staggered as in the case study: Problem at the left, Solution lower and at the right.
 export function ProblemSolution() {
   return (
     <div className={s.ps}>
-      <Reveal>
+      <Reveal className={s.psL}>
         <ScrollRun>
           <Card title="Problem" arrow className={s.psCard}>
             <p>{PROBLEM}</p>
-            <CornerArc name="strategy-problem-arc" tone="yellow" value={0.55} title="Corner arc of the Problem card, in yellow" />
+            <CornerArc name="strategy-problem-arc" tone="yellow" value={0.66} title="Corner arc of the Problem card, in yellow" />
           </Card>
         </ScrollRun>
       </Reveal>
-      <Reveal delay={120}>
+      <Reveal className={s.psR} delay={120}>
         <ScrollRun>
           <Card title="Solution" arrow className={s.psCard}>
             <p>{SOLUTION}</p>
-            <CornerArc name="strategy-solution-arc" tone="blue" value={0.7} title="Corner arc of the Solution card, in blue" />
+            <CornerArc name="strategy-solution-arc" tone="blue" value={0.66} title="Corner arc of the Solution card, in blue" />
           </Card>
         </ScrollRun>
       </Reveal>

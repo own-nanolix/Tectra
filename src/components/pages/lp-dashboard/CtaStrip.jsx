@@ -1,7 +1,6 @@
 import Art from '@/components/art/Art';
 import { IsoSiteG } from '@/components/art/KeyArt';
 import Button from '@/components/ui/Button';
-import { Hl } from '@/components/ui/Card';
 import Reveal from '@/components/site/Reveal';
 import { FEATURES, HERO, POSTER } from '@/lib/brand';
 import s from './styles';
@@ -12,7 +11,7 @@ export default function CtaStrip() {
     <section className={`field ${s.cta}`} aria-labelledby="lp-dashboard-cta-h">
       <div className={`wrap ${s.ctaGrid}`}>
         <Reveal>
-          <h2 id="lp-dashboard-cta-h" className="t-display t-balance"><Hl text={POSTER.title} hl="Build Faster" className={s.ctaHl} /></h2>
+          <h2 id="lp-dashboard-cta-h" className="t-display t-balance">{POSTER.title}</h2>
           <p className="t-body on-blue" style={{ marginTop: 16, maxWidth: 560 }}>{POSTER.sub}</p>
           <div className="row" style={{ marginTop: 32 }}>
             <Button variant="white" href="/dashboard/" iconRight="arrow-right">{FEATURES.demo}</Button>

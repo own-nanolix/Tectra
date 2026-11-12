@@ -126,7 +126,7 @@ function SiliconeBand({ idp, tone }) {
       <g transform="translate(230 0)">
         <WordmarkG x={1.2} y={113.2} size={44} fill="#FFFFFF" opacity="0.5" />
         <WordmarkG x={0} y={112} size={44} fill="#000000" opacity="0.32" />
-        <MarkG x={178} y={80} size={38} fill="#FFFFFF" opacity="0.5" transform="translate(1.2 1.2)" />
+        <MarkG x={179.2} y={81.2} size={38} fill="#FFFFFF" opacity="0.5" />
         <MarkG x={178} y={80} size={38} fill="#000000" opacity="0.32" />
       </g>
       <path d="M44 70H570" stroke="#FFFFFF" strokeOpacity="0.55" strokeWidth="1.6" strokeLinecap="round" />

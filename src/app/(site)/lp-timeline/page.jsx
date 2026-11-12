@@ -45,7 +45,7 @@ export default function Page() {
             </div>
           </Reveal>
           <Reveal delay={90} className={`card ${s.splitB}`}>
-            <h3 className="t-h2 t-balance"><Hl text={PALM.heading} hl="Palm of Your Hand" /></h3>
+            <h3 className="t-h2 t-balance">{PALM.heading}</h3>
             <p className="t-lead">{PALM.sub}</p>
             <div className="row">
               <Button href="/lp-dashboard/" variant="dark" iconRight="arrow-right">{FEATURES.demo}</Button>
@@ -54,7 +54,7 @@ export default function Page() {
         </div>
       </section>
 
-      <LandingFooter />
+      <LandingFooter className={s.footer} />
     </section>
   );
 }

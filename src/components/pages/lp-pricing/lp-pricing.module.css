@@ -25,6 +25,7 @@
 .bullets { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; align-content: start; border-top: 1px solid var(--line); padding-top: 20px; }
 .bullet { display: grid; grid-template-columns: 14px minmax(0, 1fr); gap: 14px; align-items: center; font-size: 16px; font-weight: 400; animation: lp-pricing-bullet var(--dur-3) var(--ease-out) both; animation-delay: calc(var(--i, 0) * 90ms + 900ms); }
 @keyframes lp-pricing-bullet { from { opacity: 0; transform: translateX(-10px); } to { opacity: 1; transform: none; } }
+.cols > .col .bullets { border-top-color: transparent; } /* Basic has no price and no rule above its bullets (m12) */
 .bulletDot { width: 14px; height: 14px; border-radius: 50%; background: var(--chip); transition: background-color var(--dur-2) var(--ease-out); }
 .col[data-picked="true"] .bulletDot { background: var(--blue); }
 .panel .bulletDot { background: var(--card); }
@@ -56,22 +57,23 @@
 .usageHead { display: grid; gap: 8px; }
 .usageFig { margin: 0; color: var(--white); }
 .usageLine { color: var(--navy); }
-.usageChart { display: grid; gap: 4px; }
-.usageArt { width: 100%; height: auto; }
-.range { appearance: none; -webkit-appearance: none; width: 90%; margin: 0 5%; height: 36px; background: transparent; cursor: grab; }
-.range:active { cursor: grabbing; }
-.range::-webkit-slider-runnable-track { height: 4px; background: var(--navy); border-radius: 1px; }
-.range::-moz-range-track { height: 4px; background: var(--navy); border-radius: 1px; }
-.range::-webkit-slider-thumb { -webkit-appearance: none; width: 22px; height: 30px; margin-top: -13px; background: var(--yellow); border: 0; border-radius: 3px; transition: transform var(--dur-1) var(--ease-out); }
-.range::-moz-range-thumb { width: 22px; height: 30px; background: var(--yellow); border: 0; border-radius: 3px; }
-.range:hover::-webkit-slider-thumb { transform: scale(1.08); }
-.range:active::-webkit-slider-thumb { transform: scale(0.95); }
-.range:focus-visible { outline: 2px solid var(--white); outline-offset: 4px; }
+.usageWord { display: inline-block; }
+.usageFig > span { display: inline-block; animation: lp-pricing-head var(--dur-3) var(--ease-out) both; }
+.usageScroll { overflow-x: auto; overflow-y: hidden; }
+.usageChart { position: relative; touch-action: pan-y; cursor: pointer; border-radius: var(--r-1); user-select: none; }
+.usageChart:focus-visible { outline: 2px solid var(--navy); outline-offset: 6px; }
+.usageArt { display: block; width: 100%; height: auto; }
+.usageHandle { position: absolute; top: 72%; width: 22px; height: 30px; margin: -15px 0 0 -11px; background: var(--yellow); border-radius: 3px; transition: left var(--dur-3) var(--ease-in-out), transform var(--dur-1) var(--ease-out); pointer-events: none; }
+.usageChart:hover .usageHandle { transform: scale(1.08); }
+.usageChart:active .usageHandle { transform: scale(0.95); }
 .usagePlans { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
-.usagePlan { display: grid; gap: 6px; padding: 18px 20px; border-radius: var(--r-1); background: rgba(255, 255, 255, 0.18); color: var(--navy); transition: background-color var(--dur-3) var(--ease-in-out), transform var(--dur-3) var(--ease-in-out); }
-.usagePlan[data-on="true"] { background: var(--white); transform: translateY(-6px); }
+.usagePlan { width: 100%; height: 100%; text-align: left; border: 0; display: grid; gap: 6px; padding: 18px 20px; border-radius: var(--r-1); background: rgba(255, 255, 255, 0.18); color: var(--navy); transition: background-color var(--dur-3) var(--ease-in-out), transform var(--dur-3) var(--ease-in-out); }
+.usagePlan:hover { background: rgba(255, 255, 255, 0.32); }
+.usagePlan:active { transform: scale(0.98); }
+.usagePlan:focus-visible { outline: 2px solid var(--navy); outline-offset: 3px; }
+.usagePlan[aria-pressed="true"] { background: var(--white); transform: translateY(-6px); }
 .usageBullet { color: var(--navy); }
-@media (max-width: 700px) { .usagePlans { grid-template-columns: minmax(0, 1fr); } .usageArt { min-width: 560px; } .usageChart { overflow-x: auto; } .range { min-width: 504px; } }
+@media (max-width: 700px) { .usagePlans { grid-template-columns: minmax(0, 1fr); } .usageChart { min-width: 560px; } }
 
 /* ---------- Proof ---------- */
 .proof { padding-block: clamp(48px, 8vw, 120px); display: grid; gap: clamp(28px, 4vw, 56px); }
@@ -83,6 +85,7 @@
 
 /* ---------- Empower ---------- */
 .empower { padding-block: clamp(32px, 6vw, 96px); }
+.eHead.eHead { font-size: clamp(30px, 3.8vw, 60px); line-height: 1.2; }
 .eLine { display: block; }
 .crew { display: inline-block; width: clamp(150px, 15vw, 224px); height: auto; vertical-align: middle; margin-inline: 0.15em; }
 
@@ -109,3 +112,6 @@
 .final { padding-block: clamp(48px, 8vw, 120px) clamp(24px, 4vw, 56px); }
 .finalInner { display: grid; justify-items: center; gap: 24px; max-width: 1100px; margin-inline: auto; }
 .finalTile { width: 72px; height: 72px; }
+
+/* The shared .lp-footer rule resets the .wrap side padding; restore it here. */
+.footer.footer { padding-inline: var(--pad); }

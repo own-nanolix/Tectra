@@ -15,7 +15,7 @@ export default function Empower() {
           {EMPOWER[1]}{' '}
           <span className={s.inline} aria-hidden="true">
             {TONES.map((t, i) => (
-              <span key={i} className={`${s.mini} ${s[`mini-${t}`]}`} data-dot={i === 1 ? 'red' : i === 0 ? 'red' : 'yellow'} style={{ '--i': i }}>
+              <span key={i} className={`${s.mini} ${s[`mini-${t}`]}`} data-dot={i === 0 ? 'yellow' : 'red'} style={{ '--i': i }}>
                 <Icon name="hardhat" size={22} />
               </span>
             ))}

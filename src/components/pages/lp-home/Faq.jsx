@@ -19,7 +19,7 @@ export default function Faq() {
     refs.current[go]?.focus();
   };
   return (
-    <section className={`wrap ${s.section}`} aria-labelledby="lp-home-faq-h">
+    <section className={`wrap ${s.section} ${s.faqSec}`} aria-labelledby="lp-home-faq-h">
       <Reveal>
         <h2 id="lp-home-faq-h" className={`${s.h2} ${s.h2Sm}`}>{FAQ.heading}</h2>
       </Reveal>
@@ -56,7 +56,9 @@ export default function Faq() {
             </defs>
             <g clipPath="url(#lp-home-faq-clip)">
               <rect width="560" height="236" fill="url(#lp-home-faq-bg)" />
-              <IsoSiteG x={-6} y={-70} scale={1.08} tone="blue" seed={5} />
+              <g transform="translate(555 0) scale(-1 1)">
+                <IsoSiteG x={0} y={-64} scale={0.78} tone="blue" seed={5} />
+              </g>
             </g>
           </Art>
           <div id="lp-home-faq-answer" className={s.answer} aria-live="polite" key={open}>

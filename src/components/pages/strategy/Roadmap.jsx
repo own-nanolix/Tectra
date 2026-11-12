@@ -51,11 +51,11 @@ function Thumb({ kind, x, y }) {
 export default function Roadmap() {
   const nextX = [990, 1295, 1580];
   const ticks = [];
-  for (let x = 996; x < 1580; x += 5) if (Math.abs(x - 1295) > 2) ticks.push(x);
+  for (let x = 996; x < 1578; x += 6.4) if (Math.abs(x - 1295) > 3) ticks.push(Math.round(x * 10) / 10);
   return (
     <ScrollRun className={s.scroller}>
       <Art
-        viewBox="0 0 1600 850"
+        viewBox="0 60 1600 790"
         title="Roadmap: Branding, Desktop app, Mobile app and Landing page as rising steps over a blue bar, with Responsive and Localiztion still to come"
         exportName="strategy-roadmap"
       >
@@ -92,7 +92,7 @@ export default function Roadmap() {
         {/* the stages to come */}
         <path d={ticks.map((x) => `M${x} 685v38`).join('')} stroke="#C4C4C4" strokeWidth="1" className="rise" style={{ '--i': 20 }} />
         {nextX.map((x, i) => (
-          <rect key={x} x={x - 1} y={i === 0 ? 90 : 685} width="2" height={i === 0 ? 740 : 145} fill="#C9C9C9" />
+          <rect key={x} x={x - 1} y={i === 0 ? 140 : 685} width="2" height={i === 0 ? 690 : 145} fill="#C9C9C9" />
         ))}
         {ROADMAP.next.map((name, i) => (
           <text key={name} x={[1143, 1440][i]} y="820" fontSize="22" fill="#2F2F2F" textAnchor="middle" className="fade-in" style={{ '--i': 22 + i }}>{name}</text>
@@ -100,11 +100,11 @@ export default function Roadmap() {
 
         {/* where we are */}
         <g className="pop" style={{ '--i': 22 }}>
-          <circle cx="915" cy="45" r="12" fill="#90C0F3" className="ring" />
-          <circle cx="915" cy="45" r="12" fill="#90C0F3" />
-          <circle cx="915" cy="45" r="4.5" fill="#FAFAFA" />
+          <circle cx="915" cy="95" r="12" fill="#90C0F3" className="ring" />
+          <circle cx="915" cy="95" r="12" fill="#90C0F3" />
+          <circle cx="915" cy="95" r="4.5" fill="#FAFAFA" />
         </g>
-        <text x="945" y="52" fontSize="22" fill="#2F2F2F">{ROADMAP.here}</text>
+        <text x="945" y="102" fontSize="22" fill="#2F2F2F">{ROADMAP.here}</text>
       </Art>
     </ScrollRun>
   );

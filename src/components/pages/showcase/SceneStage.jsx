@@ -31,8 +31,8 @@ function BrandScreen() {
       <PatternDefs idp={ID} color="#FFFFFF" opacity={0.1} />
       <rect x={x} y={y} width={w} height={h} rx="3" fill={`url(#${ID}-field)`} />
       <g clipPath={`url(#${ID}-scr)`}>
-        <TreesG x={x} y={y + 120} w={w} h={h - 120} count={16} tone="blue" seed={33} minSize={60} maxSize={120} clear={[w * 0.28, 40, w * 0.44, 150]} opacity={0.85} />
-        <CraneG x={x + w - 270} y={y + h - 318} scale={0.98} />
+        <TreesG x={x} y={y + 120} w={w} h={h - 120} count={16} tone="blue" seed={33} minSize={60} maxSize={120} clear={[-1, -10, w + 2, 205]} opacity={0.85} />
+        <CraneG x={x + w - 196} y={y + h - 188} scale={0.58} />
         <rect x={x} y={y} width={w} height={h} fill={`url(#${ID}-pat-dots)`} />
         <MarkG x={x + w / 2 - 24} y={y + 54} size={48} fill="#FFFFFF" />
         <text x={x + w / 2} y={y + 152} fontSize="46" fontWeight="300" fill="#FFFFFF" textAnchor="middle">{HERO.title[0]}</text>

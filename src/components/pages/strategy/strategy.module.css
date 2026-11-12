@@ -41,10 +41,16 @@
 .st-vbar i[data-on="1"] { background: var(--blue); animation: strategy-vbar var(--dur-4) var(--ease-out) 150ms both; transform-origin: 50% 0; }
 .st-vbarLow i[data-on="1"] { transform-origin: 50% 100%; }
 @keyframes strategy-vbar { from { transform: scaleY(0); } to { transform: none; } }
-.st-aboutRows { list-style: none; margin: 18px 0 0; padding: 0; }
-.st-aboutRows li { display: grid; grid-template-columns: minmax(0, 1fr) 56px minmax(0, 1.4fr); align-items: center; gap: 10px; padding: 14px 0; border-bottom: 1px solid var(--line); font-size: clamp(18px, 1.5vw, 24px); }
-.st-aboutRows li span:first-child { font-size: 15px; font-weight: 400; color: var(--muted); }
-.st-aboutRows li svg { color: #8f8f8f; }
+.st-colBody { display: grid; grid-template-rows: auto 1fr; min-height: clamp(260px, 26vw, 420px); }
+.st-colHead { font-size: clamp(20px, 1.5vw, 24px); font-weight: 400; line-height: 1.2; }
+.st-overviewText { align-self: end; font-size: clamp(18px, 1.4vw, 22px); font-weight: 400; line-height: 1.3; max-width: 34ch; }
+.st-aboutRows { list-style: none; margin: 0; padding: 0; align-self: end; max-width: 440px; }
+.st-aboutRows li { display: grid; grid-template-columns: minmax(0, 1fr) 76px minmax(0, 1fr); align-items: center; gap: 24px; padding: 12px 0; font-size: clamp(18px, 1.4vw, 22px); font-weight: 400; }
+.st-thinArrow { width: 76px; height: 8px; color: var(--app); }
+
+/* Quotes */
+.st-quoteMid { font-weight: 300; font-size: clamp(24px, 2.4vw, 38px); line-height: 1.25; max-width: 30ch; }
+.st-whoTop { margin-bottom: 26px; }
 
 /* Progress bars of three segments under the quotes (m04) */
 .st-steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; background: var(--chip); padding: 4px; border-radius: 2px; margin-bottom: 26px; }
@@ -60,27 +66,48 @@
   .st-pairL, .st-pairR { width: 100%; margin: 0; }
 }
 
-/* Research cards (m06) */
-.st-insights { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gap); }
-@media (max-width: 900px) { .st-insights { grid-template-columns: minmax(0, 1fr); } }
-.st-insight { display: grid; gap: 14px; align-content: start; }
-.st-insightFig { font-weight: 300; font-size: clamp(44px, 4.2vw, 68px); line-height: 1; font-variant-numeric: tabular-nums; }
-.st-insightLabel { font-size: 18px; font-weight: 400; line-height: 1.3; min-height: 2.6em; max-width: 24ch; }
-.st-insight svg { margin-top: 8px; }
+/* Research cards (m06): staggered left, right, centred on a 24-column grid; each card 10 columns wide
+   (673 of 1600 px in the case study). */
+.st-insights { display: grid; grid-template-columns: repeat(24, minmax(0, 1fr)); column-gap: var(--gap); row-gap: clamp(40px, 9vw, 170px); }
+.st-ins1 { grid-column: 1 / span 10; }
+.st-ins2 { grid-column: 15 / span 10; }
+.st-ins3 { grid-column: 8 / span 10; }
+@media (max-width: 900px) {
+  .st-insights { grid-template-columns: minmax(0, 1fr); row-gap: var(--gap); }
+  .st-ins1, .st-ins2, .st-ins3 { grid-column: 1; }
+}
+.st-insight { display: grid; gap: clamp(18px, 2.4vw, 36px); align-content: start; }
+.st-insightRow { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+.st-insightFig { font-weight: 300; font-size: clamp(28px, 2.3vw, 36px); line-height: 1; font-variant-numeric: tabular-nums; }
+.st-insightLabel { font-size: clamp(15px, 1.1vw, 18px); font-weight: 400; line-height: 1.3; }
 
-/* Problem and solution (m08) */
-.st-ps { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gap); margin-top: clamp(28px, 4vw, 56px); }
-@media (max-width: 800px) { .st-ps { grid-template-columns: minmax(0, 1fr); } }
-.st-psCard { min-height: clamp(240px, 24vw, 380px); }
-.st-psCard p { max-width: 36ch; margin-top: clamp(24px, 4vw, 56px); font-size: clamp(18px, 1.5vw, 24px); line-height: 1.35; }
-.st-corner { position: absolute; right: 0; bottom: 0; width: 62%; height: auto; pointer-events: none; }
+/* Problem and solution (m08): Problem left, Solution lower right. Cards are 482 by 240 at 1600 wide. */
+.st-ps { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--gap); margin-top: clamp(40px, 6vw, 110px); }
+.st-psL { grid-column: 1 / span 4; }
+.st-psR { grid-column: 9 / span 4; margin-top: clamp(40px, 24vw, 390px); }
+@media (max-width: 900px) {
+  .st-psL, .st-psR { grid-column: 1 / -1; margin-top: 0; }
+}
+.st-psCard { aspect-ratio: 2 / 1; }
+@media (max-width: 900px) { .st-psCard { aspect-ratio: auto; min-height: 240px; } }
+.st-psCard p { max-width: 24ch; margin-top: 14px; font-size: clamp(16px, 1.2vw, 18px); line-height: 1.4; position: relative; z-index: 1; }
+.st-corner { position: absolute; right: 0; bottom: 0; width: 70.5%; height: auto; pointer-events: none; }
 
-/* Results (m15) */
-.st-results { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gap); margin-top: clamp(28px, 4vw, 56px); }
-@media (max-width: 900px) { .st-results { grid-template-columns: minmax(0, 1fr); } }
-.st-resCard { min-height: clamp(250px, 24vw, 360px); }
-.st-resCard .st-figure { font-weight: 300; font-size: clamp(56px, 6vw, 96px); line-height: 1; margin-top: clamp(36px, 5vw, 80px); position: relative; z-index: 1; font-variant-numeric: tabular-nums; }
-.st-resLabel { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; max-width: 70%; font-size: 20px; font-weight: 500; line-height: 1.25; }
+/* Results (m15): three cards of 340 by 236 in the right three quarters of the page. */
+.st-results { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--gap); margin-top: clamp(40px, 8vw, 200px); }
+.st-results > :nth-child(1) { grid-column: 4 / span 3; }
+.st-results > :nth-child(2) { grid-column: 7 / span 3; }
+.st-results > :nth-child(3) { grid-column: 10 / span 3; }
+@media (max-width: 900px) {
+  .st-results { grid-template-columns: minmax(0, 1fr); }
+  .st-results > :nth-child(n) { grid-column: 1; }
+}
+.st-resCard { aspect-ratio: 340 / 236; min-height: 200px; display: flex; flex-direction: column; justify-content: space-between; }
+.st-resCard .st-corner { width: 100%; }
+.st-resCard .st-figure { font-weight: 300; font-size: clamp(30px, 2.3vw, 40px); line-height: 1; position: relative; z-index: 1; font-variant-numeric: tabular-nums; }
+.st-resLabel { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; font-size: clamp(16px, 1.3vw, 20px); font-weight: 500; line-height: 1.25; position: relative; z-index: 1; }
+.st-resLabel h3 { font: inherit; max-width: 12em; }
+.st-resLabel svg { flex: none; }
 
 /* Roadmap (m17) */
 .st-roadmap { margin-top: clamp(32px, 5vw, 72px); }

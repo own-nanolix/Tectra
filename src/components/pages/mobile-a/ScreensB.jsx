@@ -4,8 +4,8 @@ import { useState } from 'react';
 import Icon from '@/components/site/Icon';
 import { tickBars, ruler, r2 } from '@/lib/charts';
 import { clamp } from '@/lib/site';
-import { KPI, KOMATSU, VOLUME, FEATURES } from '@/lib/brand';
-import { StatusBar, InnerHead, GaugeCard, AxisRow, SiteG, TimelineG } from './shared';
+import { KPI, KOMATSU, VOLUME } from '@/lib/brand';
+import { StatusBar, InnerHead, TabBar, GaugeCard, GaugeBody, AxisRow, SiteG, TimelineG, HALF } from './shared';
 import { Board } from './ScreensA';
 import s from './mobile-a.module.css';
 
@@ -125,68 +125,90 @@ export function Screen6() {
   );
 }
 
-// 7. Details
+// 7. Details: one dial screen. The figure is set large, the arc spans the whole card, and the two other
+// project figures sit as a pair of glass-free tiles under it.
 export function Screen7() {
   const k = KPI.details;
+  const o = KPI.overall;
   return (
     <Board>
       <StatusBar />
       <InnerHead />
-      <GaugeCard title={k.label} value={k.value} trend={k.trend} dir="up" tone="blue" w={350} h={200} r={150} pos={{ left: 20, top: 150 }} />
-      <ul className={`${s.rows} ${s.listCard}`} style={{ top: 370 }}>
-        {FEATURES.rows.map(([t, d], i) => (
-          <li key={t} style={{ '--i': i }}>
-            <b>{i + 1}</b>
-            <span><strong>{t}</strong><small>{d}</small></span>
-            <Icon name="arrow-right" size={16} />
-          </li>
-        ))}
-      </ul>
+      <div className={s.card2} style={{ top: 147, height: 430 }}>
+        <svg className={s.gcSvg} viewBox="0 0 367 430" aria-hidden="true"><GaugeBody w={367} h={430} r={300} c={[372, 420]} value={0.76} tone="blue" /></svg>
+        <div className={s.crossHead}><span>{k.label}</span><Icon name="arrow-up-right" size={16} /></div>
+        <div className={s.dialFig}>{k.value}</div>
+        <div className={s.dialTrend}>{k.trend}<Tri cls={s.triUp} /></div>
+      </div>
+      <div className={s.pair}>
+        <div className={s.pairTile}>
+          <span>{o.label}</span>
+          <strong>{o.value}</strong>
+          <em>{o.trend}<Tri cls={s.triUp} /></em>
+        </div>
+        <div className={s.pairTile}>
+          <span>{KOMATSU.name}</span>
+          <strong>{KOMATSU.value}</strong>
+          <em>{KOMATSU.dates}</em>
+        </div>
+      </div>
     </Board>
   );
 }
 
-// 8. Notes: the case study prints no note text, so the rows are quiet placeholder bars
+// 8. Notes: a list screen. The case study prints no note text, so each note is a quiet placeholder bar; a
+// compact header carries the figure and a yellow track; a yellow add button floats over the tab bar.
 export function Screen8() {
   const k = KPI.notes;
-  const wid = [78, 56, 70, 48, 64];
+  const wid = [78, 56, 70, 48, 64, 58];
   return (
     <Board>
       <StatusBar />
       <InnerHead />
-      <GaugeCard title={k.label} value={k.value} trend={k.trend} dir="down" tone="yellow" w={350} h={200} r={150} pos={{ left: 20, top: 150 }} />
-      <ul className={`${s.rows} ${s.listCard}`} style={{ top: 370 }}>
+      <div className={s.notesHead}>
+        <span className={s.notesTitle}>{k.label}</span>
+        <span className={s.notesFig}><em>{k.trend}<Tri cls={s.triDown} /></em><strong>{k.value}</strong></span>
+        <span className={s.notesTrack}><i style={{ width: k.value }} /></span>
+      </div>
+      <ul className={s.noteList}>
         {wid.map((w, i) => (
-          <li key={i} className={s.ph} style={{ '--i': i }}>
-            <span className={s.tile36}><Icon name="note" size={18} /></span>
+          <li key={i} style={{ '--i': i }}>
+            <span className={s.noteMark} data-on={i === 0} />
             <span className={s.bars}><i style={{ width: `${w}%` }} /><i style={{ width: `${w - 30}%` }} /></span>
-            <span />
           </li>
         ))}
       </ul>
+      <span className={s.fab} aria-hidden="true"><Icon name="plus" size={24} /></span>
+      <TabBar active={4} />
     </Board>
   );
 }
 
-// 9. Material
+// 9. Material: a split screen. A tall 8-segment volume meter fills from the bottom in the left column; the
+// Material half card and its status tile stack in the right column.
+const SEG = VOLUME.segments;
+const SEG_H = 52, SEG_GAP = 6, METER_H = SEG * (SEG_H + SEG_GAP) + 6;
 export function Screen9() {
   const k = KPI.material;
   return (
     <Board>
       <StatusBar />
       <InnerHead />
-      <GaugeCard title={k.label} value={k.value} trend={k.trend} dir="up" tone="blue" w={350} h={200} r={150} legend={k.legend} pos={{ left: 20, top: 150 }} />
-      <div className={s.card2} style={{ top: 370, height: 110 }}>
-        <div className={s.crossMeta} style={{ top: 22, justifyContent: 'space-between', fontSize: 14 }}>
-          <span>{VOLUME.from}</span><Icon name="arrow-right" size={16} /><span>{VOLUME.to}</span>
-        </div>
-        <svg className={s.chartAt} style={{ top: 58 }} width="310" height="20" viewBox="0 0 310 20" aria-hidden="true">
-          <rect width="310" height="18" rx="2" fill="#DFDFDF" />
-          {Array.from({ length: VOLUME.segments }, (_, i) => {
-            const sw = (310 - 8 - 3 * 7) / 8;
-            return <rect key={i} x={r2(4 + i * (sw + 3))} y="4" width={r2(sw)} height="10" rx="1" fill={i < VOLUME.filled ? '#4093EC' : '#FFFFFF'} fillOpacity={i < VOLUME.filled ? 1 : 0.8} className={i < VOLUME.filled ? 'grow-x' : undefined} style={{ '--i': i }} />;
+      <div className={s.meter}>
+        <span>{VOLUME.to}</span>
+        <svg width="110" height={METER_H} viewBox={`0 0 110 ${METER_H}`} aria-hidden="true">
+          <rect width="110" height={METER_H} rx="4" fill="#DFDFDF" />
+          {Array.from({ length: SEG }, (_, i) => {
+            const on = i < VOLUME.filled;
+            const y = r2(6 + (SEG - 1 - i) * (SEG_H + SEG_GAP));
+            return <rect key={i} x="6" y={y} width="98" height={SEG_H} rx="2" fill={on ? '#4093EC' : '#FFFFFF'} fillOpacity={on ? 1 : 0.7} className={on ? 'fade-in' : undefined} style={{ '--i': SEG - i }} />;
           })}
         </svg>
+        <span>{VOLUME.from}</span>
+      </div>
+      <GaugeCard title={k.label} value={k.value} trend={k.trend} dir="up" tone="blue" {...HALF} pos={{ left: 197, top: 149 }} />
+      <div className={s.status2}>
+        <i />{k.legend}
       </div>
     </Board>
   );

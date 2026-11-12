@@ -95,20 +95,27 @@ export function SpecTabBar() {
     </Art>
   );
 }
-export function SpecRows() {
+export function SpecListRow() {
   const row = (y, fill) => <rect x="24" y={y} width="342" height="62" rx="4" fill={fill} />;
   return (
-    <Art viewBox="0 0 390 330" title="List row and menu row with states" exportName="mobile-b-spec-list-row">
-      <Plate h="330" />
-      <Cap y="16">List row</Cap>{row(22, HEX.card)}
+    <Art viewBox="0 0 390 190" title="List row, default and selected" exportName="mobile-b-spec-list-row">
+      <Plate h="190" />
+      <Cap y="16">Default</Cap>{row(22, HEX.card)}
       <rect x="33" y="31" width="44" height="44" rx="4" fill={HEX.app} /><Ic name="folder" x={44} y={42} /><T x={91} y={58} size={16} w={500}>Cut and Fill</T><Ic name="arrow-up-right" x={332} y={45} size={16} />
       <Cap y="108">Pressed, selected</Cap>{row(114, HEX.tile)}
       <rect x="33" y="123" width="44" height="44" rx="4" fill={HEX.app} /><Ic name="folder" x={44} y={134} /><T x={91} y={150} size={16} w={500}>Notes</T><circle cx="322" cy="145" r="4" fill={HEX.yellow} /><Ic name="arrow-up-right" x={332} y={137} size={16} />
-      <Cap y="200">Menu row</Cap><rect x="24" y="206" width="342" height="54" rx="4" fill={HEX.card} />
-      <Ic name="briefcase" x={42} y={222} /><T x={78} y={238} size={16} w={500}>Plans</T><Ic name="chevron-right" x={334} y={225} size={18} />
-      <Cap y="278">Menu row with switch</Cap><rect x="24" y="284" width="342" height="42" rx="4" fill={HEX.card} />
-      <T x={42} y={310} size={16} w={500}>Notifications</T>
-      <rect x="314" y="294" width="44" height="24" rx="3" fill={HEX.blueInk} /><rect x="337" y="297" width="18" height="18" rx="2" fill="#fff" />
+    </Art>
+  );
+}
+export function SpecMenuRow() {
+  return (
+    <Art viewBox="0 0 390 160" title="Menu row with chevron and with switch" exportName="mobile-b-spec-menu-row">
+      <Plate h="160" />
+      <Cap y="16">Menu row</Cap><rect x="24" y="22" width="342" height="54" rx="4" fill={HEX.card} />
+      <Ic name="briefcase" x={42} y={38} /><T x={78} y={54} size={16} w={500}>Plans</T><Ic name="chevron-right" x={334} y={41} size={18} />
+      <Cap y="100">Menu row with switch</Cap><rect x="24" y="106" width="342" height="46" rx="4" fill={HEX.card} />
+      <T x={42} y={134} size={16} w={500}>Notifications</T>
+      <rect x="314" y="117" width="44" height="24" rx="3" fill={HEX.blueInk} /><rect x="337" y="120" width="18" height="18" rx="2" fill="#fff" />
     </Art>
   );
 }

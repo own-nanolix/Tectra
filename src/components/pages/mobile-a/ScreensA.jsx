@@ -5,7 +5,8 @@ import Icon from '@/components/site/Icon';
 import { IsoSiteG, PinG } from '@/components/art/KeyArt';
 import { CutFillG } from '@/components/art/Devices';
 import { HERO, KOMATSU, KPI, VOLUME, CUT_FILL } from '@/lib/brand';
-import { StatusBar, LogoTile, InnerHead, TabBar, GaugeCard, SitePins, TickChart, AxisRow } from './shared';
+import { r2 } from '@/lib/charts';
+import { StatusBar, LogoTile, InnerHead, TabBar, GaugeCard, SitePins, TickChart, AxisRow, HALF, FULL } from './shared';
 import s from './mobile-a.module.css';
 
 // The fixed 390 x 844 artboard root. The stage tells it its name (mobile-a-01 ...) through this context.
@@ -63,22 +64,19 @@ export function Screen2({ p }) {
       <LogoTile />
       <div className={s.topRight} aria-hidden="true">
         <span className={s.sq}><Icon name="bell" size={22} /><b /></span>
-        <span className={`${s.sq} ${s.sqAvatar}`}><Icon name="hardhat" size={24} /></span>
+        <span className={s.sq}><Icon name="hardhat" size={24} /></span>
       </div>
-      <GaugeCard title={k.details.label} value={k.details.value} trend={k.details.trend} dir="up" tone="blue" w={170} h={190} r={104} pos={{ left: 20, top: 150 }} />
-      <GaugeCard title={k.notes.label} value={k.notes.value} trend={k.notes.trend} dir="down" tone="yellow" w={170} h={190} r={104} pos={{ left: 200, top: 150 }} />
-      <GaugeCard title={k.material.label} value={k.material.value} trend={k.material.trend} dir="up" tone="blue" w={350} h={180} r={150} legend={k.material.legend} pos={{ left: 20, top: 350 }} />
-      <div className={s.card2} style={{ top: 540, height: 330 }}>
+      <GaugeCard title={k.details.label} value={k.details.value} trend={k.details.trend} dir="up" tone="blue" {...HALF} pos={{ left: 11, top: 149 }} />
+      <GaugeCard title={k.notes.label} value={k.notes.value} trend={k.notes.trend} dir="down" tone="yellow" {...HALF} pos={{ left: 197, top: 149 }} />
+      <GaugeCard title={k.material.label} value={k.material.value} trend={k.material.trend} dir="up" tone="blue" {...FULL} legend={k.material.legend} pos={{ left: 11, top: 342 }} />
+      <div className={s.card2} style={{ top: 534, height: 330 }}>
         <div className={s.crossHead}><span>{k.cross.label}</span><Icon name="arrow-up-right" size={16} /></div>
         <div className={s.crossMeta}>
           <strong>{k.cross.value}</strong>{k.cross.trend}<Tri cls={s.triUp} />
-          <span className={s.legend}>
-            <svg width="34" height="8" viewBox="0 0 34 8" aria-hidden="true"><path d="M5 4h24" stroke="#FFB83D" strokeWidth="1.2" /><rect x="0" y="0.5" width="9" height="7" rx="1" fill="#FFB83D" /><rect x="25" y="0.5" width="9" height="7" rx="1" fill="#FFB83D" /></svg>
-            {k.cross.legend}
-          </span>
+          <span className={s.legend}><Handle />{k.cross.legend}</span>
         </div>
-        <div className={s.chartAt} style={{ top: 112 }}>
-          <TickChart idp={`${p}-s2`} w={310} h={100} from={0.33} to={0.6} tone="yellow" />
+        <div className={s.chartAt} style={{ top: 145 }}>
+          <TickChart idp={`${p}-s2`} w={325} h={82} from={0.33} to={0.6} tone="yellow" axis={44} />
         </div>
       </div>
       <TabBar active={1} />
@@ -86,19 +84,28 @@ export function Screen2({ p }) {
   );
 }
 
-// 3. Cut and Fill
+// The legend glyph: two small blocks joined by a line (the range handle in miniature).
+function Handle({ col = '#FFB83D' }) {
+  return (
+    <svg width="34" height="8" viewBox="0 0 34 8" aria-hidden="true"><path d="M5 4h24" stroke={col} strokeWidth="1.2" /><rect x="0" y="0.5" width="9" height="7" rx="1" fill={col} /><rect x="25" y="0.5" width="9" height="7" rx="1" fill={col} /></svg>
+  );
+}
+
+// 3. Cut and Fill. The Progres bar and its tall grey ticks follow m09 / m05 (bar ends near 70 on the axis).
+const PW = 325;
+const PBAR = r2(PW * 0.41);
+const PTICKS = Array.from({ length: 60 }, (_, i) => r2(PBAR + 6 + i * 3.1)).filter((x) => x <= PW);
 export function Screen3() {
   const pr = KPI.progress;
-  const bar = 310 * 0.24;
   return (
     <Board>
       <StatusBar />
       <InnerHead />
-      <div className={s.card2} style={{ top: 150, height: 372 }}>
+      <div className={s.card2} style={{ top: 147, height: 358 }}>
         <div className={s.cfTitle}><span>{CUT_FILL.title}</span><Icon name="arrow-up-right" size={16} /></div>
         <div className={s.cfDate}><b>Date:</b>{CUT_FILL.date.replace('Date:', '')}</div>
-        <svg className={s.cfSvg} width="310" height="110" viewBox="0 0 310 110" aria-hidden="true">
-          <CutFillG w={310} h={110} top={CUT_FILL.top} bottom={CUT_FILL.bottom} className="fade-in" />
+        <svg className={s.cfSvg} width={PW} height="82" viewBox={`0 0 ${PW} 82`} aria-hidden="true">
+          <CutFillG w={PW} h={82} top={CUT_FILL.top} bottom={CUT_FILL.bottom} className="fade-in" />
         </svg>
         <div className={s.ind}>
           <h3>Indicators</h3>
@@ -107,20 +114,20 @@ export function Screen3() {
           </div>
         </div>
       </div>
-      <div className={s.card2} style={{ top: 532, height: 200 }}>
+      <div className={s.card2} style={{ top: 510, height: 255 }}>
         <div className={s.cfTitle}><span>{pr.label}</span><Icon name="arrow-up-right" size={16} /></div>
-        <div className={s.crossMeta} style={{ top: 50 }}>
+        <div className={s.crossMeta} style={{ top: 72 }}>
           <strong>{pr.value}</strong>{pr.trend}<Tri cls={s.triDown} />
-          <span className={s.legend}>{pr.legend}</span>
+          <span className={s.legend}><Handle col="#4093EC" />{pr.legend}</span>
         </div>
-        <svg className={s.chartAt} style={{ top: 112 }} width="310" height="64" viewBox="0 0 310 64" aria-hidden="true">
-          <rect x="0" y="0" width={bar} height="8" fill="#4093EC" className="grow-x" />
-          <path d={Array.from({ length: 40 }, (_, i) => `M${bar + 6 + i * 6} 0v8`).filter((_, i) => bar + 6 + i * 6 < 310).join('')} stroke="#C4C4C4" strokeWidth="1.2" />
-          <AxisRow w={310} y={36} />
+        <svg className={s.chartAt} style={{ top: 140 }} width={PW} height="100" viewBox={`0 0 ${PW} 100`} aria-hidden="true">
+          <path d={PTICKS.map((x) => `M${x} 7V70`).join('')} stroke="#C9C9C9" strokeWidth="1" className="fade-in" />
+          <rect x="0" y="63" width={PBAR} height="6" fill="#4093EC" className="grow-x" />
+          <AxisRow w={PW} y={92} />
         </svg>
       </div>
-      <div className={s.cut} style={{ left: 20 }}><span>Cross</span><Icon name="arrow-up-right" size={16} /></div>
-      <div className={s.cut} style={{ left: 205 }}><span>Timeline</span><Icon name="arrow-up-right" size={16} /></div>
+      <div className={s.cut} style={{ left: 11 }}><span>Cross</span><Icon name="arrow-up-right" size={16} /></div>
+      <div className={s.cut} style={{ left: 197 }}><span>Timeline</span><Icon name="arrow-up-right" size={16} /></div>
     </Board>
   );
 }

@@ -70,11 +70,14 @@ export default function Ledger() {
             {BARS.map((r, i) => {
               const on = sel === r.id;
               return (
-                <g key={r.id} transform={`translate(0 ${i * 70})`} opacity={on || !BARS.some((b) => b.id === sel) ? 1 : 0.4} className={s.barRow}>
-                  <text x="0" y="22" fontSize="16" fontWeight="500" fill="#2F2F2F">{r.name}</text>
-                  <text x="600" y="22" fontSize="16" fontWeight="400" fill="#5E5E5E" textAnchor="end">{r.value}</text>
-                  <rect y="32" width="600" height="14" rx="2" fill="#DFDFDF" />
-                  <rect y="32" width={Math.max(6, 600 * r.bar)} height="14" rx="2" fill={r.col} className="grow-x" style={{ '--i': i }} />
+                <g key={r.id} transform={`translate(0 ${i * 70})`}>
+                  <text x="0" y="22" fontSize="18" fontWeight="500" fill="#2F2F2F">{r.name}</text>
+                  <text x="600" y="22" fontSize="18" fontWeight="400" fill="#5E5E5E" textAnchor="end">{r.value}</text>
+                  {/* only the bar dims when another row is selected, so the labels keep their contrast */}
+                  <g opacity={on || !BARS.some((b) => b.id === sel) ? 1 : 0.4} className={s.barRow}>
+                    <rect y="32" width="600" height="14" rx="2" fill="#DFDFDF" />
+                    <rect y="32" width={Math.max(6, 600 * r.bar)} height="14" rx="2" fill={r.col} className="grow-x" style={{ '--i': i }} />
+                  </g>
                 </g>
               );
             })}

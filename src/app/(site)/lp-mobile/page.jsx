@@ -19,7 +19,7 @@ export default function Page() {
       <Palm />
       <Faq />
       <Cta />
-      <LandingFooter />
+      <LandingFooter className={s.footer} />
     </section>
   );
 }

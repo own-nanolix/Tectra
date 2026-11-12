@@ -108,8 +108,8 @@ function Plates() {
             <span className="t-small">{pl.note}</span>
           </figcaption>
           <div className={s.legend}>
-            <span style={{ color: '#145CB8' }}><i className={s.sw} /> Safe margin and key circles</span>
-            <span style={{ color: '#7A5000' }}><i className={s.sw} /> Centre lines and diagonals</span>
+            <span style={{ color: 'var(--blue-ink)' }}><i className={s.sw} /> Safe margin and key circles</span>
+            <span style={{ color: 'var(--yellow-ink)' }}><i className={s.sw} /> Centre lines and diagonals</span>
             <span style={{ color: INK }}><i className={s.sw} /> 1.5 px stroke</span>
           </div>
         </figure>

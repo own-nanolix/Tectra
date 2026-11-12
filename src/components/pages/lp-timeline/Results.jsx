@@ -1,7 +1,6 @@
 import Art from '@/components/art/Art';
 import { GaugeG } from '@/components/art/KeyArt';
 import Chip from '@/components/ui/Chip';
-import { Hl } from '@/components/ui/Card';
 import Icon from '@/components/site/Icon';
 import Reveal from '@/components/site/Reveal';
 import CountUp from '@/components/site/CountUp';
@@ -20,7 +19,7 @@ export default function Results() {
       <Reveal className={s.headRow}>
         <Chip>{HEADINGS.result.chip}</Chip>
         <h2 id="lp-timeline-results-h" className="t-display t-balance">
-          <Hl text={BILLBOARD.title} hl="Real-Time Data" />
+          {BILLBOARD.title}
         </h2>
         <div className="row">
           {SCOPE_CHIPS.map((c) => (

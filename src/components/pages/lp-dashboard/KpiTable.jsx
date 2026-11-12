@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Art from '@/components/art/Art';
 import Chip, { Trend } from '@/components/ui/Chip';
-import { Hl } from '@/components/ui/Card';
 import Icon from '@/components/site/Icon';
 import Reveal from '@/components/site/Reveal';
 import { ruler } from '@/lib/charts';
@@ -59,7 +58,7 @@ export default function KpiTable() {
       <div className="wrap">
         <Reveal>
           <div className={s.tableHead}>
-            <h2 id="lp-dashboard-table-h" className="t-display t-balance"><Hl text={t.title} hl="Progress Monitoring" /></h2>
+            <h2 id="lp-dashboard-table-h" className="t-display t-balance">{t.title}</h2>
             <p className="t-lead muted">{t.text}</p>
           </div>
         </Reveal>

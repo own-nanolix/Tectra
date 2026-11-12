@@ -37,7 +37,6 @@ export default function Secondary() {
             <PatternDefs idp="logo-pat" color={HEX.white} opacity={0.5} />
             <rect width="480" height="480" rx="6" fill={HEX.field} />
             <rect width="480" height="480" rx="6" fill="url(#logo-pat-pat-marks)" />
-            <rect x="60" y="60" width="360" height="360" rx="6" fill="url(#logo-pat-pat-fuse)" />
           </Art>
         </Plate>
       </div>

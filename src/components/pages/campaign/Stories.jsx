@@ -155,7 +155,7 @@ export function StoryPalm() {
     <Art viewBox={SZ.story} title="Story: Construction Management in the Palm of Your Hand" exportName="campaign-story-palm">
       <GroundG idp={id} w={1080} h={1920} kind="paper" />
       <ChipG x={90} y={100} label={HEADINGS.mobile.chip} w={206} />
-      <Lines x={90} y={330} lines={['Construction', 'Management in the', [{ h: 'Palm of Your Hand' }]]} size={102} lh={114} fill={HEX.ink} cls="slide-up" />
+      <Lines x={90} y={330} lines={['Construction', 'Management in the', 'Palm of Your Hand']} size={102} lh={114} fill={HEX.ink} cls="slide-up" />
       <Lines
         x={90} y={700} size={28} lh={40} weight={400} fill={HEX.muted} cls="fade-in" i={3}
         lines={["Access your project's data, track tasks, and collaborate", 'in real-time with our fully optimized mobile app,', 'available anywhere, anytime']}

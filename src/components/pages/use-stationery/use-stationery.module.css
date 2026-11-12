@@ -25,7 +25,7 @@
 
 @media (max-width: 900px) {
   .pair, .trio, .tall, .report { grid-template-columns: minmax(0, 1fr); }
-  .tall > .fig:last-child { max-width: 420px; }
+  .tall > :last-child { width: min(100%, 260px); justify-self: center; }
 }
 @media (max-width: 480px) {
   .slide { flex-basis: 86vw; }

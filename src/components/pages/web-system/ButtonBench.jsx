@@ -23,7 +23,6 @@ const STATES = [
   ['Hover', { filter: 'brightness(1.06)', transform: 'translateY(-1px)' }],
   ['Focus-visible', { outline: '2px solid var(--blue-ink)', outlineOffset: 3, borderRadius: 2 }],
   ['Active', { transform: 'translateY(1px) scale(0.985)', filter: 'brightness(0.96)' }],
-  ['Disabled', {}],
 ];
 
 function Specimen({ b, style, disabled, ...rest }) {
@@ -56,23 +55,31 @@ export default function ButtonBench() {
       <Line label="States, forced for reading (the shared classes are not redefined)">
         <div className={s.scroll} role="group" aria-label="Button states">
           <div className={s.states}>
-            <span />
             {STATES.map(([n]) => (
               <span key={n} className={s.statesHead}>{n}</span>
             ))}
             {SET.map((b) => (
               <div key={b.key} className={s.statesRow}>
-                <span className="t-small">{b.name}</span>
+                <span className={`t-small ${s.stateName}`}>{b.name}</span>
                 {STATES.map(([n, style]) => (
                   <div key={n} className={s.stateCell}>
                     <div className={b.block ? s.block : undefined}>
-                      <Specimen b={b} style={n === 'Default' || n === 'Disabled' ? undefined : style} disabled={n === 'Disabled'} />
+                      <Specimen b={b} style={n === 'Default' ? undefined : style} />
                     </div>
                   </div>
                 ))}
               </div>
             ))}
           </div>
+        </div>
+      </Line>
+      <Line label="Disabled">
+        <div className="row" style={{ gap: 12 }}>
+          {SET.map((b) => (
+            <div key={b.key} className={b.block ? s.blockFixed : undefined}>
+              <Specimen b={b} disabled />
+            </div>
+          ))}
         </div>
       </Line>
       <Fig caption="Anatomy of the primary button, drawn at three times its size.">

@@ -22,8 +22,23 @@ export default function Reveal({ children, delay = 0, from, as: Tag = 'div', cla
       { rootMargin: '0px 0px -8% 0px' },
     );
     io.observe(el);
+    // A fast scroll or a jump can pass an element without it ever intersecting: show anything at or above the fold.
+    let frame = 0;
+    const onScroll = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        if (el.getBoundingClientRect().top < window.innerHeight * 0.92) {
+          el.setAttribute('data-reveal', 'shown');
+          io.disconnect();
+          window.removeEventListener('scroll', onScroll);
+        }
+      });
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
     return () => {
       io.disconnect();
+      cancelAnimationFrame(frame);
+      window.removeEventListener('scroll', onScroll);
       el.setAttribute('data-reveal', 'shown');
     };
   }, []);

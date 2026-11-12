@@ -79,15 +79,16 @@ export function ScreenCardsG({ idp }) {
         <path d="M272 73.5h14" stroke="#FFB83D" strokeWidth="1.2" />
         <rect x="286" y="70" width="10" height="7" rx="1" fill="#FFB83D" />
         <text x="302" y="78" fontSize="11" fontWeight="400" fill={INK}>{KPI.cross.legend}</text>
-        <TickBarsG idp={`${idp}-tb`} x={20} y={112} w={310} h={86} count={44} from={0.31} to={0.56} tone="yellow" base="#CFCFCF" />
+        <TickBarsG idp={`${idp}-tb`} x={20} y={112} w={310} h={86} count={44} from={0.39} to={0.7} tone="yellow" base="#CFCFCF" />
         {ax.map((a) => (
           <text key={a.label + a.x} x={a.x + 20} y="262" fontSize="10" fontWeight="400" fill={MUTED} textAnchor="middle">{a.label}</text>
         ))}
       </g>
-      <rect x="36" y="746" width="318" height="62" rx="4" fill="#D0D0D0" />
-      <rect x="98" y="750" width="58" height="54" rx="3" fill="#FFB83D" />
+      {/* floating tab bar, measured from m09: about 256 x 50, centred near the bottom, second tab active */}
+      <rect x="67" y="772" width="256" height="50" rx="4" fill="#D0D0D0" fillOpacity="0.96" />
+      <rect x="120" y="772" width="46" height="50" rx="3" fill="#FFB83D" />
       {tabs.map((n, i) => (
-        <IconUse key={n} name={n} x={36 + 31 + i * 63.6 - 12} y={767} size={24} color={INK} />
+        <IconUse key={n} name={n} x={r2(67 + 26.6 + i * 50.7 - 12)} y={785} size={24} color={INK} />
       ))}
     </g>
   );

@@ -37,7 +37,7 @@ export default function Crew() {
               <Icon name="plus" size={26} />
             </span>
           </span>{' '}
-          {EMPOWER[2]} <span className="hl">{EMPOWER[3]}</span>
+          {EMPOWER[2]} {EMPOWER[3]}
         </h2>
       </Reveal>
       <Reveal delay={90}>

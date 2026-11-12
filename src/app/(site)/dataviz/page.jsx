@@ -23,7 +23,7 @@ export default function Page() {
 
         <div className={s.layout}>
           <div className={s.bento}>
-            <Cell title="Trend: area" span="w2 h2" note="Glass area chart with one ring marker on 17 Dec. The curve is drawn in the shape of the source; only the card figures are published.">
+            <Cell title="Trend: area" span="w2 h2" note="The glass panel of the site view: one ring marker on the peak, the volume bar under it. The curve follows the source; only the panel figures are published.">
               <AreaGlass />
             </Cell>
             <Cell title="Time: tick bars" span="w2" delay={60} note="Bars fade downward; the band that is on carries a range handle. The axis keeps the designer's order.">
@@ -63,7 +63,7 @@ export default function Page() {
             <Cell title="Flow" span="w2" note="Cut divides into Fill and Net as straight-edged bands.">
               <Flow />
             </Cell>
-            <Cell title="Place" span="w2 h2" delay={60} note="The cut-away site with pins sized by value; Komatsu carries its published 32%.">
+            <Cell title="Place" span="w2 h2" delay={60} note="The cut-away site with its location pins. Only the Komatsu work card has a published value, so only its yellow pin carries one.">
               <Place />
             </Cell>
             <Cell title="Time: calendar" span="w2" delay={100} note="The Komatsu work dates as a range, and the Cut and Fill date apart.">

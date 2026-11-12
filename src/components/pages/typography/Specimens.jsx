@@ -1,12 +1,12 @@
 import Art from '@/components/art/Art';
-import { CHARSET, FONT_NAME, HEX, WEIGHTS } from '@/lib/brand';
+import { CHARSET, FONT_NAME, HEX, KPI, WEIGHTS } from '@/lib/brand';
 
 const OUT = { fill: 'none', stroke: HEX.blue, strokeWidth: 2, strokeLinejoin: 'round' };
 
 // The specimen of the case study (m11): Font, Urbanist, the character set, the giant AaBbCc and the weight labels.
 export function SpecimenSvg() {
   return (
-    <Art viewBox="0 0 1600 1150" title="Urbanist specimen: character set, the giant AaBbCc and the weights Light, Regular and Medium" exportName="typography-specimen">
+    <Art viewBox="0 200 1600 930" title="Urbanist specimen: character set, the giant AaBbCc and the weights Light, Regular and Medium" exportName="typography-specimen">
       <rect width="1600" height="1150" fill={HEX.paper} />
       <g className="fade-in">
         <text x="504" y="272" fontSize="24" fontWeight="300" fill={HEX.muted}>Font</text>
@@ -66,7 +66,8 @@ export function WeightsSvg() {
 
 // The secondary voice: the case study shows only Urbanist. Medium is the label and card-title voice of the same family.
 export function VoiceSvg() {
-  const cards = ['Details', 'Notes', 'Material', 'Cut and Fill'];
+  // Card titles and figures as the app prints them (KPI in brand.js), "Progres" spelled as in the source.
+  const cards = [KPI.details, KPI.notes, KPI.material, KPI.progress];
   return (
     <Art viewBox="0 0 1200 520" title="The label voice: Urbanist Medium, the same family as the primary typeface, set as card titles" exportName="typography-voice">
       <rect width="1200" height="520" rx="6" fill={HEX.tile} />
@@ -74,15 +75,15 @@ export function VoiceSvg() {
       <text x="40" y="96" fontSize="30" fontWeight="500" fill={HEX.ink}>Urbanist Medium 500</text>
       <text x="40" y="128" fontSize="15" fontWeight="400" fill={HEX.muted}>Same family as the primary typeface, set heavier for labels and card titles</text>
       <text x="40" y="410" fontSize="270" fontWeight="500" fill={HEX.blue}>Mm</text>
-      {cards.map((t, i) => {
+      {cards.map((c, i) => {
         const x = 520 + (i % 2) * 330;
         const y = 168 + Math.floor(i / 2) * 170;
         return (
-          <g key={t} className="slide-up" style={{ '--i': i }}>
+          <g key={c.label} className="slide-up" style={{ '--i': i }}>
             <rect x={x} y={y} width="310" height="150" rx="4" fill={HEX.card} />
-            <text x={x + 20} y={y + 40} fontSize="20" fontWeight="500" fill={HEX.ink}>{t}</text>
-            <text x={x + 20} y={y + 112} fontSize="44" fontWeight="300" fill={HEX.ink}>{['76%', '64%', '32%', '24%'][i]}</text>
-            <text x={x + 290} y={y + 40} textAnchor="end" fontSize="13" fontWeight="400" fill={HEX.muted}>{['+2.4%', '-1.9%', '+8.1%', '-1.9%'][i]}</text>
+            <text x={x + 20} y={y + 40} fontSize="20" fontWeight="500" fill={HEX.ink}>{c.label}</text>
+            <text x={x + 20} y={y + 112} fontSize="44" fontWeight="300" fill={HEX.ink}>{c.value}</text>
+            <text x={x + 290} y={y + 40} textAnchor="end" fontSize="13" fontWeight="400" fill={HEX.muted}>{c.trend}</text>
           </g>
         );
       })}

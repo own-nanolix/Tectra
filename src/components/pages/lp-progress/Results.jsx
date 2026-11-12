@@ -31,10 +31,10 @@ export default function Results() {
               {RESULTS.map((r, i) => {
                 const v = parseInt(r.value, 10) / 100;
                 return (
-                  <g key={i} transform={`translate(0 ${i * LANE})`} opacity={pick === i ? 1 : 0.4} onPointerEnter={() => setPick(i)}>
+                  <g key={i} transform={`translate(0 ${i * LANE})`} onPointerEnter={() => setPick(i)}>
                     <text x="0" y="22" fontSize="20" fill={HEX.ink}>{r.label}</text>
                     <text x={W} y="26" fontSize="34" fill={HEX.ink} textAnchor="end" fontWeight="300">{r.value}</text>
-                    <g transform="translate(0 40)">
+                    <g transform="translate(0 40)" opacity={pick === i ? 1 : 0.4}>
                       <TickBarsG idp={`lp-progress-res${i}`} w={W} h={50} count={50} from={0} to={v} tone={r.tone} handle={false} rise />
                     </g>
                     <rect x="0" y="0" width={W} height="100" fill="transparent" />

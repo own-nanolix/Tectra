@@ -59,9 +59,9 @@ export default function FigureSheet() {
         </defs>
         <rect width={CW} height={CH} rx="4" fill="url(#feature-fig-field)" />
         <rect x="14" y="14" width={CW - 28} height={CH - 28} rx="4" fill="#FFFFFF" fillOpacity="0.22" />
-        <text x="28" y="44" fontSize="13" fill="#FFFFFF" fillOpacity="0.85">{o.label}</text>
+        <text x="28" y="44" fontSize="13" fill="#0A2E63">{o.label}</text>
         <text x="28" y="82" fontSize="32" fontWeight="300" fill="#FFFFFF">{o.value}</text>
-        <text x={CW - 28} y="78" fontSize="12" fill="#FFFFFF" textAnchor="end">{o.trend}</text>
+        <text x={CW - 28} y="78" fontSize="12" fill="#0A2E63" textAnchor="end">{o.trend}</text>
         <path d={`M${CW - 66} 66l6-7 6 7z`} fill="#4093EC" transform="translate(0 -1)" />
         <path d={areaPath(AREA, 186, true)} fill="url(#feature-fig-area)" />
         <path d={curvePath(AREA)} fill="none" stroke="#FFFFFF" strokeWidth="2" className="draw" style={{ '--len': 420 }} />

@@ -2,7 +2,7 @@
 // only move parts away from it and back.
 import Art from '@/components/art/Art';
 import { IsoSiteG, PinG } from '@/components/art/KeyArt';
-import { MARK } from '@/components/art/Mark';
+import { MARK, MARK_BODY } from '@/components/art/Mark';
 import { axisLabels, ruler, tickBars } from '@/lib/charts';
 import { Linear, Plate, gradById } from './kit';
 import s from './gradients.module.css';
@@ -30,12 +30,13 @@ function Wave() {
 
 function Fuse() {
   return (
-    <Art viewBox="0 0 400 300" title="Two circles sliding together and apart" exportName="gradients-motion-fuse">
+    <Art viewBox="0 0 400 300" title="The mark parting into its circles and fusing again" exportName="gradients-motion-fuse">
       <defs><Linear id="gradients-m2-g" w={400} h={300} deg={160} stops={FIELD} /></defs>
       <rect width="400" height="300" fill="url(#gradients-m2-g)" />
       <g transform="translate(70 30) scale(2.4)" fill="#FFFFFF">
         <circle className={s.slideA} cx={MARK.A.cx} cy={MARK.A.cy} r={MARK.A.r} />
         <circle className={s.slideB} cx={MARK.B.cx} cy={MARK.B.cy} r={MARK.B.r} />
+        <path className={s.body} d={MARK_BODY} />
         <circle className={s.land} cx={MARK.C.cx} cy={MARK.C.cy} r={MARK.C.r} />
       </g>
     </Art>
@@ -80,7 +81,7 @@ export default function Motion() {
   return (
     <div className={s.strip}>
       <Plate span={3} dark name="Wave" spec="40 bars, 3.2 s loop"><Wave /></Plate>
-      <Plate span={3} dark name="Fuse" spec="two circles, 5 s loop"><Fuse /></Plate>
+      <Plate span={3} dark name="Fuse" spec="the mark parting and fusing, 5 s loop"><Fuse /></Plate>
       <Plate span={3} dark name="Pin" spec="ring, 2.4 s loop"><Pin /></Plate>
       <Plate span={3} dark name="Handle" spec="range along a ruler, 5 s loop"><Handle /></Plate>
     </div>

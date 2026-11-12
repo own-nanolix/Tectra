@@ -145,12 +145,13 @@ export function AxisG({ points, ...rest }) {
 }
 
 // A small layer label with a leader line. Text must be a plain deliverable name or brand text.
-export function CalloutG({ x, y, tx, ty, label, anchor = 'start', ...rest }) {
+// fontSize is in the SVG's own units: raise it in large viewBoxes so labels stay readable on phones.
+export function CalloutG({ x, y, tx, ty, label, anchor = 'start', fontSize = 12, ...rest }) {
   return (
     <g {...rest}>
       <path d={`M${x} ${y}L${tx} ${ty}`} stroke="#90C0F3" strokeWidth="1" fill="none" />
       <circle cx={x} cy={y} r="2.5" fill="#4093EC" />
-      <text x={tx + (anchor === 'end' ? -6 : 6)} y={ty + 4} fontSize="12" fontWeight="400" fill="#5E5E5E" textAnchor={anchor}>
+      <text x={tx + (anchor === 'end' ? -6 : 6)} y={ty + fontSize / 3} fontSize={fontSize} fontWeight="400" fill="#5E5E5E" textAnchor={anchor}>
         {label}
       </text>
     </g>

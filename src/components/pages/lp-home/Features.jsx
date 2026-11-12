@@ -8,7 +8,7 @@ import s from './s';
 
 export default function Features() {
   return (
-    <section className={`wrap ${s.section}`} aria-labelledby="lp-home-features-h">
+    <section className={`wrap ${s.section} ${s.featSec}`} aria-labelledby="lp-home-features-h">
       <Reveal>
         <h2 id="lp-home-features-h" className={`${s.h2} ${s.h2Feat}`}>
           <Hl text={FEATURES.heading} hl={FEATURES.hl} />

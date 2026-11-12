@@ -13,8 +13,8 @@ export const LEVELS = [...CUT_FILL.top.map((t) => lv(t, 'Top')), ...CUT_FILL.bot
 
 // The one named work card, then the six cards.
 export const WORK = [
-  { id: 'komatsu', name: KOMATSU.name, sub: KOMATSU.dates, kind: 'Work card', value: 32, vText: KOMATSU.value, trend: null, tText: '', dir: null },
-  ...ROWS.map((r) => ({ ...r, kind: 'Card' })),
+  { id: 'komatsu', name: KOMATSU.name, sub: KOMATSU.dates, value: 32, vText: KOMATSU.value, trend: null, tText: '', dir: null },
+  ...ROWS,
 ];
 
 export const TREND_CHIPS = [

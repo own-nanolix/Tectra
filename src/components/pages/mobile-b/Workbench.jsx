@@ -9,7 +9,7 @@ import Reveal from '@/components/site/Reveal';
 import { tEnter, tMove } from '@/lib/motion';
 import { SCREENS, Artboard } from './Screens';
 import { Scaled } from './Parts';
-import { SpecStatus, SpecNav, SpecTabBar, SpecRows, SpecCard, SpecStat, SpecInput, SpecAccordion, SpecSheet, SpecTicks, SpecMarkers } from './Spec';
+import { SpecStatus, SpecNav, SpecTabBar, SpecListRow, SpecMenuRow, SpecCard, SpecStat, SpecInput, SpecAccordion, SpecSheet, SpecTicks, SpecMarkers } from './Spec';
 import s from './mobile-b.module.css';
 
 const spec = (title, note, node, wide) => (
@@ -28,10 +28,11 @@ const BODIES = {
   ),
   rows: (
     <div className={`${s.setPanel} ${s.specGrid}`}>
-      {spec('List row and menu row', 'Default, pressed and selected; menu row with chevron or switch.', <SpecRows />)}
+      {spec('List row', 'Default, pressed and selected.', <SpecListRow />)}
+      {spec('Menu row', 'With a chevron, or with a switch.', <SpecMenuRow />)}
       {spec('Card', 'Title Medium, arrow top right; open turns the arrow and shows the figure and arc.', <SpecCard />)}
       {spec('Stat card', 'Trend with yellow up or red down triangle, Light figure, corner arc.', <SpecStat />)}
-      {spec('Tick-bar chart', 'Range band and handle with the designer’s axis order.', <SpecTicks />)}
+      {spec('Tick-bar chart', 'Range band and handle with the designer’s axis order.', <SpecTicks />, true)}
     </div>
   ),
   fields: (

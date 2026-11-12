@@ -12,11 +12,13 @@ export function MarkersG({ x = 0, y = 0 }) {
         const label = cut ? CUT_FILL.bottom[i / 2] : CUT_FILL.top[(i - 1) / 2];
         const col = cut ? HEX.yellow : HEX.blue;
         return (
-          <g key={i} opacity={o}>
-            <path d={cut ? `M${cx} 16V96` : `M${cx} 112V36`} stroke={col} strokeWidth="1.4" />
-            <rect x={cx - 20} y={cut ? 13 : 111} width="40" height="4" rx="1" fill={col} />
-            <circle cx={cx} cy={cut ? 36 : 94} r="3.4" fill={col} />
-            <text x={cx} y={cut ? 112 : 28} textAnchor="middle" fill={HEX.muted}>{label}</text>
+          <g key={i}>
+            <g opacity={o}>
+              <path d={cut ? `M${cx} 17V80` : `M${cx} 111V46`} stroke={col} strokeWidth="1.4" />
+              <rect x={cx - 20} y={cut ? 13 : 111} width="40" height="4" rx="1" fill={col} />
+            </g>
+            <circle cx={cx} cy={cut ? 20 : 108} r="3" fill={col} />
+            <text x={cx} y={cut ? 112 : 28} textAnchor="middle" fill={HEX.ink}>{label}</text>
           </g>
         );
       })}

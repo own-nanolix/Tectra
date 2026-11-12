@@ -83,10 +83,11 @@ const TABS = ['Dashboard', 'Progress', 'Timeline'];
 function TabChange() {
   const [tab, setTab] = useState(0);
   const key = (e) => {
-    const d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
-    if (!d) return;
+    const last = TABS.length - 1;
+    const map = { ArrowRight: (tab + 1) % TABS.length, ArrowLeft: (tab + last) % TABS.length, Home: 0, End: last };
+    if (!(e.key in map)) return;
     e.preventDefault();
-    const next = (tab + d + TABS.length) % TABS.length;
+    const next = map[e.key];
     setTab(next);
     document.getElementById(`motion-tab-${next}`)?.focus();
   };
@@ -134,17 +135,21 @@ function TabChange() {
 // (d) Modal / sheet rising.
 function Sheet() {
   const [open, setOpen] = useState(false);
+  const close = () => {
+    setOpen(false);
+    document.getElementById('motion-sheet-open')?.focus();
+  };
   return (
     <div className={s.plate}>
       <Head title="Sheet rising" />
       <div
         className={s.stage}
         onKeyDown={(e) => {
-          if (e.key === 'Escape') setOpen(false);
+          if (e.key === 'Escape' && open) close();
         }}
       >
         <div>
-          <Button size="sm" onClick={() => setOpen(true)}>Open sheet</Button>
+          <Button id="motion-sheet-open" size="sm" onClick={() => setOpen(true)}>Open sheet</Button>
         </div>
         <Lines />
         <AnimatePresence>
@@ -156,7 +161,7 @@ function Sheet() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 0.35, transition: tx(tEnter) }}
                 exit={{ opacity: 0, transition: tx(tMove) }}
-                onClick={() => setOpen(false)}
+                onClick={close}
               />
               <motion.div
                 key="sheet"
@@ -170,7 +175,7 @@ function Sheet() {
                 <p className="t-title">Sheet</p>
                 <Lines n={2} />
                 <div>
-                  <Button size="sm" variant="dark" autoFocus onClick={() => setOpen(false)}>Close</Button>
+                  <Button size="sm" variant="dark" autoFocus onClick={close}>Close</Button>
                 </div>
               </motion.div>
             </>

@@ -1,0 +1,46 @@
+/* Typography page: a specimen book. Keyframes are named typography-xxx. */
+.head { margin-bottom: clamp(40px, 6vw, 88px); }
+.specimen { margin-bottom: clamp(48px, 7vw, 110px); }
+.specimen svg { display: block; width: 100%; height: auto; }
+
+.book { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: calc(var(--gap) * 2); align-items: start; }
+.stick { position: sticky; top: 24px; align-self: start; }
+.stick svg { display: block; width: 100%; height: auto; }
+.stickNote { margin-top: 14px; font-size: 13px; line-height: 1.45; color: var(--muted); }
+.flow { display: grid; grid-template-columns: minmax(0, 1fr); gap: calc(var(--gap) * 3); min-width: 0; }
+.block { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--gap); min-width: 0; }
+.block h2 { max-width: 18em; }
+.scroll { overflow-x: auto; max-width: 100%; }
+.scroll:focus-visible { outline: 2px solid var(--blue-ink); outline-offset: 2px; }
+.sheet { overflow-x: auto; min-width: 0; }
+.sheet svg { display: block; min-width: 560px; width: 100%; height: auto; }
+
+.ledger { width: 100%; min-width: 620px; border-collapse: collapse; font-size: 14px; font-weight: 400; text-align: left; }
+.ledger th { font-size: 11px; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; white-space: nowrap; }
+.ledger td { padding: 12px 14px 12px 0; border-top: 1px solid var(--line); vertical-align: baseline; color: var(--ink); white-space: nowrap; }
+.ledger td:first-child { white-space: normal; }
+.ledger td.wrapCell { white-space: normal; color: var(--muted); }
+.use { display: block; font-size: 13px; color: var(--muted); margin-top: 2px; }
+
+.wide { margin-top: calc(var(--gap) * 3); display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--gap); }
+.metrics { display: grid; grid-template-columns: minmax(0, 9fr) minmax(0, 3fr); gap: var(--gap); align-items: start; }
+.metricsSvg { overflow-x: auto; min-width: 0; }
+.metricsSvg svg { display: block; min-width: 560px; width: 100%; height: auto; }
+.notes { display: grid; gap: 18px; }
+.notes p { font-size: 13px; font-weight: 400; line-height: 1.45; color: var(--muted); padding-top: 6px; border-top: 1px solid var(--line); margin: 0; }
+.notes b { display: block; color: var(--ink); font-weight: 500; }
+.notes code { font-family: inherit; color: var(--ink); font-variant-numeric: tabular-nums; }
+
+.tester { display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; background: var(--tile); border-radius: var(--r-2); padding: clamp(18px, 2.4vw, 32px); }
+.preview { min-height: 1.4em; font-size: clamp(32px, 5vw, 64px); line-height: 1.1; letter-spacing: -0.01em; overflow-wrap: anywhere; transition: font-weight var(--dur-2) var(--ease-out); }
+
+.habits { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gap); }
+.habit { margin: 0; min-width: 0; }
+.habit svg { display: block; width: 100%; height: auto; }
+.habit figcaption { margin-top: 8px; font-size: 13px; line-height: 1.4; color: var(--muted); }
+
+@media (max-width: 900px) {
+  .habits { grid-template-columns: minmax(0, 1fr); }
+  .book, .metrics { grid-template-columns: minmax(0, 1fr); }
+  .stick { position: static; }
+}

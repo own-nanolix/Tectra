@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Art from '@/components/art/Art';
 import Button from '@/components/ui/Button';
 import Chip from '@/components/ui/Chip';
@@ -22,10 +22,23 @@ export default function TimelineLive() {
   const x = useTween(B[i + 1]);
   const track = useRef(null);
   const cards = useRef({});
+  const hero = useRef(null);
+
+  // On narrow screens the roadmap scrolls sideways: keep the marker in view.
+  const showMarker = (n, smooth) => {
+    const el = hero.current;
+    if (!el || el.scrollWidth <= el.clientWidth) return;
+    const left = (B[n + 1] / 1600) * el.scrollWidth - el.clientWidth * 0.6;
+    el.scrollTo({ left: Math.max(0, left), behavior: smooth && !still() ? 'smooth' : 'auto' });
+  };
+  useEffect(() => {
+    showMarker(3, false);
+  }, []);
 
   const go = (k) => {
     const n = clamp(k, 0, LAST);
     setI(n);
+    showMarker(n, true);
     const box = track.current;
     const card = cards.current[n];
     if (box && card) {
@@ -50,7 +63,7 @@ export default function TimelineLive() {
           <h1 id="lp-timeline-h1" tabIndex={-1} className={`t-h1 ${s.headline}`}>
             <Hl text={HEADINGS.strategic.text} hl={HEADINGS.strategic.hl} />
           </h1>
-          <div className={s.scroll}>
+          <div className={s.scroll} ref={hero}>
             <div
               className={s.canvas}
               role="slider"
@@ -81,7 +94,6 @@ export default function TimelineLive() {
             <p className={s.readout} aria-live="polite">
               <span className="t-label">{ROADMAP.here}</span>
               <b className={s.readoutName}>{STAGES[i].name}</b>
-              <span className="t-label">{i + 1} / {STAGES.length}</span>
             </p>
           </div>
         </div>

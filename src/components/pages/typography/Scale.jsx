@@ -1,10 +1,9 @@
-import Art from '@/components/art/Art';
+﻿import Art from '@/components/art/Art';
 import CopyValue from '@/components/site/CopyValue';
-import { Hl } from '@/components/ui/Card';
 import { HEX } from '@/lib/brand';
 import { r2 } from '@/lib/charts';
 import { SCALE, wrapHl } from './typoData';
-import { s } from './typoStyles';
+import s from './typography.module.css';
 
 const CAP = 56;
 
@@ -43,12 +42,45 @@ export function ScaleSvg() {
   );
 }
 
+// The three weights and where the case study uses each (SOURCE.md, "Type"). Values copy on click.
+const WEIGHT_USE = [
+  ['Light', 300, 'Everything large: display quotes, section headings, the app hero, card figures, quote body'],
+  ['Regular', 400, 'Chips and labels, axis and captions, names in the quote chip'],
+  ['Medium', 500, 'Card titles, the label voice, footer column heads'],
+];
+
+export function WeightTable() {
+  return (
+    <div className={s.scroll} role="region" aria-label="Weights and their use" tabIndex={0}>
+      <table className={s.ledger}>
+        <caption className="sr-only">Urbanist weights and where the case study uses each</caption>
+        <thead>
+          <tr>
+            <th scope="col">Weight</th>
+            <th scope="col">Value</th>
+            <th scope="col">Used for</th>
+          </tr>
+        </thead>
+        <tbody>
+          {WEIGHT_USE.map(([name, w, use]) => (
+            <tr key={name}>
+              <td style={{ fontWeight: w, fontSize: 18 }}>{name}</td>
+              <td><CopyValue value={`font-weight: ${w};`} label={`${name} weight`}>{w}</CopyValue></td>
+              <td className={s.wrapCell}>{use}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
 // The same scale as live type with the spec beside it. Class names copy on click.
 export function ScaleTable() {
   return (
     <div className={s.scroll} role="region" aria-label="Type scale" tabIndex={0}>
       <table className={s.ledger}>
-        <caption className="sr-only">Type scale: class, size at 1600 px, weight, line-height, letter-spacing and a live sample</caption>
+        <caption className="sr-only">Type scale: class, size at 1600 px, weight, line-height and letter-spacing</caption>
         <thead>
           <tr>
             <th scope="col">Step</th>
@@ -56,22 +88,16 @@ export function ScaleTable() {
             <th scope="col">Weight</th>
             <th scope="col">Line-height</th>
             <th scope="col">Tracking</th>
-            <th scope="col">Sample</th>
           </tr>
         </thead>
         <tbody>
           {SCALE.map((r) => (
             <tr key={r.id}>
-              <td>{r.cls ? <CopyValue value={r.cls} label={`${r.id} class`} /> : r.id}<br /><span className="t-small">{r.use}</span></td>
-              <td>{r.size} px</td>
+              <td>{r.cls ? <CopyValue value={r.cls} label={`${r.id} class`} /> : r.id}<span className={s.use}>{r.use}</span></td>
+              <td><CopyValue value={`${r.size}px`} label={`${r.id} size`}>{`${r.size} px`}</CopyValue></td>
               <td>{r.w}</td>
               <td>{r.lh}</td>
               <td>{r.ls}</td>
-              <td>
-                <p className={`${s.sample} ${r.cls}`} style={r.cls ? { fontSize: r.size > 60 ? 'clamp(28px, 4vw, ' + Math.min(r.size, 64) + 'px)' : undefined } : { fontWeight: r.w, fontSize: r.size, lineHeight: r.lh, letterSpacing: r.ls }}>
-                  {r.hl ? <Hl text={r.sample} hl={r.hl} /> : r.sample}
-                </p>
-              </td>
             </tr>
           ))}
         </tbody>

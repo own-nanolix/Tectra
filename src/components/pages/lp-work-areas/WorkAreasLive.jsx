@@ -2,14 +2,14 @@
 
 import { useState } from 'react';
 import Art from '@/components/art/Art';
-import { IsoSiteG } from '@/components/art/KeyArt';
+import { IsoSiteG, PinG, SITE_PINS, iso } from '@/components/art/KeyArt';
 import Button from '@/components/ui/Button';
 import Chip from '@/components/ui/Chip';
 import { Hl } from '@/components/ui/Card';
 import CountUp from '@/components/site/CountUp';
 import Reveal from '@/components/site/Reveal';
 import { HEADINGS, HERO, NAV, SOLUTION } from '@/lib/brand';
-import { PINS, VIEW, pinAt } from './data';
+import { PINS, VIEW, ORIGIN, pinAt } from './data';
 import AreaCards from './AreaCards';
 import s from './lp-work-areas.module.css';
 
@@ -38,6 +38,20 @@ export default function WorkAreasLive({ nav }) {
             <div className={s.site} style={{ aspectRatio: `${VIEW.w} / ${VIEW.h}` }}>
               <Art viewBox={`${VIEW.x} ${VIEW.y} ${VIEW.w} ${VIEW.h}`} title="Isometric site with the work areas" exportName="lp-work-areas-site">
                 <IsoSiteG tone="blue" seed={7} className="fade-in" />
+                {/* The pins are part of the artwork (the selected one yellow); the buttons below sit exactly on them. */}
+                <g transform={`translate(${ORIGIN.x} ${ORIGIN.y})`}>
+                  {PINS.map((p, i) => {
+                    const [px, py] = iso(...SITE_PINS[p.site], 20);
+                    const on = sel === p.id;
+                    return (
+                      <g key={p.id} transform={`translate(${px} ${py})`}>
+                        <g className={s.pinDrop} style={{ '--i': i }}>
+                          <PinG r={on ? 9 : 7} tone={on ? 'yellow' : 'white'} pulse={on} />
+                        </g>
+                      </g>
+                    );
+                  })}
+                </g>
               </Art>
               <div role="group" aria-label="Work areas on the site" className={s.pins}>
                 {PINS.map((p, i) => {
@@ -52,7 +66,6 @@ export default function WorkAreasLive({ nav }) {
                       aria-label={p.name}
                       onClick={() => setSel(p.id)}
                     >
-                      <span className={s.pinDot} aria-hidden="true" />
                       <span className={s.pinTip} aria-hidden="true">{p.name}</span>
                     </button>
                   );
@@ -76,7 +89,7 @@ export default function WorkAreasLive({ nav }) {
               <Chip key={p.id} pressed={sel === p.id} onClick={() => setSel(p.id)}>{p.name}</Chip>
             ))}
           </div>
-          <h2 id="lp-work-areas-areas-h" className="t-display"><span className="hl" key={sel}>{cur.name}</span></h2>
+          <h2 id="lp-work-areas-areas-h" className="t-display"><span className={s.areaName} key={sel}>{cur.name}</span></h2>
         </Reveal>
         <AreaCards sel={sel} />
       </section>

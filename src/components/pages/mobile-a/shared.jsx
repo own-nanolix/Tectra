@@ -3,7 +3,7 @@
 import Icon from '@/components/site/Icon';
 import { AppIconG } from '@/components/art/Mark';
 import { IsoSiteG, PinG, TickBarsG, SITE_PINS, iso } from '@/components/art/KeyArt';
-import { cornerGauge, axisLabels, r2 } from '@/lib/charts';
+import { cornerGauge, axisLabels, arcPath, polar, arcLength, r2 } from '@/lib/charts';
 import { ROADMAP } from '@/lib/brand';
 import s from './mobile-a.module.css';
 
@@ -56,15 +56,28 @@ export function TabBar({ active = 1 }) {
 }
 
 // ---------- Corner gauge ----------
-export function GaugeBody({ w, h, r, value, tone = 'blue' }) {
-  const g = cornerGauge(w, h, r, value);
+// The arc of the case study's cards, measured on m09: a circle whose centre sits near the card's bottom-right
+// corner (`c` = [cx, cy] in card space). Without `c` the shared cornerGauge geometry is used.
+function gaugeGeom(w, h, r, value, c) {
+  if (!c) return cornerGauge(w, h, r, value);
+  const [cx, cy] = c;
+  const a0 = -96;
+  const av = r2(a0 + 96 * Math.max(0, Math.min(1, value)));
+  return { track: arcPath(cx, cy, r, a0, 40), value: arcPath(cx, cy, r, a0, av), dot: polar(cx, cy, r, av), len: arcLength(r, a0, av) };
+}
+// Card sizes on the 390-wide screen, measured on m09: half cards (Details, Notes) and full-width cards (Material).
+export const HALF = { w: 181, h: 188, r: 90, c: [190, 180] };
+export const FULL = { w: 367, h: 187, r: 150, c: [284, 229] };
+
+export function GaugeBody({ w, h, r, value, tone = 'blue', c }) {
+  const g = gaugeGeom(w, h, r, value, c);
   const col = tone === 'yellow' ? YELLOW : BLUE;
   return (
     <g fill="none" strokeLinecap="round">
-      <path d={g.track} stroke="#F2F2F2" strokeWidth="5" />
-      <path d={g.value} stroke={col} strokeWidth="5" className="draw" style={{ '--len': g.len }} />
-      <circle cx={g.dot[0]} cy={g.dot[1]} r="8" fill="#F2F2F2" stroke="none" />
-      <g className="pop" style={{ '--i': 6 }}><circle cx={g.dot[0]} cy={g.dot[1]} r="3.6" fill={col} stroke="none" /></g>
+      <path d={g.track} stroke="#F2F2F2" strokeWidth="4.5" />
+      <path d={g.value} stroke={col} strokeWidth="4.5" className="draw" style={{ '--len': g.len }} />
+      <circle cx={g.dot[0]} cy={g.dot[1]} r="6" fill="#F2F2F2" stroke="none" />
+      <g className="pop" style={{ '--i': 6 }}><circle cx={g.dot[0]} cy={g.dot[1]} r="3" fill={col} stroke="none" /></g>
     </g>
   );
 }
@@ -74,11 +87,11 @@ function Tri({ dir }) {
 }
 
 // The live HTML gauge card. `pos` places it inside an artboard.
-export function GaugeCard({ title, value, trend, dir, tone, w, h, r, legend, pos }) {
+export function GaugeCard({ title, value, trend, dir, tone, w, h, r, c, legend, pos, className = '' }) {
   const n = parseInt(value, 10) / 100;
   return (
-    <div className={s.gc} style={{ width: w, height: h, ...pos }}>
-      <svg className={s.gcSvg} viewBox={`0 0 ${w} ${h}`} aria-hidden="true"><GaugeBody w={w} h={h} r={r} value={n} tone={tone} /></svg>
+    <div className={`${s.gc} ${className}`} style={{ width: w, height: h, ...pos }}>
+      <svg className={s.gcSvg} viewBox={`0 0 ${w} ${h}`} aria-hidden="true"><GaugeBody w={w} h={h} r={r} c={c} value={n} tone={tone} /></svg>
       <div className={s.gcHead}><span>{title}</span><Icon name="arrow-up-right" size={16} /></div>
       <div className={s.gcFoot}>
         <span className={s.gcTrend}>{trend}<Tri dir={dir} /></span>
@@ -117,11 +130,11 @@ export function AxisRow({ w, y }) {
   );
 }
 
-export function TickChart({ idp, w, h, from, to, tone, rise = true }) {
+export function TickChart({ idp, w, h, from, to, tone, rise = true, axis = 50 }) {
   return (
-    <svg className={s.chartSvg} width={w} height={h + 60} viewBox={`0 0 ${w} ${h + 60}`} aria-hidden="true">
+    <svg className={s.chartSvg} width={w} height={h + axis + 10} viewBox={`0 0 ${w} ${h + axis + 10}`} aria-hidden="true">
       <TickBarsG idp={idp} w={w} h={h} from={from} to={to} tone={tone} rise={rise} />
-      <AxisRow w={w} y={h + 50} />
+      <AxisRow w={w} y={h + axis} />
     </svg>
   );
 }
@@ -156,7 +169,7 @@ export function SiteG({ x = 0, y = 0, scale = 1, tone = 'paper', names = ['ridge
 
 // ---------- Volume bar (15.837 to 75.484, 8 segments, 4 filled) as artwork ----------
 export function VolumeG({ w = 310, from, to, filled = 4 }) {
-  const gap = 4, sw = (w - 8 - gap * 7) / 8;
+  const gap = 4, sw = (w - 36 - gap * 7) / 8;
   return (
     <g>
       <rect width={w} height="96" rx="4" fill="#E9E9E9" />
@@ -165,7 +178,7 @@ export function VolumeG({ w = 310, from, to, filled = 4 }) {
       <path d={`M${w / 2 - 28} 34h56m-4-3 4 3-4 3`} fill="none" stroke={MUTED} strokeWidth="1" />
       <rect x="14" y="54" width={w - 28} height="16" rx="2" fill="#DFDFDF" />
       {Array.from({ length: 8 }, (_, i) => (
-        <rect key={i} x={r2(18 + i * (sw - 0.6 + gap))} y="58" width={r2(sw - 0.6)} height="8" rx="1" fill={i < filled ? BLUE : '#FFFFFF'} fillOpacity={i < filled ? 1 : 0.8} className={i < filled ? 'grow-x' : undefined} style={{ '--i': i }} />
+        <rect key={i} x={r2(18 + i * (sw + gap))} y="58" width={r2(sw)} height="8" rx="1" fill={i < filled ? BLUE : '#FFFFFF'} fillOpacity={i < filled ? 1 : 0.8} className={i < filled ? 'grow-x' : undefined} style={{ '--i': i }} />
       ))}
     </g>
   );

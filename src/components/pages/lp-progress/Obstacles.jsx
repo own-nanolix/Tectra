@@ -50,7 +50,7 @@ export default function Obstacles() {
         </Reveal>
         <Reveal delay={100} className={s.center}>
           <Segmented id="lp-progress-obst" label="Problem or solution" options={['Problem', 'Solution']} value={side} onChange={setSide} />
-          <div className={`card ${s.obstCard}`} data-side={side} key={side}>
+          <div className={`card fade-in ${s.obstCard}`} data-side={side} key={side}>
             <div className="card-head">
               <h3 className="t-h3">{side}</h3>
               <Icon name="arrow-up-right" size={20} />

@@ -63,5 +63,55 @@
 @media (max-width: 900px) { .ov-ledgerGrid { grid-template-columns: minmax(0, 1fr); } }
 .ov-sectionHead { display: grid; gap: 12px; }
 
+/* The brief (m02): 88 px Light, the quote chip set against the end of the last line */
+.ov-brief { position: relative; max-width: 1440px; }
+.ov-briefText { max-width: 14.5em; }
+.ov-briefWho { margin-top: clamp(20px, 3vw, 40px); margin-left: clamp(0px, 46vw, 860px); }
+@media (max-width: 900px) { .ov-briefWho { margin-left: 0; } }
+
+/* Credits: right-hand margin note */
+.ov-credits { display: grid; gap: 14px; }
+.ov-credits dl { margin: 0; display: grid; gap: 10px; }
+.ov-credits dl div { display: grid; gap: 2px; padding-top: 8px; border-top: 1px solid var(--line); }
+.ov-credits dt { font-size: 12px; font-weight: 400; color: var(--muted); }
+.ov-credits dd { margin: 0; font-size: 14px; font-weight: 400; line-height: 1.4; color: var(--ink); }
+.ov-scope { list-style: none; margin: 4px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+
+/* Principles: where each title comes from, and the figure caption */
+.ov-from { color: var(--muted); margin-top: 6px; }
+.ov-figCap { margin-top: 8px; max-width: 30ch; }
+
+/* Chapter index: group head, count, and the segmented bar (one segment per chapter) */
+.ov-groupHead { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.ov-groupHead h3 { border-bottom: 0; padding-bottom: 0; }
+.ov-group .ov-groupHead h3 { border-bottom: 0; padding-bottom: 0; }
+.ov-groupCount { font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.ov-segs { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 4px; background: var(--chip); padding: 3px; border-radius: 2px; margin: 10px 0 2px; }
+.ov-segs i { display: block; height: 5px; border-radius: 1px; background: var(--blue); transform-origin: 0 50%; animation: overview-seg var(--dur-3) var(--ease-out) both; animation-delay: calc(var(--i, 0) * var(--stagger) + 200ms); }
+.ov-segs i[data-here="1"] { background: var(--yellow); }
+@keyframes overview-seg { from { transform: scaleX(0); } to { transform: none; } }
+.ov-row .ov-here { font-size: 13px; font-weight: 400; color: var(--yellow-ink); white-space: nowrap; }
+.ov-row.ov-rowChapter { grid-template-columns: 44px minmax(0, 1fr) auto 24px; }
+@media (max-width: 700px) {
+  .ov-row.ov-rowChapter { grid-template-columns: 34px minmax(0, 1fr) 20px; }
+  .ov-rowChapter .ov-here { grid-column: 2; grid-row: 2; }
+  .ov-rowChapter .ov-here:empty { display: none; }
+}
+
+/* The case study in order: a strip of numbered tiles, eight to a row, each linking to its page */
+.ov-caseMap { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 6px; }
+.ov-caseTile {
+  display: grid; grid-template-rows: auto 1fr auto; gap: 10px; min-height: 150px; height: 100%; padding: 14px;
+  background: var(--tile); border-radius: var(--r-1); color: var(--ink); text-decoration: none;
+  transition: background-color var(--dur-2) var(--ease-out), transform var(--dur-2) var(--ease-out);
+}
+.ov-caseTile:hover { background: var(--chip); transform: translateY(-3px); }
+.ov-caseTile:active { transform: translateY(-1px); }
+.ov-caseNum { font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.ov-caseName { font-size: 16px; font-weight: 400; line-height: 1.25; }
+.ov-caseTo { font-size: 12px; color: var(--blue-ink); padding-top: 8px; border-top: 1px solid var(--line); }
+@media (max-width: 1100px) { .ov-caseMap { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+@media (max-width: 600px) { .ov-caseMap { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
 .ov-run[data-run="0"] * { animation-play-state: paused !important; }
 .ov-idea { display: grid; gap: 20px; }

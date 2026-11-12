@@ -1,7 +1,7 @@
 // Six key-art plates built from the brand's own geometry: the mark, the isometric site, line trees,
 // the tick-bar instrument, the crane, pins and rulers.
 import Art from '@/components/art/Art';
-import { MarkG, MarkWindowG, LockupG, WordmarkG } from '@/components/art/Mark';
+import { MARK, MarkWindowG, LockupG, WordmarkG } from '@/components/art/Mark';
 import { IsoSiteG, TreesG, TickBarsG, CraneG, PinG, PatternDefs } from '@/components/art/KeyArt';
 import { polar } from '@/lib/charts';
 import { HERO } from '@/lib/brand';
@@ -19,7 +19,7 @@ function Fused() {
         <GrainDefs id="gradients-k1-grain" amount={0.5} />
       </defs>
       <rect width="1200" height="800" fill="url(#gradients-k1-g)" />
-      <MarkWindowG idp="gradients-k1" x={300} y={-150} size={1100}>
+      <MarkWindowG idp="gradients-k1" x={150} y={-30} size={960}>
         <rect width="100" height="100" fill="#FAFAFA" />
         <IsoSiteG x={-8} y={4} scale={0.2} tone="paper" pins={['ridge', 'wing']} trees={false} />
         <rect x="60" y="0" width="40" height="40" fill="#4093EC" />
@@ -43,30 +43,34 @@ function Horizon() {
   );
 }
 
-// 3. The mark as a row of three windows.
+// 3. One mark, three windows: each circle of the mark holds one layer of the brand (the site's trees, the
+// tick-bar instrument, the crane bringing the next piece).
 function Windows() {
-  const x = [90, 580, 1070];
+  const { A, B, C } = MARK;
   return (
-    <Art viewBox="0 0 1600 900" title="The mark as a row of windows: line trees, tick bars, the crane" exportName="gradients-key-windows">
+    <Art viewBox="0 0 1000 1000" title="The mark as three windows: line trees, tick bars and the crane" exportName="gradients-key-windows">
       <defs>
         <Linear id="gradients-k3-g" w={100} h={100} deg={160} stops={FIELD} />
-        <linearGradient id="gradients-k3-yellow" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#FFB83D" /><stop offset="1" stopColor="#FFB83D" stopOpacity="0.55" /></linearGradient>
+        <linearGradient id="gradients-k3-yellow" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#FFB83D" /><stop offset="1" stopColor="#FFB83D" stopOpacity="0.7" /></linearGradient>
       </defs>
-      <rect width="1600" height="900" fill="#F5F5F5" />
-      <MarkWindowG idp="gradients-k3a" x={x[0]} y={230} size={440}>
+      <rect width="1000" height="1000" fill="#F5F5F5" />
+      <MarkWindowG idp="gradients-k3" x={110} y={110} size={780}>
+        <clipPath id="gradients-k3-ca"><circle cx={A.cx} cy={A.cy} r={A.r} /></clipPath>
+        <clipPath id="gradients-k3-cb"><circle cx={B.cx} cy={B.cy} r={B.r} /></clipPath>
+        <clipPath id="gradients-k3-cc"><circle cx={C.cx} cy={C.cy} r={C.r} /></clipPath>
         <rect width="100" height="100" fill="url(#gradients-k3-g)" />
-        <g transform="scale(0.2)"><TreesG w={500} h={500} count={8} tone="blue" seed={5} /></g>
+        <g clipPath="url(#gradients-k3-ca)">
+          <g transform="translate(-2 4) scale(0.12)"><TreesG w={520} h={500} count={7} tone="blue" seed={5} minSize={110} maxSize={190} /></g>
+        </g>
+        <g clipPath="url(#gradients-k3-cb)">
+          <rect x="36" y="40" width="64" height="60" fill="#FAFAFA" />
+          <g transform="translate(42 56) scale(0.1)"><TickBarsG idp="gradients-k3b" w={500} h={300} count={30} from={0.36} to={0.62} /></g>
+        </g>
+        <g clipPath="url(#gradients-k3-cc)">
+          <rect x="60" y="0" width="42" height="40" fill="url(#gradients-k3-yellow)" />
+          <g transform="translate(69 3) scale(0.105)"><CraneG color="#FFFFFF" dark="#0A2E63" /></g>
+        </g>
       </MarkWindowG>
-      <MarkWindowG idp="gradients-k3b" x={x[1]} y={230} size={440}>
-        <rect width="100" height="100" fill="#FAFAFA" />
-        <g transform="translate(6 18) scale(0.15)"><TickBarsG idp="gradients-k3b" w={600} h={380} count={30} from={0.3} to={0.6} /></g>
-      </MarkWindowG>
-      <MarkWindowG idp="gradients-k3c" x={x[2]} y={230} size={440}>
-        <rect width="100" height="100" fill="url(#gradients-k3-yellow)" />
-        <g transform="translate(12 -2) scale(0.32)"><CraneG color="#FFFFFF" dark="#0A2E63" /></g>
-      </MarkWindowG>
-      <path d="M90 780H1510" stroke="#DFDFDF" />
-      <LockupG x={90} y={80} size={72} fill="#2F2F2F" markFill="#4093EC" />
     </Art>
   );
 }
@@ -133,7 +137,7 @@ export default function KeyPlates() {
       <Plate span={12} name="Horizon" spec="1800 x 600, 3:1"><Horizon /></Plate>
       <Plate span={4} name="Instrument" spec="800 x 1000, 4:5"><Instrument /></Plate>
       <Plate span={3} name="Crane" spec="600 x 1000, 3:5"><Crane /></Plate>
-      <Plate span={5} name="Windows" spec="1600 x 900, 16:9"><Windows /></Plate>
+      <Plate span={5} name="Windows" spec="1000 x 1000, 1:1"><Windows /></Plate>
     </div>
   );
 }

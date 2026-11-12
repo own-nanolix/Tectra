@@ -37,8 +37,15 @@ function Column({ p, i, billing, picked, reduce }) {
       <div className={s.priceRow}>
         {priced && (
           <p className={s.price}>
-            {billing === 'Annually' ? <span className={s.priceBar} aria-hidden="true" /> : <span className={`t-figure ${s.priceFig}`}>{p.price}</span>}
-            <span className={`t-body muted ${s.per}`}>{p.per}</span>
+            {/* No annual prices are published: a quiet placeholder bar stands in for the price. */}
+            {billing === 'Annually' ? (
+              <span className={s.priceBar} role="img" aria-label="Annual price not published" />
+            ) : (
+              <>
+                <span className={`t-figure ${s.priceFig}`}>{p.price}</span>
+                <span className={`t-body muted ${s.per}`}>{p.per}</span>
+              </>
+            )}
           </p>
         )}
       </div>

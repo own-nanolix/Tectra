@@ -75,6 +75,7 @@
 .rangeLine { position: absolute; left: 0; right: 0; top: 17px; height: 1px; background: var(--track); }
 .rangeFill { position: absolute; left: 0; top: 16px; height: 3px; background: var(--blue); transform-origin: 0 50%; }
 .rangeTicks { position: absolute; left: 0; right: 0; bottom: 6px; height: 8px; background: repeating-linear-gradient(to right, var(--track) 0 1px, transparent 1px 2%); }
+.rangeTicks::after { content: ""; position: absolute; left: 0; right: -1px; bottom: -4px; height: 12px; background: repeating-linear-gradient(to right, var(--app) 0 1px, transparent 1px 10%); }
 .rangeHandle { position: absolute; top: 6px; width: 12px; height: 24px; margin-left: -6px; border: 0; padding: 0; border-radius: 2px; background: var(--blue-ink); cursor: grab; }
 .rangeHandle[data-drag="false"] { transition: left var(--dur-2) var(--ease-in-out); }
 .rangeHandle[data-drag="true"] { cursor: grabbing; }
@@ -83,9 +84,10 @@
 
 /* ---------- Loaders ---------- */
 .wave { transform-box: fill-box; transform-origin: 50% 100%; animation: motion-wave 1.2s var(--ease-in-out) infinite both; animation-delay: calc(var(--i, 0) * var(--stagger)); }
-@keyframes motion-wave { 0%, 100% { transform: scaleY(0.3); } 50% { transform: none; } }
-.orbit { transform-box: view-box; transform-origin: 0 0; animation: motion-spin 2.4s var(--ease-in-out) infinite; }
-.orbitRev { transform-box: view-box; transform-origin: 0 0; animation: motion-spin-rev 2.4s var(--ease-in-out) infinite; }
+@keyframes motion-wave { 0%, 100% { transform: none; } 50% { transform: scaleY(0.3); } }
+/* Both groups sit directly in the viewBox (no parent transform), so the origin is the loader's centre. */
+.orbit { transform-box: view-box; transform-origin: 100px 80px; animation: motion-spin 2.4s var(--ease-in-out) infinite; }
+.orbitRev { transform-box: view-box; transform-origin: 100px 80px; animation: motion-spin-rev 2.4s var(--ease-in-out) infinite; }
 @keyframes motion-spin { to { transform: rotate(360deg); } }
 @keyframes motion-spin-rev { to { transform: rotate(-360deg); } }
 .sweep { animation: motion-sweep 2.4s var(--ease-draw) infinite both; }
@@ -100,7 +102,6 @@
 @keyframes motion-ring { from { transform: scale(1); opacity: 0.7; } to { transform: scale(3.2); opacity: 0; } }
 .shade { transform-box: fill-box; transform-origin: center; animation: motion-shade var(--dur-3) var(--ease-out) 200ms both; }
 @keyframes motion-shade { from { transform: scale(0.3); opacity: 0; } to { transform: none; opacity: 1; } }
-
 /* ---------- Do and don't ---------- */
 .pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
 @media (max-width: 720px) { .pair { grid-template-columns: minmax(0, 1fr); } }

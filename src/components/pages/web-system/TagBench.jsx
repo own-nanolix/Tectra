@@ -51,18 +51,18 @@ export default function TagBench() {
         <TagToggles />
       </Line>
       <Line label="Chip states, forced for reading">
-        <div className="cells">
+        <div className={s.cells}>
           {TONES.map(([t, n]) => (
-            <div key={n} className="cell">
+            <div key={n} className={s.cell}>
               <Chip tone={t} size="sm">{n}</Chip>
               <span className="t-small">{t ? `chip-${t}` : 'chip'}</span>
             </div>
           ))}
-          <div className="cell"><Chip size="sm">Default</Chip><span className="t-small">Default</span></div>
-          <div className="cell"><Chip size="sm" className={s.forcedHover}>Hover</Chip><span className="t-small">Hover</span></div>
-          <div className="cell"><Chip size="sm" className={s.forcedActive}>Active</Chip><span className="t-small">Active</span></div>
-          <div className="cell"><Chip size="sm" className={s.forcedPressed}>Pressed</Chip><span className="t-small">Pressed</span></div>
-          <div className="cell"><Chip size="sm" className={s.dim}>Disabled</Chip><span className="t-small">Disabled</span></div>
+          <div className={s.cell}><Chip size="sm">Default</Chip><span className="t-small">Default</span></div>
+          <div className={s.cell}><Chip size="sm" className={s.forcedHover}>Hover</Chip><span className="t-small">Hover</span></div>
+          <div className={s.cell}><Chip size="sm" className={s.forcedActive}>Active</Chip><span className="t-small">Active</span></div>
+          <div className={s.cell}><Chip size="sm" className={s.forcedPressed}>Pressed</Chip><span className="t-small">Pressed</span></div>
+          <div className={s.cell}><Chip size="sm" className={s.dim}>Disabled</Chip><span className="t-small">Disabled</span></div>
         </div>
       </Line>
       <Fig caption="The chip family as one sheet.">

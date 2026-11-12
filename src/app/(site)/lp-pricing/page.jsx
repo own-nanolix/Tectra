@@ -24,7 +24,7 @@ export default function Page() {
         <Faq />
         <Final />
       </BillingProvider>
-      <LandingFooter />
+      <LandingFooter className={s.footer} />
     </section>
   );
 }

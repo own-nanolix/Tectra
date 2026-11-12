@@ -30,16 +30,17 @@ const FRAMES = [
 
 export function Storyboard() {
   return (
-    <Art viewBox="0 0 880 250" title="Mark assembling, four key frames" exportName="motion-logo-storyboard">
-      <rect width="880" height="250" fill={HEX.tile} />
+    <Art viewBox="0 0 440 470" title="Mark assembling, four key frames" exportName="motion-logo-storyboard">
+      <rect width="440" height="470" fill={HEX.tile} />
       {FRAMES.map((f, i) => {
-        const x = 20 + i * 215;
+        const x = 15 + (i % 2) * 215;
+        const y = 15 + Math.floor(i / 2) * 228;
         return (
           <g key={f.t}>
-            <rect x={x} y="20" width="195" height="160" rx="4" fill={HEX.paper} />
-            <FrameMark x={x + 40} y={40} size={115} p={f.p} op={f.op} body={f.body} dot={f.dot} />
-            <text x={x} y="205" fontSize="14" fontWeight="500" fill={HEX.ink}>{f.name}</text>
-            <text x={x} y="226" fontSize="12" fill={HEX.muted}>{f.t}</text>
+            <rect x={x} y={y} width="195" height="160" rx="4" fill={HEX.paper} />
+            <FrameMark x={x + 40} y={y + 20} size={115} p={f.p} op={f.op} body={f.body} dot={f.dot} />
+            <text x={x} y={y + 184} fontSize="15" fontWeight="500" fill={HEX.ink}>{f.name}</text>
+            <text x={x} y={y + 204} fontSize="13" fill={HEX.muted}>{f.t}</text>
           </g>
         );
       })}

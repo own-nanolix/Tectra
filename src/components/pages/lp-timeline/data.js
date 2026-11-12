@@ -16,6 +16,6 @@ export const STAGE_COPY = {
   desktop: { title: HERO.title.join(' '), text: HERO.sub },
   mobile: { title: MOBILE_SCREENS[0].title, text: MOBILE_SCREENS[0].text },
   landing: { title: FEATURES.heading, text: FEATURES.sub },
-  responsive: { title: 'Adaptive tablet and desktop versions', text: QUOTES.next.text.replace('"', '') },
+  responsive: { title: null, text: QUOTES.next.text.replace('"', '') },
   localiztion: { title: null, text: null },
 };

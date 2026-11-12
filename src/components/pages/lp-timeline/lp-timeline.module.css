@@ -8,12 +8,12 @@
 .stage { position: relative; container-type: inline-size; width: 100%; }
 .headline { padding: 8px var(--pad) 20px; max-width: 760px; font-size: clamp(30px, 6vw, 44px); }
 .scroll { overflow-x: auto; scrollbar-width: thin; }
-.canvas { position: relative; min-width: 860px; aspect-ratio: 1600 / 740; outline-offset: -3px; }
+.canvas { position: relative; min-width: 860px; aspect-ratio: 1600 / 940; outline-offset: -3px; }
 .canvas:focus-visible { outline: 2px solid var(--blue-ink); border-radius: 4px; }
 .canvas svg { width: 100%; height: auto; }
 .roadmapSvg { overflow: visible; }
 @media (min-width: 900px) {
-  .headline { position: absolute; z-index: 2; right: var(--pad); top: 2.2cqw; width: 34cqw; max-width: none; padding: 0; font-size: clamp(26px, 2.7cqw, 46px); pointer-events: none; }
+  .headline { position: absolute; z-index: 2; right: var(--pad); top: 10cqw; width: 31cqw; max-width: none; padding: 0; font-size: clamp(26px, 2.7cqw, 46px); pointer-events: none; }
   .canvas { min-width: 0; }
 }
 .handleLine { transition: stroke var(--dur-2) var(--ease-in-out); }
@@ -82,3 +82,6 @@
 .splitA, .splitB { border-radius: var(--r-1); padding: clamp(24px, 4vw, 64px); display: grid; gap: 24px; align-content: space-between; min-height: 420px; }
 .splitB { background: var(--tile); }
 @media (max-width: 800px) { .split { grid-template-columns: minmax(0, 1fr); } }
+
+/* The shared .lp-footer rule resets the .wrap side padding; restore it here. */
+.footer.footer { padding-inline: var(--pad); }

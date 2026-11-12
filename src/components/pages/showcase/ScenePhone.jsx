@@ -17,7 +17,7 @@ const CARDS = [
   { key: 'details', label: 'Details', cx: 468, y: 196, s: 1.04, depth: 0.1, draw: (id) => <AppCardG idp={id} k="details" /> },
   { key: 'notes', label: 'Notes', cx: 1112, y: 452, s: 1.0, depth: 0.2, draw: (id) => <AppCardG idp={id} k="notes" /> },
   { key: 'komatsu', label: 'Komatsu', cx: 1196, y: 140, s: 1.1, depth: 0.05, draw: (id) => <KomatsuCardG idp={id} /> },
-  { key: 'overall', label: 'Overall Completion', cx: 1440, y: 318, s: 0.84, depth: 0.75, draw: (id) => <OverallCardG idp={id} /> },
+  { key: 'overall', label: 'Overall Completion', cx: 1462, y: 372, s: 0.84, depth: 0.75, draw: (id) => <OverallCardG idp={id} /> },
 ];
 
 export default function ScenePhone() {

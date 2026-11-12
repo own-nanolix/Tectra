@@ -5,7 +5,7 @@ import Button from '@/components/ui/Button';
 import Toggle from '@/components/ui/Toggle';
 import Field from '@/components/ui/Field';
 import { toast } from '@/components/site/Toast';
-import { clamp, range } from '@/lib/site';
+import { clamp } from '@/lib/site';
 import s from './motion.module.css';
 
 const VARIANTS = ['yellow', 'sky', 'blue', 'dark', 'white', 'ghost'];
@@ -51,8 +51,6 @@ function Toasts() {
     </div>
   );
 }
-
-const AXIS = range(11, (i) => i * 10);
 
 // A range handle sliding along a ruler. Drag it, click the ruler, use the buttons, or the keyboard.
 function RangeHandle() {
@@ -102,13 +100,9 @@ function RangeHandle() {
           aria-valuemin={0}
           aria-valuemax={100}
           aria-valuenow={v}
+          aria-valuetext={`${v} percent`}
           onKeyDown={key}
         />
-      </div>
-      <div className={s.axis} aria-hidden="true">
-        {AXIS.map((n) => (
-          <span key={n}>{n}</span>
-        ))}
       </div>
       <div className={s.row}>
         <Button size="sm" variant="ghost" onClick={() => setV((x) => clamp(x - 10, 0, 100))}>-10</Button>

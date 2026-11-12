@@ -4,9 +4,10 @@ import { SITE_PINS, iso } from '@/components/art/KeyArt';
 // The site artwork is drawn with the plan origin at (262, 118) and 20 px per grid unit (see KeyArt IsoSiteG).
 // The hero crops the 560 x 400 box to this view; the pin buttons are placed from the same numbers.
 export const VIEW = { x: 20, y: 40, w: 520, h: 360 };
+export const ORIGIN = { x: 262, y: 118 };
 export const pinAt = (name) => {
   const [px, py] = iso(...SITE_PINS[name], 20);
-  const x = 262 + px, y = 118 + py;
+  const x = ORIGIN.x + px, y = ORIGIN.y + py;
   return { left: ((x - VIEW.x) / VIEW.w) * 100, top: ((y - VIEW.y) / VIEW.h) * 100 };
 };
 

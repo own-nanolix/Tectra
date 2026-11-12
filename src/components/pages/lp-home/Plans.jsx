@@ -40,7 +40,7 @@ function Bullets({ items, tone }) {
 export function PlanHead({ id }) {
   return (
     <div className={s.center}>
-      <h2 id={id} className={s.h2}>
+      <h2 id={id} className={`${s.h2} ${s.h2Plan}`}>
         <Hl text={PLANS.heading} hl={PLANS.hl} />
       </h2>
       <p className={s.subline}>{PLANS.sub}</p>

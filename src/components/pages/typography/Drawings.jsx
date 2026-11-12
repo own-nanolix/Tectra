@@ -86,40 +86,44 @@ export function HierarchySvg() {
   );
 }
 
-// Metrics study. Proportions are drawn from the specimen (AaBbCc in the case study) and are approximate.
-const FS = 420;
-const BASE = 520;
+// Metrics study. The line positions are measured from the Urbanist font in the browser (canvas text metrics at
+// 1000 px, the same in all three weights): cap height 703, x-height 500, ascender 750, descender 250 units;
+// round letters overshoot the baseline and x-height by 16 units.
+const FS = 380;
+const BASE = 500;
+const OVERSHOOT = 0.016;
 export const METRIC_LINES = [
-  { id: 'ascender', label: 'Ascender', k: 0.742, color: HEX.deep },
-  { id: 'cap', label: 'Cap height', k: 0.7, color: HEX.blue },
-  { id: 'xh', label: 'x-height', k: 0.5, color: HEX.blue },
-  { id: 'base', label: 'Baseline', k: 0, color: HEX.ink },
-  { id: 'desc', label: 'Descender', k: -0.2, color: HEX.deep },
+  { id: 'ascender', label: 'Ascender', k: 0.75, color: HEX.deep, dy: -4, note: 'The top of b and d.' },
+  { id: 'cap', label: 'Cap height', k: 0.703, color: HEX.blue, dy: 14, note: 'The top of H.' },
+  { id: 'xh', label: 'x-height', k: 0.5, color: HEX.blue, dy: 5, note: 'The flat top of x; round letters rise 0.016 em above it.' },
+  { id: 'base', label: 'Baseline', k: 0, color: HEX.ink, dy: 5, note: 'The line the letters stand on.' },
+  { id: 'desc', label: 'Descender', k: -0.25, color: HEX.deep, dy: 5, note: 'The foot of p and g.' },
 ];
+const GLYPHS = [['H', 165], ['b', 435], ['a', 695], ['p', 955], ['o', 1215]];
 
 export function MetricsSvg() {
-  const xh = FS * 0.5;
-  const glyphs = [['H', 190], ['a', 520], ['p', 810], ['o', 1090]];
-  const ocx = 1090;
+  const ocx = 1215;
+  const top = 0.5 + OVERSHOOT;
+  const oy = BASE - (FS * (top - OVERSHOOT)) / 2;
   return (
-    <Art viewBox="0 0 1500 720" title="Urbanist metrics: baseline, x-height, cap height, ascender and descender over large letters, with the near-circular bowl of the o" exportName="typography-metrics">
+    <Art viewBox="0 0 1500 720" title="Urbanist metrics, measured: ascender, cap height, x-height, baseline and descender over large letters, with the near-circular bowl of the o" exportName="typography-metrics">
       <rect width="1500" height="720" rx="6" fill={HEX.tile} />
       {METRIC_LINES.map((m, i) => {
         const y = BASE - FS * m.k;
         return (
           <g key={m.id} className="grow-x" style={{ '--i': i }}>
-            <line x1="40" x2="1380" y1={y} y2={y} stroke={m.color} strokeWidth="1.4" strokeDasharray={m.id === 'base' ? '0' : '6 6'} />
-            <text x="1396" y={y + 5} fontSize="15" fontWeight="500" fill={m.id === 'base' ? HEX.ink : HEX.blueInk}>{m.label}</text>
+            <line x1="40" x2="1370" y1={y} y2={y} stroke={m.color} strokeWidth="1.4" strokeDasharray={m.id === 'base' ? '0' : '6 6'} />
+            <text x="1384" y={y + m.dy} fontSize="14" fontWeight="500" fill={m.id === 'base' ? HEX.ink : HEX.blueInk}>{`${m.label} ${m.k.toFixed(3)}`}</text>
           </g>
         );
       })}
-      {glyphs.map(([g, x]) => (
+      {GLYPHS.map(([g, x]) => (
         <text key={g} x={x} y={BASE} textAnchor="middle" fontSize={FS} fontWeight="300" fill={HEX.ink} className="fade-in">{g}</text>
       ))}
-      <circle className="pop" cx={ocx} cy={BASE - xh / 2} r={xh / 2 + 6} fill="none" stroke={HEX.blue} strokeWidth="2" strokeDasharray="5 6" />
-      <circle cx={ocx} cy={BASE - xh / 2} r="4" fill={HEX.blue} />
-      <text x={ocx} y={BASE + 106} textAnchor="middle" fontSize="15" fontWeight="500" fill={HEX.blueInk}>Near-circular bowl</text>
-      <text x="40" y="690" fontSize="13" fontWeight="400" fill={HEX.muted}>Line positions are approximate, drawn from the proportions of the case study specimen.</text>
+      <ellipse className="pop" cx={ocx} cy={oy} rx={(FS * 0.56) / 2} ry={(FS * (top + OVERSHOOT)) / 2} fill="none" stroke={HEX.blue} strokeWidth="2" strokeDasharray="5 6" />
+      <circle cx={ocx} cy={oy} r="4" fill={HEX.blue} />
+      <text x={ocx} y={BASE + 150} textAnchor="middle" fontSize="15" fontWeight="500" fill={HEX.blueInk}>o: 560 by 532 units</text>
+      <text x="40" y="690" fontSize="15" fontWeight="400" fill={HEX.muted}>Measured from Urbanist at 1000 units per em. The same in Light, Regular and Medium.</text>
     </Art>
   );
 }

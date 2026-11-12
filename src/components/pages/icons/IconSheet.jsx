@@ -7,7 +7,7 @@ import { toast } from '@/components/site/Toast';
 import s from './icons.module.css';
 
 // Row labels in the left margin: plain groupings of the 32 icons, eight per row.
-export const ROW_LABELS = ['Navigation', 'Actions', 'Site and people', 'Records and controls'];
+export const ROW_LABELS = ['App rail and top bar', 'Arrows and markers', 'Site, people and records', 'Time, search and controls'];
 
 const rows = ROW_LABELS.map((label, r) => ({ label, names: CORE_NAMES.slice(r * 8, r * 8 + 8) }));
 

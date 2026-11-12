@@ -47,7 +47,7 @@ function Mug({ idp, c, handle, inner, kind, fg, tone, lit }) {
         </linearGradient>
       </defs>
       <ShadowG idp={`${idp}-s1`} cx={232} cy={388} rx={118} ry={14} tone={tone} />
-      <ShadowG idp={`${idp}-s2`} cx={605} cy={372} rx={170} ry={9} tone="sky" opacity={0.22} />
+      <ShadowG idp={`${idp}-s2`} cx={622} cy={372} rx={170} ry={9} tone="sky" opacity={0.22} />
       <LayerG i={0}>
         <path d={body} fill={c} />
         <g clipPath={`url(#${clip})`}>
@@ -77,7 +77,7 @@ function Mug({ idp, c, handle, inner, kind, fg, tone, lit }) {
         <path d="M143 136A90 24 0 0 1 226 116" fill="none" stroke="#FFFFFF" strokeWidth="2.5" opacity="0.8" strokeLinecap="round" />
         <SheenG idp={idp} d="M150 150H190V350H150Z" opacity={0.35} />
       </LayerG>
-      <LayerG i={1} dx={72}>
+      <LayerG i={1} dx={56}>
         <path d={hp} transform="translate(6 10)" fill="none" stroke={K.sky} strokeWidth="24" opacity="0.4" filter={url(idp, 'soft')} />
         <path d={hp} fill="none" stroke={handle} strokeWidth="24" />
         <path d={hp} fill="none" stroke={url(idp, 'shade')} strokeWidth="24" />
@@ -87,7 +87,7 @@ function Mug({ idp, c, handle, inner, kind, fg, tone, lit }) {
         <ellipse cx="314" cy="318" rx="4" ry="12" fill={handle} />
         <ellipse cx="314" cy="182" rx="4" ry="12" fill="#000000" opacity="0.2" />
       </LayerG>
-      <LayerG i={2} dx={375}>
+      <LayerG i={2} dx={392}>
         <g transform="translate(230 250)">
           <Lift idp={idp} dx={7} dy={12}>
             <path d={rrect(330, 132, 4)} />
@@ -100,7 +100,7 @@ function Mug({ idp, c, handle, inner, kind, fg, tone, lit }) {
           <path d={rrect(318, 120, 3)} fill="none" stroke={fg === K.white ? K.white : K.blue} strokeWidth="1" strokeDasharray="3 4" opacity="0.7" />
         </g>
       </LayerG>
-      <AxisG points={[[230, 440], [430, 440], [605, 440]]} />
+      <AxisG points={[[230, 440], [402, 440], [622, 440]]} />
     </g>
   );
 }
@@ -113,6 +113,7 @@ const MUGS = [
 /* ---------- Bottle: side elevation, stacked apart on the vertical axis ---------- */
 
 function Bottle({ idp, c, sleeve, W, flip, dark, tone }) {
+  const light = c === K.g2 || c === K.white;
   const body = `M-21 118V148C-21 172 -${W} 174 -${W} 206V352Q-${W} 372 -${W - 20} 372H${W - 20}Q${W} 372 ${W} 352V206C${W} 174 21 172 21 148V118Z`;
   const clip = `${idp}-b-clip`;
   const capFill = url(idp, dark ? 'metal-dark' : 'metal');
@@ -165,6 +166,14 @@ function Bottle({ idp, c, sleeve, W, flip, dark, tone }) {
         </g>
         <ellipse cx="0" cy="118" rx="21" ry="4" fill="#000000" opacity="0.3" />
         <SheenG idp={idp} d={`M${-W + 6} 214H${-W + 24}V346H${-W + 6}Z`} opacity={0.3} />
+        {light && (
+          <g clipPath={`url(#${clip})`}>
+            {/* a pale body needs a firmer core shadow and reflected light to read on white */}
+            <rect x={W * 0.28} y="110" width={W * 0.5} height="270" fill="#000000" opacity="0.16" filter={url(idp, 'soft')} />
+            <rect x={W * 0.8} y="110" width={W * 0.2} height="270" fill="#FFFFFF" opacity="0.35" filter={url(idp, 'soft')} />
+          </g>
+        )}
+        <path d={body} fill="none" stroke="#000000" strokeOpacity={light ? 0.28 : 0.14} strokeWidth="1.2" />
       </LayerG>
       <LayerG i={3} dy={125}>
         <g transform="translate(0 297)">

@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Art from '@/components/art/Art';
 import Button from '@/components/ui/Button';
 import { PinG } from '@/components/art/KeyArt';
-import { MARK } from '@/components/art/Mark';
+import { MARK, MARK_BODY } from '@/components/art/Mark';
 import { HEX } from '@/lib/brand';
 import { range } from '@/lib/site';
 import { r2 } from '@/lib/charts';
@@ -24,21 +24,21 @@ function Wave() {
 
 function Orbit() {
   const k = 0.62;
-  const A = MARK.A;
-  const B = MARK.B;
+  const C = MARK.C;
+  // Turn about the middle of the fused body (between the centres of the two large circles).
+  const cx = (MARK.A.cx + MARK.B.cx) / 2;
+  const cy = (MARK.A.cy + MARK.B.cy) / 2;
   return (
     <Art viewBox="0 0 200 160" title="Loader: two circles fused, orbited by the third" exportName="motion-loader-orbit">
       <rect width="200" height="160" fill={HEX.tile} />
-      <g transform="translate(100 80)">
-        <g className={s.orbit}>
-          <g transform={`scale(${k}) translate(-47.35 -52.75)`} fill={HEX.blue}>
-            <circle cx={A.cx} cy={A.cy} r={A.r} />
-            <circle cx={B.cx} cy={B.cy} r={B.r} />
-          </g>
+      {/* At rest the two groups make the mark: the fused body and, upper right, the small circle. */}
+      <g className={s.orbit}>
+        <g transform={`translate(100 80) scale(${k}) translate(${-cx} ${-cy})`} fill={HEX.blue}>
+          <path d={MARK_BODY} />
         </g>
-        <g className={s.orbitRev}>
-          <circle cx="0" cy="-58" r="9" fill={HEX.yellow} />
-        </g>
+      </g>
+      <g className={s.orbitRev}>
+        <circle cx={r2(100 + (C.cx - cx) * k)} cy={r2(80 + (C.cy - cy) * k)} r={r2(C.r * k)} fill={HEX.yellow} />
       </g>
     </Art>
   );
@@ -90,16 +90,16 @@ export function PinLanding() {
   const [n, setN] = useState(0);
   return (
     <div className={s.plate}>
-      <Art key={n} viewBox="0 0 320 200" title="Pin landing with a ring" exportName="motion-pin-landing">
-        <rect width="320" height="200" fill={HEX.tile} />
-        <path d="M30 150H290" stroke={HEX.track} strokeWidth="1.5" />
-        <path d={range(15, (i) => `M${30 + i * 20} 150v8`).join('')} stroke={HEX.track} strokeWidth="1" />
-        <ellipse cx="160" cy="150" rx="18" ry="4" fill={HEX.ink} opacity="0.15" className={s.shade} />
-        <circle cx="160" cy="120" r="14" fill="none" stroke={HEX.yellow} strokeWidth="2" opacity="0" className={s.ringOnce} />
+      <Art key={n} viewBox="0 0 720 220" title="Pin landing with a ring" exportName="motion-pin-landing">
+        <rect width="720" height="220" fill={HEX.tile} />
+        <path d="M40 160H680" stroke={HEX.track} strokeWidth="1.5" />
+        <path d={range(33, (i) => `M${40 + i * 20} 160v${i % 4 === 0 ? 12 : 7}`).join('')} stroke={HEX.track} strokeWidth="1" />
+        <ellipse cx="360" cy="160" rx="18" ry="4" fill={HEX.ink} fillOpacity="0.15" className={s.shade} />
+        <circle cx="360" cy="130" r="14" fill="none" stroke={HEX.yellow} strokeWidth="2" opacity="0" className={s.ringOnce} />
         <g className={s.drop}>
-          <PinG x={160} y={120} r={14} tone="yellow" />
+          <PinG x={360} y={130} r={14} tone="yellow" />
         </g>
-        <text x="30" y="184" fontSize="12" fill={HEX.muted}>ease.snap · 520 ms · one ring</text>
+        <text x="40" y="204" fontSize="13" fill={HEX.muted}>ease.snap · 520 ms · one ring</text>
       </Art>
       <div className={s.bar}>
         <p className="t-title">Pin landing</p>

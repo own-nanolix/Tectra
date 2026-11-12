@@ -2,19 +2,16 @@
 
 import { createContext, useContext, useState } from 'react';
 
-// One shared state for the page: the billing switch (hero and final call) and the usage slider
-// (slider, matrix header and plan columns all follow it).
+// One shared state for the page: the billing switch (hero and final call) and the picked plan
+// (usage slider, matrix header and plan columns all follow it).
 const Ctx = createContext(null);
 
-export const MAX_TASKS = 400;
-// The case study's own thresholds: up to 20 tasks is Basic, up to 200 is Standard, above that Premium.
-export const planFor = (tasks) => (tasks <= 20 ? 0 : tasks <= 200 ? 1 : 2);
-export const SAMPLE_TASKS = [20, 200, 300];
-
+// The usage slider has three stops, one per plan, named only by the plan bullets
+// ("Track up to 20 tasks per month", "Track up to 200 tasks per month", "Unlimited task tracking").
 export function BillingProvider({ children }) {
   const [billing, setBilling] = useState('Monthly');
-  const [tasks, setTasks] = useState(20);
-  return <Ctx.Provider value={{ billing, setBilling, tasks, setTasks, plan: planFor(tasks) }}>{children}</Ctx.Provider>;
+  const [plan, setPlan] = useState(0);
+  return <Ctx.Provider value={{ billing, setBilling, plan, setPlan }}>{children}</Ctx.Provider>;
 }
 
 export function useBilling() {

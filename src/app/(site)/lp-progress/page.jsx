@@ -16,7 +16,7 @@ export default function Page() {
   return (
     <section className={`page ${s.root}`} id="p-lp-progress" aria-label="Landing: Progress">
       <div className={`field ${s.heroField}`}>
-        <LandingNav current="lp-progress" />
+        <LandingNav current="lp-progress" className={s.nav} />
         <Hero />
       </div>
       <Explorer />

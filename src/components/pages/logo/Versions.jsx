@@ -17,34 +17,22 @@ const VERSIONS = [
 
 export function ColourVersions() {
   return (
-    <>
-      <div className={s.strip4}>
-        {VERSIONS.slice(0, 4).map((v) => (
-          <Plate key={v.id} caption={v.name}>
-            <Art viewBox="0 0 240 240" title={v.name} exportName={`logo-colour-${v.id}`}>
-              {v.id === 'grey-on-yellow' ? (
-                <AppIconG size={240} radius={6} tile={v.bg} fill={v.fg} />
-              ) : (
-                <>
-                  <rect width="240" height="240" rx="6" fill={v.bg} />
-                  <MarkG x={60} y={60} size={120} fill={v.fg} />
-                </>
-              )}
-            </Art>
-          </Plate>
-        ))}
-      </div>
-      <div className={`${s.strip4} ${s.stripGap}`}>
-        {VERSIONS.slice(4).map((v) => (
-          <Plate key={v.id} caption={v.name}>
-            <Art viewBox="0 0 240 240" title={v.name} exportName={`logo-colour-${v.id}`}>
-              <rect width="240" height="240" rx="6" fill={v.bg} />
-              <MarkG x={60} y={60} size={120} fill={v.fg} />
-            </Art>
-          </Plate>
-        ))}
-      </div>
-    </>
+    <div className={s.strip5}>
+      {VERSIONS.map((v) => (
+        <Plate key={v.id} caption={v.name}>
+          <Art viewBox="0 0 240 240" title={v.name} exportName={`logo-colour-${v.id}`}>
+            {v.id === 'grey-on-yellow' ? (
+              <AppIconG size={240} radius={6} tile={v.bg} fill={v.fg} />
+            ) : (
+              <>
+                <rect width="240" height="240" rx="6" fill={v.bg} stroke={v.bg === HEX.white ? HEX.card : 'none'} />
+                <MarkG x={60} y={60} size={120} fill={v.fg} />
+              </>
+            )}
+          </Art>
+        </Plate>
+      ))}
+    </div>
   );
 }
 

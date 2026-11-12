@@ -30,10 +30,10 @@ export default function Page() {
 
       <div className={`wrap ${s.section}`}>
         <div className="edit">
-          <p className="edit-note">Left margin: the first stop of each gradient.</p>
+          <p className="edit-note">Stops, offsets and opacity are called out on the left of each drawing.</p>
           <h2 className="t-h2 edit-main">Anatomy</h2>
-          <p className="edit-note-r">Right margin: the last stop, angle and length.</p>
-          <div className="edit-wide stack">
+          <p className="edit-note-r">Angle, line length and alpha samples are called out on the right.</p>
+          <div className={`edit-wide stack ${s.scrollx}`}>
             <FieldAnatomyPlate />
             <FadeAnatomyPlate />
           </div>

@@ -13,7 +13,7 @@ import s from './styles';
 // The hero: one giant live figure on the blue field, the area chart drawing behind it.
 export default function Hero() {
   const [idx, setIdx] = useState(null);
-  const marker = idx === null ? 12 : idx;
+  const marker = idx === null ? 14 : idx; // at rest the ring sits on the falling side, clear of the figure
   const filled = idx === null ? VOLUME.filled : Math.max(1, Math.round((idx / (AREA.length - 1)) * VOLUME.segments));
   const learn = () => {
     const el = document.getElementById('lp-progress-explorer');

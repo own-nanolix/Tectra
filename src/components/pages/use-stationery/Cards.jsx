@@ -53,7 +53,7 @@ function CardBase({ idp, kind, rot, lifted }) {
           </g>
         )}
         {lifted ? (
-          <g opacity="0.16" transform="translate(1 1.5)">
+          <g opacity="0.08" transform="translate(1 1.5)">
             <CardFoil idp={idp} kind={kind} />
           </g>
         ) : (

@@ -18,7 +18,7 @@ export function PostBuild() {
         <MarkG x={380} y={150} size={940} fill="#FFFFFF" fillOpacity="0.16" bodyClass="fuse-a" dotClass="fuse-c" />
       </g>
       <LockupG x={90} y={86} size={56} fill="#FFFFFF" />
-      <Lines x={90} y={760} lines={['Build Smarter,', [{ h: 'Build Faster' }], 'with Tectra']} size={124} lh={128} fill="#FFFFFF" hl={HEX.yellow} cls="slide-up" i={2} />
+      <Lines x={90} y={760} lines={['Build Smarter,', 'Build Faster', 'with Tectra']} size={124} lh={128} fill="#FFFFFF" cls="slide-up" i={2} />
       <PinG x={960} y={960} r={16} tone="yellow" pulse />
     </Art>
   );
@@ -34,7 +34,7 @@ export function PostInsight() {
       <GroundG idp={id} w={1080} h={1080} kind="tile" />
       <MarkG x={90} y={90} size={64} fill={HEX.blue} bodyClass="fuse-a" dotClass="fuse-c" />
       <text x="86" y="530" fontSize="340" fontWeight="300" fill={HEX.ink} letterSpacing="-5" className="slide-up">{d.value}</text>
-      <Lines x={90} y={620} lines={['teams struggle with', [{ h: 'fragmented data' }]]} size={58} lh={68} fill={HEX.ink} cls="slide-up" i={2} />
+      <Lines x={90} y={620} lines={['teams struggle with', 'fragmented data']} size={58} lh={68} fill={HEX.ink} cls="slide-up" i={2} />
       <TickBarsG idp={id} x={90} y={780} w={900} h={100} count={60} from={d.from} to={d.to} rise />
       <g transform="translate(90 780)" fill={HEX.muted} fontSize="20" fontWeight="400">
         {lab.map((a, k) => (

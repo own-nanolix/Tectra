@@ -5,7 +5,6 @@ import Art from '@/components/art/Art';
 import { IsoSiteG } from '@/components/art/KeyArt';
 import Icon from '@/components/site/Icon';
 import Reveal from '@/components/site/Reveal';
-import { Hl } from '@/components/ui/Card';
 import { FAQ } from '@/lib/brand';
 import s from './styles';
 
@@ -18,7 +17,7 @@ export default function Faq() {
     <section className={s.band} aria-labelledby="lp-progress-faq-h">
       <div className="wrap-narrow">
         <Reveal className={s.head}>
-          <h2 id="lp-progress-faq-h" className="t-display t-balance t-center"><Hl text={FAQ.heading} hl="Questions" /></h2>
+          <h2 id="lp-progress-faq-h" className="t-display t-balance t-center">{FAQ.heading}</h2>
         </Reveal>
         <div className={s.faq}>
           <Reveal>

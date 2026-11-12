@@ -1,6 +1,10 @@
 /* lp-dashboard: data-led landing page built around live widgets. Keyframes would be named lp-dashboard-xxx. */
 
-.lpd-root.page { padding: 0; overflow-x: clip; }
+.lpd-root:global(.page) { padding: 0; overflow-x: clip; }
+/* The nav lines up with the page column (the shared .lp-nav padding would otherwise win over .wrap). */
+/* The shared .lp-footer padding resets the .wrap side padding; restore it here. */
+.lpd-root :global(.lp-footer) { padding-inline: var(--pad); }
+.lpd-heroField .lpd-nav { max-width: 1600px; margin-inline: auto; padding-inline: var(--pad); }
 
 /* Hold the CSS draw-on animations until the block scrolls into view */
 .lpd-seen[data-seen="false"] :global(.draw),
@@ -107,11 +111,11 @@
 
 /* ---------- Results ---------- */
 .lpd-results { margin-top: clamp(32px, 4vw, 64px); }
-.lpd-result { min-height: 300px; aspect-ratio: 340 / 300; display: flex; flex-direction: column; transition: background-color var(--dur-2) var(--ease-out); }
+.lpd-result { min-height: 236px; aspect-ratio: 340 / 236; display: flex; flex-direction: column; transition: background-color var(--dur-2) var(--ease-out); }
 .lpd-result:hover, .lpd-result:focus-visible { background: var(--chip); }
-.lpd-resultFig { display: flex; align-items: center; gap: 8px; margin-top: auto; position: relative; z-index: 1; padding-bottom: 8px; }
-.lpd-resultArt { position: absolute; right: 0; bottom: 0; height: 78%; width: auto; aspect-ratio: 340 / 236; pointer-events: none; }
-@media (max-width: 900px) { .lpd-result { aspect-ratio: auto; min-height: 280px; } }
+.lpd-resultFig { display: flex; align-items: center; gap: 8px; margin-top: auto; position: relative; z-index: 1; padding-bottom: 12px; }
+.lpd-resultArt { position: absolute; right: 0; bottom: 0; height: 100%; width: auto; aspect-ratio: 340 / 236; pointer-events: none; }
+@media (max-width: 900px) { .lpd-result { aspect-ratio: auto; min-height: 236px; } }
 
 /* ---------- Table ---------- */
 .lpd-tableHead { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(20px, 4vw, 64px); align-items: end; margin-bottom: clamp(24px, 4vw, 56px); }
@@ -138,6 +142,5 @@
 /* ---------- CTA strip ---------- */
 .lpd-cta { padding-block: var(--band); overflow: hidden; }
 .lpd-ctaGrid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(24px, 4vw, 72px); align-items: center; }
-.lpd-ctaHl { color: var(--navy); }
 .lpd-ctaArt { width: 100%; height: auto; }
 @media (max-width: 900px) { .lpd-ctaGrid { grid-template-columns: minmax(0, 1fr); } }

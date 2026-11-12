@@ -9,6 +9,8 @@ import { OVERVIEW } from '@/lib/brand';
 import s from '@/components/pages/overview/styles';
 
 import Idea from '@/components/pages/overview/Idea';
+import { Brief, Credits } from '@/components/pages/overview/Brief';
+import CaseMap from '@/components/pages/overview/CaseMap';
 
 export const metadata = pageMeta('overview');
 
@@ -18,6 +20,7 @@ const IDEA = 'Tectra turns a building site into something you can read like an i
 const CONTENTS = [
   ['overview-about', 'About'],
   ['overview-principles', 'Principles'],
+  ['overview-case', 'The case study, in order'],
   ['overview-chapters', 'All chapters'],
   ['overview-mockups', 'Mockups and products'],
 ];
@@ -45,6 +48,10 @@ export default function Page() {
           </aside>
         </div>
 
+        <div style={{ marginTop: 'var(--band)' }}>
+          <Brief />
+        </div>
+
         <div className="edit" style={{ marginTop: 'var(--band)' }}>
           <aside className="edit-note">
             <Idea />
@@ -55,16 +62,31 @@ export default function Page() {
               <p className="t-quote">{IDEA}</p>
             </Reveal>
           </div>
+          <aside className="edit-note-r">
+            <Credits />
+          </aside>
         </div>
 
         <div className="edit" style={{ marginTop: 'var(--band)' }}>
           <div className="edit-wide">
             <div className={s.sectionHead} id="overview-principles" tabIndex={-1} style={{ outline: 'none' }}>
               <h2 className="t-h2">Principles</h2>
-              <p className="t-lead muted" style={{ maxWidth: '52ch' }}>Four ideas the designers state in their own words, each with the figure that backs it.</p>
+              <p className="t-lead muted" style={{ maxWidth: '52ch' }}>Four principles in the case study&apos;s own words, each with the quote that states it and a figure from the case study.</p>
             </div>
             <div style={{ marginTop: 'clamp(24px, 4vw, 56px)' }}>
               <Principles />
+            </div>
+          </div>
+        </div>
+
+        <div className="edit" style={{ marginTop: 'var(--band)' }}>
+          <div className="edit-wide">
+            <Reveal className={s.ledgerHead}>
+              <h2 className="t-h2" id="overview-case" tabIndex={-1} style={{ outline: 'none' }}>The case study, in order</h2>
+              <p className="t-label">Each part and the page that rebuilds it</p>
+            </Reveal>
+            <div style={{ marginTop: 28 }}>
+              <CaseMap />
             </div>
           </div>
         </div>

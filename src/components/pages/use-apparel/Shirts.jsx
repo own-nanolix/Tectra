@@ -2,7 +2,7 @@
 // print layer straight up (y axis) above it. Front and back are separate views of the same function.
 import Art from '@/components/art/Art';
 import { BackdropG, ShadowG, MaterialDefs, LayerG, AxisG } from '@/components/art/Mockup';
-import { CW, Print, Folds, CastShadow, PrintFilm, Guide, BLUE, WHITE, INK } from './parts';
+import { CW, Print, Folds, CastShadow, PrintFilm, Guide, printH, BLUE, WHITE, INK } from './parts';
 
 export const SHIRT_FRONT = 'M108 14 L48 36 L4 96 L52 126 L68 104 L68 330 Q150 340 232 330 L232 104 L248 126 L296 96 L252 36 L192 14 Q150 46 108 14Z';
 export const SHIRT_BACK = 'M108 14 L48 36 L4 96 L52 126 L68 104 L68 330 Q150 340 232 330 L232 104 L248 126 L296 96 L252 36 L192 14 Q150 26 108 14Z';
@@ -120,6 +120,8 @@ export function ShirtView({ item, view }) {
   const p = item[view];
   const idp = `use-apparel-shirt-${item.id}-${view}`;
   const title = `${item.name} ${view}`;
+  // lift far enough that the film clears the collar (taller prints go higher)
+  const lift = Math.min(-170, Math.round(-12 - p.cy - (printH(p.kind, p.w) + 28) / 2));
   return (
     <Art viewBox="0 0 400 560" title={title} exportName={`use-apparel-shirt-${item.id}-${view}`}>
       <MaterialDefs idp={idp} />
@@ -131,7 +133,7 @@ export function ShirtView({ item, view }) {
           <g className="mock-lit">{shirt({ body: item.body, print: null, guide: p, view, uid: idp, m: idp, tone: item.tone })}</g>
         </g>
       </LayerG>
-      <LayerG i={1} dy={-170}>
+      <LayerG i={1} dy={lift}>
         <g transform={`translate(200 ${190 + p.cy})`}>
           <PrintFilm print={p} uid={`${idp}-film`} m={idp} tone={item.tone} backing={CW[item.body].fill} />
         </g>

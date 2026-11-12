@@ -40,7 +40,7 @@ export default function Faq() {
                   <span className={`t-label ${s.faqNum}`}>{`0${i + 1}`}</span>
                   <span className="t-h3">{q}</span>
                   <span className={s.faqArrow} aria-hidden="true">
-                    <Icon name="arrow-up-right" size={22} />
+                    <Icon name="arrow-right" size={22} />
                   </span>
                 </button>
               </h3>

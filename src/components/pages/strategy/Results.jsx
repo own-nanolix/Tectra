@@ -20,31 +20,30 @@ export function ScopeChips() {
   );
 }
 
+// The cards sit in the right three quarters of the page, as in m15: title and up arrow on top, the figure low
+// at the left, the gauge filling the card's bottom-right corner (the gauge drawing is the card's own size).
 export function ResultCards() {
   return (
     <div className={s.results}>
-      {RESULTS.map((r, i) => {
-        const v = parseInt(r.value, 10) / 100;
-        return (
-          <Reveal key={i} delay={i * 100}>
-            <ScrollRun>
-              <Card variant="page" className={s.resCard}>
-                <div className={s.resLabel}>
-                  <h3>{r.label}</h3>
-                  <Icon name="arrow-up" size={20} />
-                </div>
-                <CountUp value={r.value} className={s.figure} as="p" />
-                <CornerArc
-                  name={`strategy-result-gauge-${i + 1}`}
-                  tone={r.tone}
-                  value={v}
-                  title={`Corner gauge for ${r.label}, ${r.value}`}
-                />
-              </Card>
-            </ScrollRun>
-          </Reveal>
-        );
-      })}
+      {RESULTS.map((r, i) => (
+        <Reveal key={i} delay={i * 100}>
+          <ScrollRun>
+            <Card variant="page" className={s.resCard}>
+              <div className={s.resLabel}>
+                <h3>{r.label}</h3>
+                <Icon name="arrow-up" size={20} />
+              </div>
+              <CountUp value={r.value} className={s.figure} as="p" />
+              <CornerArc
+                name={`strategy-result-gauge-${i + 1}`}
+                tone={r.tone}
+                value={0.35}
+                title={`Corner gauge for ${r.label}, ${r.value}`}
+              />
+            </Card>
+          </ScrollRun>
+        </Reveal>
+      ))}
     </div>
   );
 }

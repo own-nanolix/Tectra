@@ -61,7 +61,11 @@ export function AppIconSheet() {
       <text x="120" y="228" textAnchor="middle" fontSize="14" fill={MUTED}>Web tile, radius 6</text>
       <text x="360" y="228" textAnchor="middle" fontSize="14" fill={MUTED}>Dock icon, radius 22</text>
       {[64, 48, 32].map((sz, i) => (
-        <AppIconG key={sz} x={[40, 120, 190][i]} y={[236, 244, 252][i]} size={sz} radius={6} className="pop" style={{ '--i': i }} />
+        <g key={sz} transform={`translate(${[40, 120, 190][i]} ${[236, 244, 252][i]})`}>
+          <g className="pop" style={{ '--i': i }}>
+            <AppIconG size={sz} radius={6} />
+          </g>
+        </g>
       ))}
       <text x="300" y="276" fontSize="14" fill={MUTED}>64, 48 and 32 px</text>
     </Art>
