@@ -57,3 +57,4 @@ http://localhost:3102 (start with `npx next dev -p 3102`; stop it before `npm ru
 - Decision: `src/lib/brand.js` added: all case-study copy and figures as constants, so every page prints the same text.
 - Decision: accessibility inks added as tokens (blue-ink, navy, muted, red-ink, yellow-ink) for small text; buttons use dark text on yellow and navy on sky instead of white (white failed 4.5:1). Large type keeps the original colours.
 - Decision: portraits are replaced by initials on a gradient tile; worker avatars by hard-hat icon tiles (no drawn people).
+- Step 5 started: wave 1 launched (B1 to B12, Sonnet): overview, strategy, logo, color, typography, gradients, icons, dataviz, motion, web-system, lp-home, lp-dashboard, lp-progress, lp-timeline, lp-work-areas, lp-mobile, lp-pricing. If a session ends here, trust only `npm run build` and `node tools/check.mjs`.
