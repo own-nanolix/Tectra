@@ -1,0 +1,33 @@
+.head { display: grid; gap: 16px; margin-bottom: clamp(28px, 4vw, 56px); }
+.sec { margin-top: clamp(48px, 7vw, 104px); display: grid; gap: clamp(16px, 2vw, 28px); }
+.secHead { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.fig { margin: 0; }
+.fig :global(.mock) { box-shadow: none; }
+.fig svg { display: block; width: 100%; height: auto; }
+
+.hatRow { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(16px, 2vw, 28px); align-items: start; }
+.iconRow { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(16px, 2vw, 28px); align-items: start; }
+.pair { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(16px, 2vw, 28px); }
+.benchRow { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(16px, 2vw, 28px); align-items: start; }
+.stack { display: grid; gap: clamp(16px, 2vw, 28px); }
+.cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(10px, 1.4vw, 20px); align-items: start; }
+.cards > :nth-child(2) { margin-top: clamp(24px, 4vw, 64px); }
+.cards > :nth-child(3) { margin-top: clamp(48px, 8vw, 128px); }
+
+.ladder { display: grid; gap: clamp(16px, 2vw, 28px); }
+.sizes { display: flex; align-items: flex-end; gap: clamp(16px, 3vw, 44px); flex-wrap: wrap; background: var(--tile); border-radius: var(--r-2); padding: clamp(20px, 3vw, 40px); }
+.size { display: grid; gap: 10px; justify-items: start; }
+.size svg { display: block; max-width: 100%; height: auto; }
+.sizeCap { font-size: 13px; color: var(--muted); }
+
+.ruler { overflow-x: auto; }
+
+@media (max-width: 900px) {
+  .hatRow, .iconRow { grid-template-columns: minmax(0, 1fr); }
+  .benchRow { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 640px) {
+  .pair { grid-template-columns: minmax(0, 1fr); }
+  .cards { grid-template-columns: minmax(0, 1fr); }
+  .cards > :nth-child(2), .cards > :nth-child(3) { margin-top: 0; }
+}

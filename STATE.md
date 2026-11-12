@@ -21,7 +21,7 @@ Spec: `rule/Brand-site.md` (master spec) and `rule/07-tectra.md` (this project's
 - [x] 2. Extract the case study
 - [x] 3. Study it and write `SOURCE.md`
 - [x] 4. `LAYOUTS.md`, `pages.json`, shared system, 30 stub routes, `BRIEF.md`; dev server started
-- [ ] 5. Build team, two waves; check reports 30 of 30 `ok`
+- [x] 5. Build team, two waves; check reports 30 of 30 `ok`
 - [ ] 6. Review team; shared fixes applied
 - [ ] 7. Verify in the browser; SVG export
 - [ ] 8. `REPORT.md` and `README.md`
@@ -62,3 +62,4 @@ http://localhost:3102 (start with `npx next dev -p 3102`; stop it before `npm ru
 - Wave 1 done: build passes, check reports 17 of 30 ok; audit of the built site: 16 of 17 clean (dataviz overflows 192 px at 390 px: for its reviewer). No builder had to be relaunched.
 - Fix: scripts/flatten-prefetch.mjs runs as postbuild. The export writes segment prefetch files in nested folders while the browser asks for dotted names, which gave 404 console errors on every page of the static preview.
 - Wave 2 launched (B13 to B24, Sonnet): dashboard, mobile-a, mobile-b, feature, showcase, campaign, use-apparel, use-accessories, use-stationery, use-packaging, use-event, use-world, use-product.
+- Step 5 done: wave 2 finished; build passes; check reports 30 of 30 ok; lint clean. No builder was relaunched in either wave.

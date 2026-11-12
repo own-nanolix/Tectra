@@ -1,0 +1,32 @@
+/* Stationery: the desk run. Grid columns are minmax(0, 1fr) so no plate can push the page wide. */
+.fig { margin: 0; min-width: 0; }
+.fig :global(.mock) > svg { display: block; }
+
+.head { display: grid; gap: 20px; max-width: 900px; margin-bottom: clamp(32px, 5vw, 72px); }
+.band { display: grid; gap: 20px; margin-top: clamp(48px, 7vw, 112px); }
+.bandHead { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; }
+
+.pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gap, 24px); align-items: start; }
+.trio { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gap, 24px); align-items: start; }
+.tall { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: var(--gap, 24px); align-items: start; }
+.stackCol { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--gap, 24px); min-width: 0; }
+.report { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--gap, 24px); align-items: start; }
+
+.strip {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding-bottom: 14px;
+  scroll-snap-type: x proximity;
+  overscroll-behavior-x: contain;
+}
+.strip:focus-visible { outline: 2px solid var(--blue-ink); outline-offset: 4px; }
+.slide { flex: 0 0 min(84vw, 520px); scroll-snap-align: start; }
+
+@media (max-width: 900px) {
+  .pair, .trio, .tall, .report { grid-template-columns: minmax(0, 1fr); }
+  .tall > .fig:last-child { max-width: 420px; }
+}
+@media (max-width: 480px) {
+  .slide { flex-basis: 86vw; }
+}

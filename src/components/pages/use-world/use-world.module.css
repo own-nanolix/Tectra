@@ -1,0 +1,51 @@
+/* Street section: four full-bleed floors, each plate with its own horizon height. */
+.head {
+  padding-bottom: clamp(24px, 4vw, 56px);
+}
+
+.floor {
+  display: block;
+  width: 100%;
+  margin: 0 0 clamp(8px, 1.2vw, 20px);
+}
+
+.plate {
+  width: 100%;
+  border-radius: 0;
+}
+
+.plate > svg {
+  display: block;
+}
+
+.pair {
+  display: grid;
+  grid-template-columns: minmax(0, 900fr) minmax(0, 760fr);
+  gap: 0;
+}
+
+.pair > .plate {
+  min-width: 0;
+}
+
+.name {
+  margin: 0;
+  padding: 12px var(--pad) 12px;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.3;
+  color: var(--ink);
+}
+
+.stack {
+  display: grid;
+  gap: clamp(8px, 1.2vw, 20px);
+  grid-template-columns: minmax(0, 1fr);
+}
+
+@media (max-width: 700px) {
+  .pair {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+  }
+}

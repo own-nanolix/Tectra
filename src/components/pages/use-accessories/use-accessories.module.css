@@ -1,0 +1,16 @@
+/* Accessories: a catalogue grid of unequal plates in 12 columns. */
+.head { display: grid; gap: 12px; padding-top: clamp(32px, 5vw, 72px); padding-bottom: clamp(24px, 3vw, 40px); max-width: 760px; }
+.grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: clamp(24px, 3vw, 40px) 16px; padding-bottom: clamp(56px, 8vw, 120px); }
+.cell { grid-column: span 12; margin: 0; min-width: 0; }
+.plate { display: block; }
+
+@media (min-width: 720px) {
+  .c3, .c4 { grid-column: span 6; }
+  .c6, .c8 { grid-column: span 12; }
+}
+@media (min-width: 1040px) {
+  .c3 { grid-column: span 3; }
+  .c4 { grid-column: span 4; }
+  .c6 { grid-column: span 6; }
+  .c8 { grid-column: span 8; }
+}

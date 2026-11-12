@@ -1,0 +1,51 @@
+.head { display: grid; gap: 20px; padding-bottom: clamp(28px, 4vw, 56px); }
+.lead { max-width: 34ch; }
+
+/* The shipping line: an arrow rule joins the five stages, left to right (top to bottom on narrow screens). */
+.rail { list-style: none; margin: 0 0 clamp(36px, 5vw, 72px); padding: 0; display: flex; align-items: center; gap: 0; }
+.rail li { display: flex; align-items: center; flex: 1 1 auto; min-width: 0; }
+.rail li:last-child { flex: 0 0 auto; }
+.railName { font-size: 14px; font-weight: 500; color: var(--ink); white-space: nowrap; padding: 8px 14px; background: var(--chip); border-radius: var(--r-1); }
+.arrow { position: relative; flex: 1 1 24px; height: 1px; min-width: 24px; margin: 0 8px; background: var(--sky); transform-origin: left center; animation: use-packaging-draw var(--dur-5) var(--ease-draw) both; }
+.arrow::before, .arrow::after { content: ''; position: absolute; top: 50%; width: 7px; height: 7px; border-top: 1.5px solid var(--blue); border-right: 1.5px solid var(--blue); }
+.arrow::after { right: 0; transform: translateY(-50%) rotate(45deg); }
+.arrow::before { left: 0; width: 5px; height: 5px; border: 0; background: var(--blue); border-radius: 50%; transform: translate(-50%, -50%); }
+@keyframes use-packaging-draw { from { transform: scaleX(0); opacity: 0; } to { transform: none; opacity: 1; } }
+
+.flow { list-style: none; margin: 0; padding: 0; display: grid; gap: clamp(44px, 6vw, 96px); }
+.stage { display: grid; gap: 18px; position: relative; }
+.stage:not(:last-child)::after { content: ''; position: absolute; left: 20px; bottom: calc(clamp(44px, 6vw, 96px) * -0.82); width: 1px; height: calc(clamp(44px, 6vw, 96px) * 0.66); background: var(--sky); }
+.stage h2 { display: flex; align-items: center; gap: 12px; margin: 0; }
+.stage h2::before { content: ''; width: 9px; height: 9px; border-radius: 50%; background: var(--blue); box-shadow: 0 0 0 5px var(--tile); flex: none; }
+.row { display: grid; gap: var(--gap, 20px); grid-template-columns: repeat(12, minmax(0, 1fr)); align-items: start; }
+.c3 { grid-column: span 3; }
+.c4 { grid-column: span 4; }
+.c5 { grid-column: span 5; }
+.c6 { grid-column: span 6; }
+.c7 { grid-column: span 7; }
+.c8 { grid-column: span 8; }
+.offset { margin-top: clamp(0px, 4vw, 56px); }
+.plate { margin: 0; min-width: 0; }
+.plate figcaption { padding: 12px 16px 14px; }
+@media (max-width: 900px) {
+  .c3, .c4 { grid-column: span 6; }
+  .c5, .c6, .c7, .c8 { grid-column: 1 / -1; }
+  .offset { margin-top: 0; }
+}
+@media (max-width: 600px) {
+  .row { grid-template-columns: minmax(0, 1fr); }
+  .c3, .c4, .c5, .c6, .c7, .c8 { grid-column: 1; }
+  .rail { flex-direction: column; align-items: flex-start; gap: 0; padding-left: 4px; }
+  .rail li { flex-direction: column; align-items: flex-start; flex: none; }
+  .arrow { flex: none; width: 1px; height: 28px; min-width: 0; margin: 4px 0 4px 22px; transform-origin: center top; }
+  .arrow::after { right: auto; left: 50%; top: auto; bottom: 0; transform: translate(-50%, 0) rotate(135deg); }
+  .arrow::before { top: 0; left: 50%; }
+  .stage:not(:last-child)::after { display: none; }
+}
+
+/* the line drawing printed on the box: keep its hairlines visible at the small scale of a box face */
+.lineArt path[stroke-width='1'], .lineArt path[stroke-width='1.1'] { stroke-width: 2.8px; }
+.lineArt path[stroke-width='0.6'] { stroke-width: 1.5px; }
+
+@media (prefers-reduced-motion: reduce) { .arrow { animation: none; } }
+.fig { margin: 0; }
