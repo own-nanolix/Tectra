@@ -18,8 +18,8 @@ Spec: `rule/Brand-site.md` (master spec) and `rule/07-tectra.md` (this project's
 ## Steps
 
 - [x] 1. Check the project and the PC, tool files, `next.config` keys, `.gitignore` lines
-- [ ] 2. Extract the case study
-- [ ] 3. Study it and write `SOURCE.md`
+- [x] 2. Extract the case study
+- [x] 3. Study it and write `SOURCE.md`
 - [ ] 4. `LAYOUTS.md`, `pages.json`, shared system, 30 stub routes, `BRIEF.md`; dev server started
 - [ ] 5. Build team, two waves; check reports 30 of 30 `ok`
 - [ ] 6. Review team; shared fixes applied
@@ -48,3 +48,7 @@ Spec: `rule/Brand-site.md` (master spec) and `rule/07-tectra.md` (this project's
 ## Log
 
 - Step 1 done: tools written from spec section 16, `.gitignore` extended, static export builds.
+- Steps 2 and 3 done: 19 images in reference/ (headed Chrome; the headless browser got HTTP 400 from Behance), sliced with sharp from node_modules, SOURCE.md written.
+- Decision: HERO_FEATURE = the Progress site view (isometric building, pins, Komatsu card, Cut and Fill). PRODUCT_OBJECT = hard hat with a rugged site tablet.
+- Decision: landing ids lp-home, lp-dashboard, lp-progress, lp-timeline, lp-work-areas, lp-mobile, lp-pricing (from the nav and the landing sections).
+- Decision: Urbanist is the real brand font and is on Google Fonts, so no substitute is needed.
