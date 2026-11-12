@@ -1,0 +1,182 @@
+[
+  {
+    "id": "overview",
+    "title": "Overview",
+    "group": "Brand foundations",
+    "minExports": 2
+  },
+  {
+    "id": "logo",
+    "title": "Logo",
+    "group": "Brand foundations",
+    "minExports": 18
+  },
+  {
+    "id": "color",
+    "title": "Colour",
+    "group": "Brand foundations",
+    "minExports": 5
+  },
+  {
+    "id": "gradients",
+    "title": "Gradients and key art",
+    "group": "Brand foundations",
+    "minExports": 20
+  },
+  {
+    "id": "typography",
+    "title": "Typography",
+    "group": "Brand foundations",
+    "minExports": 6
+  },
+  {
+    "id": "icons",
+    "title": "Icons and illustration",
+    "group": "Brand foundations",
+    "minExports": 40
+  },
+  {
+    "id": "dataviz",
+    "title": "Data visualisation",
+    "group": "Brand foundations",
+    "minExports": 20
+  },
+  {
+    "id": "motion",
+    "title": "Motion",
+    "group": "Brand foundations",
+    "minExports": 6
+  },
+  {
+    "id": "strategy",
+    "title": "Strategy",
+    "group": "Brand foundations",
+    "minExports": 3
+  },
+  {
+    "id": "web-system",
+    "title": "Web system",
+    "group": "Web",
+    "minExports": 3
+  },
+  {
+    "id": "lp-home",
+    "title": "Landing: Smart Construction",
+    "group": "Web",
+    "minExports": 2
+  },
+  {
+    "id": "lp-dashboard",
+    "title": "Landing: Dashboard",
+    "group": "Web",
+    "minExports": 2
+  },
+  {
+    "id": "lp-progress",
+    "title": "Landing: Progress",
+    "group": "Web",
+    "minExports": 2
+  },
+  {
+    "id": "lp-timeline",
+    "title": "Landing: Timeline",
+    "group": "Web",
+    "minExports": 2
+  },
+  {
+    "id": "lp-work-areas",
+    "title": "Landing: Work areas",
+    "group": "Web",
+    "minExports": 2
+  },
+  {
+    "id": "lp-mobile",
+    "title": "Landing: Mobile app",
+    "group": "Web",
+    "minExports": 2
+  },
+  {
+    "id": "lp-pricing",
+    "title": "Landing: Plans",
+    "group": "Web",
+    "minExports": 2
+  },
+  {
+    "id": "dashboard",
+    "title": "Dashboard",
+    "group": "Product",
+    "minExports": 8
+  },
+  {
+    "id": "mobile-a",
+    "title": "Mobile app, screens 1 to 9",
+    "group": "Product",
+    "minExports": 2
+  },
+  {
+    "id": "mobile-b",
+    "title": "Mobile app, screens 10 to 18",
+    "group": "Product",
+    "minExports": 2
+  },
+  {
+    "id": "feature",
+    "title": "Site view",
+    "group": "Product",
+    "minExports": 2
+  },
+  {
+    "id": "showcase",
+    "title": "Showcase",
+    "group": "Campaign and the physical brand",
+    "minExports": 4
+  },
+  {
+    "id": "campaign",
+    "title": "Campaign",
+    "group": "Campaign and the physical brand",
+    "minExports": 7
+  },
+  {
+    "id": "use-apparel",
+    "title": "Apparel",
+    "group": "Campaign and the physical brand",
+    "minExports": 12
+  },
+  {
+    "id": "use-accessories",
+    "title": "Accessories",
+    "group": "Campaign and the physical brand",
+    "minExports": 20
+  },
+  {
+    "id": "use-stationery",
+    "title": "Stationery",
+    "group": "Campaign and the physical brand",
+    "minExports": 14
+  },
+  {
+    "id": "use-packaging",
+    "title": "Packaging",
+    "group": "Campaign and the physical brand",
+    "minExports": 12
+  },
+  {
+    "id": "use-event",
+    "title": "Event",
+    "group": "Campaign and the physical brand",
+    "minExports": 19
+  },
+  {
+    "id": "use-world",
+    "title": "In the world",
+    "group": "Campaign and the physical brand",
+    "minExports": 6
+  },
+  {
+    "id": "use-product",
+    "title": "Product",
+    "group": "Campaign and the physical brand",
+    "minExports": 12
+  }
+]

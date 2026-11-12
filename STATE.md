@@ -20,7 +20,7 @@ Spec: `rule/Brand-site.md` (master spec) and `rule/07-tectra.md` (this project's
 - [x] 1. Check the project and the PC, tool files, `next.config` keys, `.gitignore` lines
 - [x] 2. Extract the case study
 - [x] 3. Study it and write `SOURCE.md`
-- [ ] 4. `LAYOUTS.md`, `pages.json`, shared system, 30 stub routes, `BRIEF.md`; dev server started
+- [x] 4. `LAYOUTS.md`, `pages.json`, shared system, 30 stub routes, `BRIEF.md`; dev server started
 - [ ] 5. Build team, two waves; check reports 30 of 30 `ok`
 - [ ] 6. Review team; shared fixes applied
 - [ ] 7. Verify in the browser; SVG export
@@ -43,7 +43,7 @@ Spec: `rule/Brand-site.md` (master spec) and `rule/07-tectra.md` (this project's
 
 ## Dev server
 
-(not started yet)
+http://localhost:3102 (start with `npx next dev -p 3102`; stop it before `npm run build`)
 
 ## Log
 
@@ -52,3 +52,8 @@ Spec: `rule/Brand-site.md` (master spec) and `rule/07-tectra.md` (this project's
 - Decision: HERO_FEATURE = the Progress site view (isometric building, pins, Komatsu card, Cut and Fill). PRODUCT_OBJECT = hard hat with a rugged site tablet.
 - Decision: landing ids lp-home, lp-dashboard, lp-progress, lp-timeline, lp-work-areas, lp-mobile, lp-pricing (from the nav and the landing sections).
 - Decision: Urbanist is the real brand font and is on Google Fonts, so no substitute is needed.
+- Step 4 done: LAYOUTS.md, pages.json, shared system (globals.css, layouts, template, components/site, ui, art, lib), 30 stub routes, BRIEF.md. Build passes; check lists 30 stubs.
+- Decision: `src/app/layout.js` renamed to `layout.jsx`; starter page, favicon and starter SVGs in public/ removed (replaced by `src/app/icon.svg`).
+- Decision: `src/lib/brand.js` added: all case-study copy and figures as constants, so every page prints the same text.
+- Decision: accessibility inks added as tokens (blue-ink, navy, muted, red-ink, yellow-ink) for small text; buttons use dark text on yellow and navy on sky instead of white (white failed 4.5:1). Large type keeps the original colours.
+- Decision: portraits are replaced by initials on a gradient tile; worker avatars by hard-hat icon tiles (no drawn people).

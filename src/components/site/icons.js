@@ -1,0 +1,57 @@
+// The icon set: 24 px grid, 1.5 px stroke, round caps and joins, no fills. One path string per icon.
+// CORE is the brand's 32 icons (shown on the icons page). UTIL holds interface extras.
+export const CORE = {
+  layers: 'M12 3 3 8l9 5 9-5-9-5ZM3 12l9 5 9-5M3 16l9 5 9-5',
+  link: 'M10 14a4 4 0 0 0 5.66 0l3-3a4 4 0 0 0-5.66-5.66l-1 1M14 10a4 4 0 0 0-5.66 0l-3 3a4 4 0 0 0 5.66 5.66l1-1',
+  headset: 'M4 14v-2a8 8 0 0 1 16 0v2M4 14h3v5H5a1 1 0 0 1-1-1v-4ZM20 14h-3v5h2a1 1 0 0 0 1-1v-4ZM18 19c-.6 1.4-2 2-4 2h-2',
+  gear: 'M12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6ZM19 12c0-.4 0-.8-.1-1.2l2-1.5-2-3.4-2.3.9a7 7 0 0 0-2-1.2L14.2 3h-4l-.4 2.6a7 7 0 0 0-2 1.2l-2.3-.9-2 3.4 2 1.5a7 7 0 0 0 0 2.4l-2 1.5 2 3.4 2.3-.9a7 7 0 0 0 2 1.2l.4 2.6h4l.4-2.6a7 7 0 0 0 2-1.2l2.3.9 2-3.4-2-1.5c.1-.4.1-.8.1-1.2Z',
+  folder: 'M3 7a1 1 0 0 1 1-1h5l2 2h8a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7ZM8 14h8',
+  logout: 'M14 4H6a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h8M10 12h10M17 9l3 3-3 3',
+  briefcase: 'M4 8h16a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1ZM9 8V6a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2M3 13h8M13 13h8M11 12h2v2.5h-2z',
+  bell: 'M6 16v-5a6 6 0 0 1 12 0v5l1.5 2h-15L6 16ZM10 20.5a2 2 0 0 0 4 0',
+  share: 'M12 5H6a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-6M13 11l7-7M15 4h5v5',
+  'arrow-right': 'M4 12h16M14 6l6 6-6 6',
+  'arrow-up-right': 'M7 17 17 7M9 7h8v8',
+  'arrow-up': 'M12 20V4M6 10l6-6 6 6',
+  'chevron-down': 'M6 9l6 6 6-6',
+  more: 'M6 10.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3ZM12 10.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3ZM18 10.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Z',
+  pin: 'M12 21s-6-5.6-6-10a6 6 0 0 1 12 0c0 4.4-6 10-6 10ZM12 9a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z',
+  crane: 'M7 21V4M4 21h6M7 4l14 3M7 4 4 7h3M7 8.5l9-2.6M17 6.1V13M15.5 13h3v3h-3zM7 12l3 3-3 3',
+  hardhat: 'M4 16a8 8 0 0 1 16 0M2.5 16h19v2.5h-19zM10 8.3V13M14 8.3V13',
+  ruler: 'M3 8h18v8H3zM7 8v3M11 8v4M15 8v3M19 8v4',
+  cube: 'M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3ZM4 7.5l8 4.5 8-4.5M12 12v9',
+  truck: 'M2 7h11v9H2zM13 10h4l4 3v3h-8M6.5 16a2 2 0 1 0 0 4 2 2 0 0 0 0-4ZM17 16a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z',
+  user: 'M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8ZM4 21a8 8 0 0 1 16 0',
+  users: 'M9 5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7ZM2 20a7 7 0 0 1 14 0M16 5.2a3.5 3.5 0 0 1 0 6.6M18 14.5a7 7 0 0 1 4 5.5',
+  note: 'M6 3h9l4 4v13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1ZM15 3v4h4M8 12h8M8 16h5',
+  chart: 'M4 20V4M4 20h16M8 16v-4M12 16V8M16 16v-6',
+  calendar: 'M4 6h16v14H4zM4 10h16M8 3v4M16 3v4',
+  clock: 'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18ZM12 7v5l3 2',
+  search: 'M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14ZM16 16l5 5',
+  filter: 'M4 6h16M7 12h10M10 18h4',
+  check: 'M5 12.5l4.5 4.5L19 7.5',
+  plus: 'M12 5v14M5 12h14',
+  close: 'M6 6l12 12M18 6 6 18',
+  home: 'M4 11l8-7 8 7v9H4v-9ZM10 20v-5h4v5',
+};
+
+export const UTIL = {
+  'chevron-left': 'M15 6l-6 6 6 6',
+  'chevron-right': 'M9 6l6 6-6 6',
+  'arrow-left': 'M20 12H4M10 6l-6 6 6 6',
+  'arrow-down': 'M12 4v16M6 14l6 6 6-6',
+  menu: 'M4 7h16M4 12h16M4 17h16',
+  copy: 'M9 9h11v11H9zM5 15H4V4h11v1',
+  play: 'M7 5l12 7-12 7V5Z',
+  pause: 'M8 5v14M16 5v14',
+  grid: 'M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z',
+  download: 'M12 4v12M6 11l6 6 6-6M4 20h16',
+  alert: 'M12 4l9 16H3l9-16ZM12 10v4M12 17v.5',
+  sort: 'M8 4v16M4 8l4-4 4 4M16 20V4M12 16l4 4 4-4',
+  x: 'M5 4l14 16M19 4 5 20',
+  linkedin: 'M5 9v10M5 5.5v.5M10 19v-6a3.5 3.5 0 0 1 7 0v6M10 9v10',
+  youtube: 'M3 7h18v10H3zM10 9.5l5 2.5-5 2.5v-5Z',
+};
+
+export const ICONS = { ...CORE, ...UTIL };
+export const CORE_NAMES = Object.keys(CORE);
