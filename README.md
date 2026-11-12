@@ -7,7 +7,7 @@ and CSS); there are no image files.
 
 - Next.js 16 (App Router), React 19, JavaScript, Tailwind v4, framer-motion.
 - Every page is static. `npm run build` writes plain HTML, CSS and JS to `out/`.
-- Live link: not published yet.
+- Live link: https://tectra-phi.vercel.app/ (Vercel is connected to this GitHub repo; every push to `main` redeploys it).
 
 ## Run it
 

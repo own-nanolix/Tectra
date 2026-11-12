@@ -148,13 +148,13 @@ export const FAQ = {
     'Community support',
   ],
 };
-// Footer columns as printed. The source's address and copyright lines were another company's placeholder
-// text; they are replaced here with neutral placeholders.
+// Footer: the source's footer was another company's leftover text (address, copyright and link columns).
+// The four column headings and the layout are kept; every entry is a neutral placeholder.
 export const FOOTER = {
   columns: [
-    ['Product', ['Overview', 'Workplace Search', 'Assistant', 'Platform', 'Knowledge Management', 'Work Hub', 'Connectors', 'Security']],
-    ['Solutions', ['All Teams', 'Engineering', 'Sales', 'Support', 'People', 'Knowledge Management']],
-    ['Resources', ['Resources Center', 'Product Videos', 'Guides', 'Customer Stories', 'Blog', 'Webinars', 'Developers', 'Help Center']],
+    ['Product', ['Overview', 'Features', 'Platform', 'Mobile app', 'Integrations', 'Security', 'Plans', 'Updates']],
+    ['Solutions', ['All teams', 'Small teams', 'Large teams', 'Site teams', 'Office teams', 'Partners']],
+    ['Resources', ['Resource centre', 'Videos', 'Guides', 'Stories', 'Blog', 'Webinars', 'Developers', 'Help centre']],
     ['Company', ['About', 'Careers', 'Press']],
   ],
   address: ['Street address', 'Suite', 'City, postcode', 'Country'],

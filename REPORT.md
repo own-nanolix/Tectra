@@ -11,7 +11,8 @@ Rondesignlab and team (https://www.behance.net/gallery/225852373/Tectra-Construc
   use-accessories, use-stationery, use-packaging, use-event, use-world, use-product.
 - **Static export:** `npm run build` writes the site to `out/` (about 28 MB). It needs no server features.
 - **GitHub:** https://github.com/own-nanolix/Tectra (branch `main`, every milestone pushed).
-- **Live link:** not published yet.
+- **Live link:** https://tectra-phi.vercel.app/ . Vercel is connected to the GitHub repo, so every push to `main`
+  goes live. The link is not listed in search engines, but anyone who has it can open it.
 
 ## Deliverables: minimum and delivered
 
@@ -113,9 +114,10 @@ card, the device trio and the icon size ladder.
   numbers on stationery, tickets, labels and cards; note text on the mobile Notes screen.
 - **Source oddities kept as printed:** "Progres", "Localiztion", the axis order `0 10 20 60 70 80 90 100 30 40
   50`, and the cut-off sentence on the second mobile text card.
-- **Source text replaced:** the footer on `lp-home` carried another company's leftover address and copyright
-  line in the source. Both are replaced with neutral placeholders ("Street address / Suite / City, postcode /
-  Country", "© Tectra"). The footer's link columns are still as printed in the source.
+- **Source text replaced:** the footer on `lp-home` was another company's leftover text in the source (address,
+  copyright line and link columns with that company's product names). All of it is replaced with neutral
+  placeholders: "Street address / Suite / City, postcode / Country", "© Tectra", and plain column entries such as
+  "Overview", "Features", "Platform", "Guides", "Help centre". The four column headings and the layout are kept.
 - **Illegible or wrong in the source:** the black colour ring is labelled "#FFB83D"; it is shown as `#000000`.
   The badge contact lines are too small to rely on and are placeholder bars.
 
@@ -167,3 +169,13 @@ Not verified:
   styles were missing during the first wave (fixed in `next.config.mjs`); the static export's prefetch files
   gave 404s on a plain static host (fixed by `scripts/flatten-prefetch.mjs`); `cacheComponents` and
   `partialPrefetching` had to be removed because they cannot be combined with a static export.
+
+## Decisions made under the standing orders
+
+- The two rule files disagree on technology: `rule/07-tectra.md` describes a single HTML file, `rule/Brand-site.md`
+  describes this Next.js site and says it gives "everything else" beyond the link, site name and layout
+  direction. `Brand-site.md` is followed; from `07-tectra.md` only the Behance link, the site name and section
+  2b (layout direction) apply.
+- No other company's name, address, product names or copyright appears on any page; the `lp-home` footer uses
+  neutral placeholders (this overrides "copy verbatim" for that footer).
+- Pushes: one push per round of work, after the final review, because every push to `main` goes live.
